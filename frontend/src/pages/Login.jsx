@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import "../styles/Login.css";
 
@@ -8,7 +8,7 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+const navigate = useNavigate();
 
 
   const handleSubmit = async (e) => {
@@ -39,7 +39,7 @@ export default function Login() {
         JSON.stringify(res.data.user)
       );
 
-      alert("Login Successful");
+      navigate("/user-dashboard");
 
     } catch (error) {
 

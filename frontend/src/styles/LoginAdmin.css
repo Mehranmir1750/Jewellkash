@@ -1,189 +1,509 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Jost:wght@300;400;500&display=swap');
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+
+
+/* ───────── Navbar ───────── */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 70px;
+  padding: 0 3rem;
+
+  background: rgba(20, 12, 16, 0.92);
+
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(196, 104, 122, 0.15);
+
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.25);
+
+  font-family: 'Jost', sans-serif;
+}
+
+/* Logo */
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+
+  font-size: 1.8rem;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+
+  color: #FFE7EC;
+
+  text-shadow:
+    0 0 10px rgba(196, 104, 122, 0.15);
+}
+
+/* Links */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.3rem;
+
+  list-style: none;
+}
+
+.nav-links a,
+.nav-dropdown-trigger {
+  position: relative;
+
+  text-decoration: none;
+
+  color: #D8A2AB;
+
+  font-size: 11px;
+  font-weight: 400;
+
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  transition:
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+/* Elegant underline hover */
+
+.nav-links a::after,
+.nav-dropdown-trigger::after {
+  content: '';
+
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+
+  width: 0%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #C4687A,
+    transparent
+  );
+
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after,
+.nav-dropdown-trigger:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover,
+.nav-dropdown-trigger:hover {
+  color: #FFE7EC;
+}
+
+/* Active */
+
+.nav-links a.active,
+.nav-dropdown-trigger.active {
+  color: #FFE7EC;
+}
+
+/* Register Button */
+
+.nav-register-link {
+  padding: 9px 18px !important;
+
+  border-radius: 30px;
+
+  border: 1px solid rgba(196, 104, 122, 0.5);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(196, 104, 122, 0.15),
+      rgba(255, 231, 236, 0.03)
+    );
+
+  color: #FFDCE2 !important;
+
+  backdrop-filter: blur(10px);
+
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease !important;
+}
+
+.nav-register-link:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #C4687A,
+      #D98998
+    ) !important;
+
+  color: white !important;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 25px rgba(196, 104, 122, 0.25);
+}
+
+/* Dropdown */
+
+.nav-dropdown {
+  background: rgba(34, 21, 25, 0.98);
+
+  border: 1px solid rgba(196, 104, 122, 0.15);
+
+  backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.35);
+
+  border-radius: 12px;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 0 1.2rem;
+  }
+
+  .nav-links {
+    gap: 1.1rem;
+  }
+
+  .nav-logo {
+    font-size: 1.4rem;
+  }
+
+  .nav-links a,
+  .nav-dropdown-trigger {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+}
+
+
+
+
+
+
+
+
+
 
 .la-wrap {
   min-height: 100vh;
-  background: #1A1014;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 2rem 1rem;
+
   font-family: 'Jost', sans-serif;
+
+  background: #140C10;
+
   background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(196, 104, 122, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(196, 104, 122, 0.04) 0%, transparent 50%);
+    radial-gradient(circle at top left,
+      rgba(196, 104, 122, 0.08),
+      transparent 35%),
+
+    radial-gradient(circle at bottom right,
+      rgba(196, 104, 122, 0.05),
+      transparent 40%);
 }
 
-/* ── Card ─────────────────────────────────────────────────── */
+/* Card */
 .la-card {
-  background: #221519;
-  border: 0.5px solid #3D2229;
-  border-radius: 4px;
-  padding: 2.5rem 2rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 410px;
+
+  background: rgba(34, 21, 25, 0.96);
+
+  border: 1px solid rgba(196, 104, 122, 0.15);
+
+  border-radius: 10px;
+
+  padding: 2.7rem 2.2rem;
+
   position: relative;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(196, 104, 122, 0.03);
+
+  overflow: hidden;
 }
 
-/* subtle top accent line */
+/* Top accent */
 .la-card::before {
   content: '';
+
   position: absolute;
   top: 0;
   left: 10%;
+
   width: 80%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #C4687A, transparent);
-  border-radius: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #C4687A,
+    transparent
+  );
 }
 
-/* ── Admin badge ──────────────────────────────────────────── */
+/* Badge */
 .la-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
+
+  padding: 5px 12px;
+
+  border: 1px solid rgba(196, 104, 122, 0.18);
+
+  border-radius: 30px;
+
   font-size: 9px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #C4687A;
-  border: 0.5px solid #3D2229;
-  border-radius: 2px;
-  padding: 4px 10px;
-  margin-bottom: 1.4rem;
   font-weight: 500;
+
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  color: #C4687A;
+
+  margin-bottom: 1.5rem;
+
+  background: rgba(196, 104, 122, 0.04);
 }
+
 .la-badge::before {
   content: '◆';
-  font-size: 6px;
+  font-size: 7px;
 }
 
-/* ── Logo ─────────────────────────────────────────────────── */
+/* Logo */
 .la-logo {
+  text-align: center;
+
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.7rem;
+
+  font-size: 2rem;
   font-weight: 600;
-  color: #F5E6E8;
-  letter-spacing: 0.1em;
-  text-align: center;
-  margin-bottom: 4px;
+
+  letter-spacing: 0.12em;
+
+  color: #F7E8EA;
+
+  margin-bottom: 6px;
 }
 
+/* Subtitle */
 .la-sub {
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #7A4F56;
   text-align: center;
-  margin-bottom: 1.8rem;
-  font-weight: 300;
+
+  font-size: 11px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+
+  color: #7A4F56;
+
+  margin-bottom: 2rem;
 }
 
-/* ── Divider ──────────────────────────────────────────────── */
+/* Divider */
 .la-divider {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 1.8rem;
-}
-.la-divider::before, .la-divider::after {
-  content: '';
-  flex: 1;
-  height: 0.5px;
-  background: #3D2229;
-}
-.la-gem {
-  width: 5px;
-  height: 5px;
-  background: #C4687A;
-  transform: rotate(45deg);
-  flex-shrink: 0;
+  gap: 12px;
+
+  margin-bottom: 2rem;
 }
 
-/* ── Fields ───────────────────────────────────────────────── */
+.la-divider::before,
+.la-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+
+  background: rgba(196, 104, 122, 0.12);
+}
+
+.la-gem {
+  width: 6px;
+  height: 6px;
+
+  background: #C4687A;
+
+  transform: rotate(45deg);
+}
+
+/* Field */
 .la-field {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .la-label {
   display: block;
+
+  margin-bottom: 7px;
+
   font-size: 10px;
-  letter-spacing: 0.15em;
+
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #7A4F56;
-  margin-bottom: 5px;
-  font-weight: 400;
+
+  color: #8A5A62;
 }
 
+/* Input */
 .la-input {
   width: 100%;
-  padding: 9px 12px;
-  border: 0.5px solid #3D2229;
+
+  padding: 12px 14px;
+
+  border-radius: 6px;
+
+  border: 1px solid #3D2229;
+
   background: #1A1014;
-  border-radius: 2px;
-  font-family: 'Jost', sans-serif;
-  font-size: 13px;
+
   color: #F5E6E8;
+
+  font-size: 13px;
+
   outline: none;
-  transition: border-color 0.2s;
+
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
 }
-.la-input:focus {
-  border-color: #C4687A;
-}
+
 .la-input::placeholder {
   color: #4A2E35;
 }
 
-/* ── Forgot ───────────────────────────────────────────────── */
+.la-input:focus {
+  border-color: #C4687A;
+
+  box-shadow:
+    0 0 0 3px rgba(196, 104, 122, 0.08);
+}
+
+/* Forgot */
 .la-forgot {
   text-align: right;
-  margin-top: -0.4rem;
-  margin-bottom: 0.5rem;
+
+  margin-top: -0.2rem;
 }
+
 .la-forgot a {
   font-size: 11px;
+
   color: #7A4F56;
+
   text-decoration: none;
-  letter-spacing: 0.04em;
+
   transition: color 0.2s;
 }
+
 .la-forgot a:hover {
   color: #C4687A;
 }
 
-/* ── Submit ───────────────────────────────────────────────── */
+/* Button */
 .la-submit {
   width: 100%;
-  padding: 11px;
-  margin-top: 1.2rem;
-  border: 0.5px solid #C4687A;
+
+  margin-top: 1.6rem;
+
+  padding: 13px;
+
+  border-radius: 6px;
+
+  border: 1px solid #C4687A;
+
   background: transparent;
+
   color: #C4687A;
-  font-family: 'Jost', sans-serif;
+
   font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.25s, color 0.25s;
   font-weight: 500;
-  border-radius: 2px;
-}
-.la-submit:hover {
-  background: #C4687A;
-  color: #1A1014;
+
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s,
+    color 0.25s,
+    transform 0.2s;
 }
 
-/* ── Footer ───────────────────────────────────────────────── */
+.la-submit:hover {
+  background: #C4687A;
+  color: #140C10;
+
+  transform: translateY(-2px);
+}
+
+/* Footer */
 .la-footer {
   text-align: center;
-  margin-top: 1.4rem;
+
+  margin-top: 1.6rem;
+
   font-size: 12px;
+
   color: #7A4F56;
 }
+
 .la-footer a {
   color: #C4687A;
   text-decoration: none;
 }
+
 .la-footer a:hover {
   text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .la-card {
+    padding: 2.2rem 1.4rem;
+  }
+
+  .la-logo {
+    font-size: 1.7rem;
+  }
+
+  .la-sub {
+    letter-spacing: 0.18em;
+  }
 }
