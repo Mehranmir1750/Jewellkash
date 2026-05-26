@@ -8,6 +8,7 @@ import UserDashboard from "./pages/UserDashboard"
 import Orders from "./pages/Orders"
 import Cart from "./pages/Cart"
 import AdminDashboard from "./pages/AdminDashboard"
+import AddProduct from "./pages/AddProduct"
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
 
 <Route path="/cart" element={<Cart />} />
 <Route path="/admin-dashboard" element={<AdminDashboard />} />
+<Route path="/add-product" element={<AddProduct />} />
 
 
       </Routes>

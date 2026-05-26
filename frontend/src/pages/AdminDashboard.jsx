@@ -95,11 +95,10 @@ export default function AdminDashboard() {
             </p>
           </div>
 
-          <button className="add-product-btn">
-            <FaPlus />
-            Add Product
-          </button>
-
+        <a href="/add-product" className="add-product-btn">
+  <FaPlus />
+  Add Product
+</a>
         </div>
 
         {/* Stats */}
