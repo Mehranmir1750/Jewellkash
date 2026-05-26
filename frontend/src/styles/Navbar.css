@@ -1,40 +1,178 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Jost:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Jost:wght@300;400;500&display=swap');
 
+/* ── Nav shell ───────────────────────────────────────────── */
 .nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 18px 50px;
-  background: #FDF6F0;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 60px;
+  background: #FFFAF9;
   border-bottom: 0.5px solid #F2D6D6;
+  font-family: 'Jost', sans-serif;
 }
 
+/* ── Logo ─────────────────────────────────────────────────── */
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
+  font-size: 1.45rem;
   font-weight: 600;
   color: #2D1A1E;
   letter-spacing: 0.1em;
+  user-select: none;
 }
 
+/* ── Links list ───────────────────────────────────────────── */
 .nav-links {
-  display: flex;
-  gap: 32px;
   list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
-.nav-links a {
-  font-family: 'Jost', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
+.nav-links a,
+.nav-dropdown-trigger {
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
   color: #B5737A;
+  font-weight: 400;
   transition: color 0.2s;
+  cursor: pointer;
 }
 
 .nav-links a:hover,
-.nav-links a.active {
+.nav-dropdown-trigger:hover {
+  color: #2D1A1E;
+}
+
+.nav-links a.active,
+.nav-dropdown-trigger.active {
   color: #C4687A;
+}
+
+/* ── Register — outlined pill ─────────────────────────────── */
+.nav-register-link {
+  padding: 5px 14px !important;
+  border: 0.5px solid #C4687A !important;
+  border-radius: 2px;
+  color: #C4687A !important;
+  transition: background 0.2s, color 0.2s !important;
+}
+.nav-register-link:hover {
+  background: #C4687A !important;
+  color: #fff !important;
+}
+.nav-register-link.active {
+  background: #C4687A !important;
+  color: #fff !important;
+}
+
+/* ── Dropdown wrapper ─────────────────────────────────────── */
+.nav-dropdown-wrap {
+  position: relative;
+}
+
+.nav-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  user-select: none;
+}
+
+.nav-chevron {
+  width: 8px;
+  height: 8px;
+  transition: transform 0.25s;
+  color: inherit;
+}
+
+.nav-dropdown-wrap:hover .nav-chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown panel ───────────────────────────────────────── */
+.nav-dropdown {
+  list-style: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 190px;
+  background: #FFFAF9;
+  border: 0.5px solid #F2D6D6;
+  border-radius: 4px;
+  padding: 6px 0;
+  box-shadow: 0 8px 32px rgba(45, 26, 30, 0.08);
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* tiny arrow pointer */
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: 18px;
+  width: 7px;
+  height: 7px;
+  background: #FFFAF9;
+  border-top: 0.5px solid #F2D6D6;
+  border-left: 0.5px solid #F2D6D6;
+  transform: rotate(45deg);
+}
+
+.nav-dropdown-wrap:hover .nav-dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ── Dropdown items ───────────────────────────────────────── */
+.nav-dropdown-item {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  text-decoration: none;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-size: unset !important;
+  color: unset !important;
+  transition: background 0.15s;
+}
+
+.nav-dropdown-item:hover {
+  background: #FDF0F2;
+}
+
+.nav-dropdown-icon {
+  font-size: 13px;
+  color: #C4687A;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.nav-dropdown-label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: #2D1A1E;
+  font-weight: 500;
+  font-family: 'Jost', sans-serif;
+}
+
+/* ── Separator ────────────────────────────────────────────── */
+.nav-dropdown-sep {
+  height: 0.5px;
+  background: #F2D6D6;
+  margin: 4px 0;
 }

@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Jost:wght@300;400;500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.la-wrap {
+  min-height: 100vh;
+  background: #1A1014;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  font-family: 'Jost', sans-serif;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(196, 104, 122, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(196, 104, 122, 0.04) 0%, transparent 50%);
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.la-card {
+  background: #221519;
+  border: 0.5px solid #3D2229;
+  border-radius: 4px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+}
+
+/* subtle top accent line */
+.la-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C4687A, transparent);
+  border-radius: 1px;
+}
+
+/* ── Admin badge ──────────────────────────────────────────── */
+.la-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #C4687A;
+  border: 0.5px solid #3D2229;
+  border-radius: 2px;
+  padding: 4px 10px;
+  margin-bottom: 1.4rem;
+  font-weight: 500;
+}
+.la-badge::before {
+  content: '◆';
+  font-size: 6px;
+}
+
+/* ── Logo ─────────────────────────────────────────────────── */
+.la-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #F5E6E8;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.la-sub {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #7A4F56;
+  text-align: center;
+  margin-bottom: 1.8rem;
+  font-weight: 300;
+}
+
+/* ── Divider ──────────────────────────────────────────────── */
+.la-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.8rem;
+}
+.la-divider::before, .la-divider::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: #3D2229;
+}
+.la-gem {
+  width: 5px;
+  height: 5px;
+  background: #C4687A;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* ── Fields ───────────────────────────────────────────────── */
+.la-field {
+  margin-bottom: 1rem;
+}
+
+.la-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7A4F56;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.la-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 0.5px solid #3D2229;
+  background: #1A1014;
+  border-radius: 2px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: #F5E6E8;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.la-input:focus {
+  border-color: #C4687A;
+}
+.la-input::placeholder {
+  color: #4A2E35;
+}
+
+/* ── Forgot ───────────────────────────────────────────────── */
+.la-forgot {
+  text-align: right;
+  margin-top: -0.4rem;
+  margin-bottom: 0.5rem;
+}
+.la-forgot a {
+  font-size: 11px;
+  color: #7A4F56;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.la-forgot a:hover {
+  color: #C4687A;
+}
+
+/* ── Submit ───────────────────────────────────────────────── */
+.la-submit {
+  width: 100%;
+  padding: 11px;
+  margin-top: 1.2rem;
+  border: 0.5px solid #C4687A;
+  background: transparent;
+  color: #C4687A;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+  font-weight: 500;
+  border-radius: 2px;
+}
+.la-submit:hover {
+  background: #C4687A;
+  color: #1A1014;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.la-footer {
+  text-align: center;
+  margin-top: 1.4rem;
+  font-size: 12px;
+  color: #7A4F56;
+}
+.la-footer a {
+  color: #C4687A;
+  text-decoration: none;
+}
+.la-footer a:hover {
+  text-decoration: underline;
+}

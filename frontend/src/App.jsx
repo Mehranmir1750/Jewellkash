@@ -3,6 +3,7 @@ import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Products from "./pages/Products"
+import LoginAdmin from "./pages/LoginAdmin"
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
+        <Route path="/loginAdmin" element={<LoginAdmin />} />
 
       </Routes>
     </BrowserRouter>
