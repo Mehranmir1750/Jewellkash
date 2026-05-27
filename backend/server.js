@@ -25,7 +25,12 @@ app.post("/register", async (req, res) => {
 
   try {
 
-   const { name, email, password } = req.body;
+   const {
+  name,
+  email,
+  phone,
+  password
+} = req.body;
 
 const joinedDate =
   new Date().toLocaleDateString();
@@ -36,18 +41,19 @@ const joinedDate =
     // INSERT USER INTO DATABASE
     const newUser = await pool.query(
   `INSERT INTO users
-  (name, email, password, role, joined_date)
+  (name, email, password, phone, role, joined_date)
 
-  VALUES ($1, $2, $3, $4, $5)
+  VALUES ($1, $2, $3, $4, $5, $6)
 
   RETURNING *`,
   [
-    name,
-    email,
-    hashedPassword,
-    "user",
-    joinedDate
-  ]
+  name,
+  email,
+  hashedPassword,
+  phone,
+  "user",
+  joinedDate
+]
 );
 
     res.json(newUser.rows[0]);
@@ -327,7 +333,7 @@ app.get("/admin-dashboard", async (req, res) => {
     // Users
     const users =
       await pool.query(
-        "SELECT COUNT(*) FROM users"
+        "SELECT COUNT(*) FROM users WHERE role = 'user'"
       );
 
     // Orders
@@ -375,6 +381,81 @@ app.get("/admin-dashboard", async (req, res) => {
 
   }
 
+});
+
+
+app.put("/products/:id", async (req, res) => {
+
+  try {
+
+    const { id } = req.params;
+
+    const {
+      name,
+      price,
+      stock,
+      category,
+      image,
+      description,
+    } = req.body;
+
+    const updatedProduct =
+      await pool.query(
+
+        `UPDATE products
+
+        SET
+        name = $1,
+        price = $2,
+        stock = $3,
+        category = $4,
+        image = $5,
+        description = $6
+
+        WHERE id = $7
+
+        RETURNING *`,
+
+        [
+          name,
+          price,
+          stock,
+          category,
+          image,
+          description,
+          id,
+        ]
+      );
+
+    res.json(updatedProduct.rows[0]);
+
+  } catch (err) {
+
+    console.error(err.message);
+
+  }
+});
+
+
+app.get("/products/:id", async (req, res) => {
+
+  try {
+
+    const { id } = req.params;
+
+    const product =
+      await pool.query(
+        "SELECT * FROM products WHERE id = $1",
+        [id]
+      );
+
+    res.json(product.rows[0]);
+
+  } catch (err) {
+
+    console.error(err.message);
+
+  }
 });
 
 

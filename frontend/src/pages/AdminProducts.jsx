@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import "../styles/AdminProducts.css";
 
 import {
@@ -12,6 +12,8 @@ import {
 export default function AdminProducts() {
 
   const [products, setProducts] = useState([]);
+
+  const navigate = useNavigate();
 
   // Fetch Products
   useEffect(() => {
@@ -162,13 +164,18 @@ export default function AdminProducts() {
               {/* Actions */}
               <div className="admin-product-actions">
 
-                <button className="edit-btn">
+                <button
+  className="edit-btn"
+  onClick={() =>
+    navigate(`/edit-product/${product.id}`)
+  }
+>
 
-                  <FaEdit />
+  <FaEdit />
 
-                  Edit
+  Edit
 
-                </button>
+</button>
 
                 <button
                   className="delete-btn"

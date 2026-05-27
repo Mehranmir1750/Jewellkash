@@ -1,0 +1,112 @@
+.edit-product-page{
+  min-height:100vh;
+  background:#140C10;
+  color:white;
+  font-family:'Jost',sans-serif;
+}
+
+.edit-product-container{
+  max-width:700px;
+  margin:auto;
+  padding:3rem 1rem;
+}
+
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  color:#C4687A;
+  text-decoration:none;
+
+  margin-bottom:2rem;
+}
+
+.edit-product-container h1{
+  font-size:3rem;
+  color:#FFE7EC;
+  margin-bottom:10px;
+}
+
+.edit-product-container p{
+  color:#8A5A62;
+  margin-bottom:2rem;
+}
+
+form{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.form-group label{
+  color:#C4687A;
+  font-size:14px;
+}
+
+.form-group input,
+.form-group textarea{
+  background:#1C1116;
+
+  border:1px solid rgba(196,104,122,0.2);
+
+  padding:14px;
+
+  border-radius:12px;
+
+  color:white;
+
+  outline:none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+  border-color:#C4687A;
+}
+
+.update-btn{
+  height:55px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:linear-gradient(
+    135deg,
+    #C4687A,
+    #D98998
+  );
+
+  color:white;
+
+  font-size:14px;
+
+  letter-spacing:0.08em;
+
+  text-transform:uppercase;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  transition:0.25s;
+}
+
+.update-btn:hover{
+  transform:translateY(-3px);
+}

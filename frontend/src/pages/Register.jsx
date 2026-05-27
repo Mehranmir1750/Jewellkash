@@ -28,11 +28,12 @@ export default function Register() {
 
       const res = await axios.post(
         "http://localhost:5000/register",
-        {
-          name: `${firstName} ${lastName}`,
-          email,
-          password
-        }
+       {
+  name: `${firstName} ${lastName}`,
+  email,
+  phone,
+  password
+}
       );
 
       console.log(res.data);
