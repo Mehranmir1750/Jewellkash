@@ -1,17 +1,8 @@
 import Navbar from "./Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Home.css"
 
-const products = [
-  { id: 1, name: "Chinar Bloom Ring", type: "ring", icon: "💍", price: "₹18,500", oldPrice: null, stock: "ok", stockQty: 12, badge: "new" },
-  { id: 2, name: "Dal Lake Pearl Necklace", type: "necklace", icon: "📿", price: "₹42,000", oldPrice: "₹48,000", stock: "low", stockQty: 3, badge: "low" },
-  { id: 3, name: "Sapphire Jhelum Drop", type: "earring", icon: "✨", price: "₹9,800", oldPrice: null, stock: "ok", stockQty: 8, badge: null },
-  { id: 4, name: "Himalayan Snowflake Bangle", type: "bracelet", icon: "🔮", price: "₹14,200", oldPrice: "₹16,000", stock: "low", stockQty: 2, badge: "low" },
-  { id: 5, name: "Mughal Rose Choker", type: "necklace", icon: "🌹", price: "₹55,000", oldPrice: null, stock: "out", stockQty: 0, badge: null },
-  { id: 6, name: "Walnut Grove Earrings", type: "earring", icon: "🍂", price: "₹7,500", oldPrice: null, stock: "ok", stockQty: 15, badge: "new" },
-  { id: 7, name: "Zabarwan Ruby Set", type: "set", icon: "❤️", price: "₹88,000", oldPrice: "₹95,000", stock: "low", stockQty: 1, badge: "low" },
-  { id: 8, name: "Moonstone Srinagar Band", type: "ring", icon: "🌙", price: "₹22,000", oldPrice: null, stock: "ok", stockQty: 6, badge: null },
-];
+
 
 const filters = ["all", "ring", "necklace", "earring", "bracelet", "set"];
 
@@ -21,10 +12,46 @@ export default function Home() {
   const [addedItems, setAddedItems] = useState(new Set());
   const [toast, setToast] = useState({ show: false, message: "" });
 
+  const [products, setProducts] = useState([]);
+
+
+
+  useEffect(() => {
+
+  fetchProducts();
+
+}, []);
+
+const fetchProducts = async () => {
+
+  try {
+
+    const response = await fetch(
+      "http://localhost:5000/products"
+    );
+
+    const data = await response.json();
+
+    setProducts(data);
+
+  } catch (err) {
+
+    console.error(err.message);
+
+  }
+};
+
+
   const filtered =
-    activeFilter === "all"
-      ? products
-      : products.filter((p) => p.type === activeFilter);
+  activeFilter === "all"
+
+    ? products
+
+    : products.filter(
+        (p) =>
+          p.category.toLowerCase() ===
+          activeFilter
+      );
 
   const toggleWishlist = (id) => {
     setWishlist((prev) => {
@@ -34,23 +61,40 @@ export default function Home() {
     });
   };
 
+  // const addToCart = (product) => {
+  //   if (product.stock === "out") return;
+  //   setCartCount((c) => c + 1);
+  //   setCartBump(true);
+  //   setTimeout(() => setCartBump(false), 400);
+
+  //   setAddedItems((prev) => new Set(prev).add(product.id));
+  //   setTimeout(() => {
+  //     setAddedItems((prev) => {
+  //       const next = new Set(prev);
+  //       next.delete(product.id);
+  //       return next;
+  //     });
+  //   }, 1800);
+
+  //   setTimeout(() => setToast({ show: false, message: "" }), 2400);
+  // };
+
+
   const addToCart = (product) => {
-    if (product.stock === "out") return;
-    setCartCount((c) => c + 1);
-    setCartBump(true);
-    setTimeout(() => setCartBump(false), 400);
 
-    setAddedItems((prev) => new Set(prev).add(product.id));
-    setTimeout(() => {
-      setAddedItems((prev) => {
-        const next = new Set(prev);
-        next.delete(product.id);
-        return next;
-      });
-    }, 1800);
+  const token =
+    localStorage.getItem("token");
 
-    setTimeout(() => setToast({ show: false, message: "" }), 2400);
-  };
+  // Not logged in
+  if (!token) {
+
+    alert("Login to continue");
+
+    return;
+  }
+
+  alert(`Login To Continue`);
+};
 
   return (
     <>
@@ -85,7 +129,11 @@ export default function Home() {
           {filtered.map((product) => (
             <div key={product.id} className="jk-card">
               <div className="jk-img-wrap">
-                <div className="jk-gem-icon">{product.icon}</div>
+                <img
+  src={product.image}
+  alt={product.name}
+  className="jk-product-image"
+/>
 
                 {product.badge === "new" && (
                   <span className="jk-badge jk-badge-new">New</span>
@@ -94,21 +142,14 @@ export default function Home() {
                   <span className="jk-badge jk-badge-low">Low Stock</span>
                 )}
 
-                <button
-                  className={`jk-wish-btn${wishlist.has(product.id) ? " active" : ""}`}
-                  onClick={() => toggleWishlist(product.id)}
-                  aria-label="Toggle wishlist"
-                >
-                  {wishlist.has(product.id) ? "♥" : "♡"}
-                </button>
               </div>
 
               <div className="jk-card-body">
-                <div className="jk-prod-type">{product.type}</div>
+                <div className="jk-prod-type">{product.category}</div>
                 <div className="jk-prod-name">{product.name}</div>
 
                 <div className="jk-price-row">
-                  <span className="jk-price">{product.price}</span>
+                  <span className="jk-price">₹{product.price}</span>
                   {product.oldPrice && (
                     <span className="jk-price-old">{product.oldPrice}</span>
                   )}
