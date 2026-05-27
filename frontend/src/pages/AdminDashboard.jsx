@@ -1,44 +1,95 @@
 import "../styles/AdminDashboard.css";
 
+import { useEffect, useState } from "react";
+
 import {
   FaBoxOpen,
   FaUsers,
   FaShoppingCart,
   FaRupeeSign,
-  FaEdit,
-  FaTrash,
   FaPlus,
   FaSignOutAlt,
 } from "react-icons/fa";
 
 export default function AdminDashboard() {
-  const products = [
-    {
-      id: 1,
-      name: "Royal Diamond Ring",
-      price: "₹4,999",
-      stock: 12,
-      category: "Rings",
-    },
 
-    {
-      id: 2,
-      name: "Luxury Gold Necklace",
-      price: "₹7,499",
-      stock: 8,
-      category: "Necklaces",
-    },
+  // Orders State
+  const [orders, setOrders] = useState([]);
 
-    {
-      id: 3,
-      name: "Elegant Earrings",
-      price: "₹2,999",
-      stock: 20,
-      category: "Earrings",
-    },
-  ];
+  // Stats State
+  const [stats, setStats] = useState({
+
+    products: 0,
+
+    orders: 0,
+
+    users: 0,
+
+    revenue: 0,
+
+  });
+
+  // Load Data
+  useEffect(() => {
+
+    fetchOrders();
+
+    fetchDashboardStats();
+
+  }, []);
+
+  // Fetch Orders
+  const fetchOrders = async () => {
+
+    try {
+
+      const response = await fetch(
+        "http://localhost:5000/orders"
+      );
+
+      const data = await response.json();
+
+      setOrders(data);
+
+    } catch (err) {
+
+      console.error(err.message);
+
+    }
+  };
+
+  // Fetch Dashboard Stats
+  const fetchDashboardStats = async () => {
+
+    try {
+
+      const response = await fetch(
+        "http://localhost:5000/admin-dashboard"
+      );
+
+      const data = await response.json();
+
+      setStats({
+
+  products: data.totalProducts || 0,
+
+  orders: data.totalOrders || 0,
+
+  users: data.totalUsers || 0,
+
+  revenue: data.totalRevenue || 0,
+
+});
+
+    } catch (err) {
+
+      console.error(err.message);
+
+    }
+  };
 
   return (
+
     <div className="admin-page">
 
       {/* Sidebar */}
@@ -50,7 +101,7 @@ export default function AdminDashboard() {
 
         <div className="admin-menu">
 
-          <a href="#">
+          <a href="/admin-dashboard">
             Dashboard
           </a>
 
@@ -62,15 +113,18 @@ export default function AdminDashboard() {
             Orders
           </a>
 
-          <a href="#">
+          <a href="/admin-users">
             Users
           </a>
 
         </div>
 
         <a href="/" className="admin-logout">
+
           <FaSignOutAlt />
+
           Logout
+
         </a>
 
       </aside>
@@ -82,6 +136,7 @@ export default function AdminDashboard() {
         <div className="admin-top">
 
           <div>
+
             <h1>
               Admin Dashboard ✨
             </h1>
@@ -89,112 +144,168 @@ export default function AdminDashboard() {
             <p>
               Manage products, orders, users, and analytics.
             </p>
+
           </div>
 
-        <a href="/add-product" className="add-product-btn">
-  <FaPlus />
-  Add Product
-</a>
+          <a
+            href="/add-product"
+            className="add-product-btn"
+          >
+
+            <FaPlus />
+
+            Add Product
+
+          </a>
+
         </div>
 
         {/* Stats */}
         <div className="stats-grid">
 
+          {/* Products */}
           <div className="stat-card">
+
             <FaBoxOpen className="stat-icon" />
 
             <div>
-              <h2>120</h2>
-              <p>Total Products</p>
+
+              <h2>
+                {stats.products}
+              </h2>
+
+              <p>
+                Total Products
+              </p>
+
             </div>
+
           </div>
 
+          {/* Orders */}
           <div className="stat-card">
+
             <FaShoppingCart className="stat-icon" />
 
             <div>
-              <h2>540</h2>
-              <p>Total Orders</p>
+
+              <h2>
+                {stats.orders}
+              </h2>
+
+              <p>
+                Total Orders
+              </p>
+
             </div>
+
           </div>
 
+          {/* Users */}
           <div className="stat-card">
+
             <FaUsers className="stat-icon" />
 
             <div>
-              <h2>320</h2>
-              <p>Total Users</p>
+
+              <h2>
+                {stats.users}
+              </h2>
+
+              <p>
+                Total Users
+              </p>
+
             </div>
+
           </div>
 
+          {/* Revenue */}
           <div className="stat-card">
+
             <FaRupeeSign className="stat-icon" />
 
             <div>
-              <h2>₹2.4L</h2>
-              <p>Total Revenue</p>
+
+              <h2>
+                ₹{Number(stats.revenue || 0).toLocaleString()}
+              </h2>
+
+              <p>
+                Total Revenue
+              </p>
+
             </div>
+
           </div>
 
         </div>
 
-        {/* Products */}
+        {/* Recent Orders */}
         <div className="products-section">
 
           <div className="section-top">
 
             <h2>
-              Manage Products
+              Recent Orders
             </h2>
-
-            <button>
-              <FaPlus />
-              New Product
-            </button>
 
           </div>
 
           <table className="products-table">
 
             <thead>
+
               <tr>
+
                 <th>ID</th>
+
+                <th>Customer</th>
+
                 <th>Product</th>
-                <th>Category</th>
+
                 <th>Price</th>
-                <th>Stock</th>
-                <th>Actions</th>
+
+                <th>Status</th>
+
+                <th>Date</th>
+
               </tr>
+
             </thead>
 
             <tbody>
 
-              {products.map((product) => (
-                <tr key={product.id}>
+              {orders.map((order) => (
 
-                  <td>{product.id}</td>
+                <tr key={order.id}>
 
-                  <td>{product.name}</td>
+                  <td>
+                    {order.id}
+                  </td>
 
-                  <td>{product.category}</td>
+                  <td>
+                    {order.customer_name}
+                  </td>
 
-                  <td>{product.price}</td>
+                  <td>
+                    {order.product_name}
+                  </td>
 
-                  <td>{product.stock}</td>
+                  <td>
+                    ₹{order.price}
+                  </td>
 
-                  <td className="actions">
+                  <td>
+                    {order.status}
+                  </td>
 
-                    <button className="edit-btn">
-                      <FaEdit />
-                    </button>
-
-                    <button className="delete-btn">
-                      <FaTrash />
-                    </button>
-
+                  <td>
+                    {order.date}
                   </td>
 
                 </tr>
+
               ))}
 
             </tbody>

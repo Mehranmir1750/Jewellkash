@@ -11,6 +11,8 @@ import AdminDashboard from "./pages/AdminDashboard"
 import AddProduct from "./pages/AddProduct"
 import AdminProducts from "./pages/AdminProducts"
 import AdminOrders from "./pages/AdminOrders"
+import AdminUsers from "./pages/AdminUsers"
+
 
 export default function App() {
   return (
@@ -38,6 +40,11 @@ export default function App() {
 <Route
   path="/admin-orders"
   element={<AdminOrders />}
+/>
+
+<Route
+  path="/admin-users"
+  element={<AdminUsers />}
 />
 
       </Routes>

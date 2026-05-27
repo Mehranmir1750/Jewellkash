@@ -4,7 +4,7 @@ import {
   FaCheckCircle,
   FaClock,
   FaRedoAlt,
-  FaShoppingCart,
+  FaPlus,
   FaSignOutAlt,
 } from "react-icons/fa";
 
@@ -46,23 +46,49 @@ export default function Orders() {
       {/* Navbar */}
       
 
-      {/* Navbar */}
+     {/* Navbar */}
 <nav className="dashboard-nav">
-  <div className="dashboard-logo">JEWELLKASH</div>
+
+  <div className="dashboard-logo">
+    JEWELLKASH ADMIN
+  </div>
 
   <div className="dashboard-links">
-    <a href="/user-dashboard">Home</a>
 
-    <a href="/orders">My Orders</a>
+    <a href="/admin-dashboard">
+      Dashboard
+    </a>
 
-    <a href="/cart">
-      <FaShoppingCart /> Cart
+    <a href="/admin-products">
+      Products
+    </a>
+
+    <a href="/admin-orders">
+      Orders
+    </a>
+
+    <a href="/admin-users">
+      Users
+    </a>
+
+    <a href="/add-product" className="add-product-link">
+
+      <FaPlus />
+
+      Add Product
+
     </a>
 
     <a href="/" className="logout-btn">
-      <FaSignOutAlt /> Logout
+
+      <FaSignOutAlt />
+
+      Logout
+
     </a>
+
   </div>
+
 </nav>
 
       {/* Hero */}

@@ -25,16 +25,30 @@ app.post("/register", async (req, res) => {
 
   try {
 
-    const { name, email, password } = req.body;
+   const { name, email, password } = req.body;
+
+const joinedDate =
+  new Date().toLocaleDateString();
 
     // HASH PASSWORD
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // INSERT USER INTO DATABASE
     const newUser = await pool.query(
-      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *",
-      [name, email, hashedPassword]
-    );
+  `INSERT INTO users
+  (name, email, password, role, joined_date)
+
+  VALUES ($1, $2, $3, $4, $5)
+
+  RETURNING *`,
+  [
+    name,
+    email,
+    hashedPassword,
+    "user",
+    joinedDate
+  ]
+);
 
     res.json(newUser.rows[0]);
 
@@ -260,6 +274,107 @@ app.get("/orders", async (req, res) => {
     console.error(err.message);
 
   }
+});
+
+app.get("/users", async (req, res) => {
+
+  try {
+
+    const allUsers =
+      await pool.query(
+        `SELECT * FROM users
+WHERE role = 'user'
+ORDER BY id DESC;`
+      );
+
+    res.json(allUsers.rows);
+
+  } catch (err) {
+
+    console.error(err.message);
+
+  }
+});
+
+
+
+app.delete("/users/:id", async (req, res) => {
+
+  try {
+
+    const { id } = req.params;
+
+    await pool.query(
+      "DELETE FROM users WHERE id = $1",
+      [id]
+    );
+
+    res.json("User Deleted");
+
+  } catch (err) {
+
+    console.error(err.message);
+
+  }
+});
+
+
+
+app.get("/admin-dashboard", async (req, res) => {
+
+  try {
+
+    // Users
+    const users =
+      await pool.query(
+        "SELECT COUNT(*) FROM users"
+      );
+
+    // Orders
+    const orders =
+      await pool.query(
+        "SELECT COUNT(*) FROM orders"
+      );
+
+    // Products
+    const products =
+      await pool.query(
+        "SELECT COUNT(*) FROM products"
+      );
+
+    // Revenue
+    const revenue =
+      await pool.query(
+        "SELECT COALESCE(SUM(price), 0) FROM orders"
+      );
+
+    // Response
+    res.json({
+
+      totalUsers:
+        Number(users.rows[0].count),
+
+      totalOrders:
+        Number(orders.rows[0].count),
+
+      totalProducts:
+        Number(products.rows[0].count),
+
+      totalRevenue:
+        Number(revenue.rows[0].coalesce),
+
+    });
+
+  } catch (err) {
+
+    console.error(err.message);
+
+    res.status(500).json({
+      error: "Server Error"
+    });
+
+  }
+
 });
 
 

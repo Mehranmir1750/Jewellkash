@@ -67,36 +67,51 @@ export default function AdminProducts() {
   return (
     <div className="admin-products-page">
 
-      {/* Navbar */}
-      <nav className="dashboard-nav">
+    
+    {/* Navbar */}
+<nav className="dashboard-nav">
 
-        <div className="dashboard-logo">
-          JEWELLKASH ADMIN
-        </div>
+  <div className="dashboard-logo">
+    JEWELLKASH ADMIN
+  </div>
 
-        <div className="dashboard-links">
+  <div className="dashboard-links">
 
-          <a href="/admin-dashboard">
-            Dashboard
-          </a>
+    <a href="/admin-dashboard">
+      Dashboard
+    </a>
 
-          <a href="/admin-products">
-            Products
-          </a>
+    <a href="/admin-products">
+      Products
+    </a>
 
-          <a href="/add-product">
-            <FaPlus />
-            Add Product
-          </a>
+    <a href="/admin-orders">
+      Orders
+    </a>
 
-          <a href="/" className="logout-btn">
-            <FaSignOutAlt />
-            Logout
-          </a>
+    <a href="/admin-users">
+      Users
+    </a>
 
-        </div>
+    <a href="/add-product" className="add-product-link">
 
-      </nav>
+      <FaPlus />
+
+      Add Product
+
+    </a>
+
+    <a href="/" className="logout-btn">
+
+      <FaSignOutAlt />
+
+      Logout
+
+    </a>
+
+  </div>
+
+</nav>
 
       {/* Hero */}
       <section className="admin-products-hero">
