@@ -283,3 +283,171 @@ form {
     font-size: 2rem;
   }
 }
+
+
+/* ───────── Admin Navbar ───────── */
+
+.dashboard-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 2.5rem;
+
+  background: rgba(20, 12, 16, 0.96);
+
+  backdrop-filter: blur(14px);
+
+  border-bottom:
+    1px solid rgba(196, 104, 122, 0.12);
+
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Logo */
+
+.dashboard-logo {
+  font-family: 'Cormorant Garamond', serif;
+
+  font-size: 1.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+
+  color: #FFE7EC;
+
+  text-shadow:
+    0 0 12px rgba(196, 104, 122, 0.12);
+}
+
+/* Links */
+
+.dashboard-links {
+  display: flex;
+  align-items: center;
+
+  gap: 2rem;
+}
+
+.dashboard-links a {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  text-decoration: none;
+
+  color: #C89AA3;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  transition:
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+/* Hover underline */
+
+.dashboard-links a::after {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  bottom: -6px;
+
+  width: 0%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #C4687A,
+    transparent
+  );
+
+  transition: width 0.25s ease;
+}
+
+.dashboard-links a:hover::after {
+  width: 100%;
+}
+
+.dashboard-links a:hover {
+  color: #FFE7EC;
+}
+
+/* Logout Button */
+
+.logout-btn {
+  padding: 10px 18px;
+
+  border-radius: 30px;
+
+  border:
+    1px solid rgba(196, 104, 122, 0.35);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(196, 104, 122, 0.12),
+      rgba(255, 231, 236, 0.03)
+    );
+
+  color: #FFDCE2 !important;
+
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease !important;
+}
+
+.logout-btn:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #C4687A,
+      #D98998
+    );
+
+  color: white !important;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(196, 104, 122, 0.22);
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .dashboard-nav {
+    padding: 0 1rem;
+  }
+
+  .dashboard-links {
+    gap: 1rem;
+  }
+
+  .dashboard-logo {
+    font-size: 1.3rem;
+  }
+
+  .dashboard-links a {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+}

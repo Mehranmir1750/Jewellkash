@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import "../styles/AddProduct.css";
 
 import {
@@ -10,45 +12,91 @@ import {
 
 export default function AddProduct() {
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [product, setProduct] = useState({
+    name: "",
+    price: "",
+    stock: "",
+    category: "",
+    image: "",
+    description: "",
+  });
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+
+    const response = await fetch(
+      "http://localhost:5000/add-product",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(product),
+      }
+    );
+
+    const data = await response.json();
+
+    console.log(data);
 
     alert("Product Added Successfully ✨");
-  };
+
+    // Reset form
+    setProduct({
+      name: "",
+      price: "",
+      stock: "",
+      category: "",
+      image: "",
+      description: "",
+    });
+
+  } catch (err) {
+
+    console.error(err.message);
+
+  }
+};
 
   return (
     <div className="add-product-page">
 
-      {/* Navbar */}
       <nav className="dashboard-nav">
 
-        <div className="dashboard-logo">
-          JEWELLKASH
-        </div>
+  <div className="dashboard-logo">
+    JEWELLKASH ADMIN
+  </div>
 
-        <div className="dashboard-links">
+  <div className="dashboard-links">
 
-          <a href="/admin-dashboard">
-            Dashboard
-          </a>
+    <a href="/admin-dashboard">
+      Dashboard
+    </a>
 
-          <a href="/orders">
-            Orders
-          </a>
+    <a href="/add-product">
+      Add Product
+    </a>
 
-          <a href="/cart">
-            <FaShoppingCart />
-            Cart
-          </a>
+    <a href="/admin-orders">
+      Orders
+    </a>
 
-          <a href="/" className="logout-btn">
-            <FaSignOutAlt />
-            Logout
-          </a>
+    <a href="/admin-users">
+      Users
+    </a>
 
-        </div>
+    <a href="/" className="logout-btn">
+      <FaSignOutAlt />
+      Logout
+    </a>
 
-      </nav>
+  </div>
+
+</nav>
 
       {/* Main */}
       <div className="add-product-container">
@@ -81,12 +129,19 @@ export default function AddProduct() {
               <input
                 type="text"
                 placeholder="Royal Diamond Ring"
+                value={product.name}
+                onChange={(e) =>
+                  setProduct({
+                    ...product,
+                    name: e.target.value,
+                  })
+                }
                 required
               />
 
             </div>
 
-            {/* Price */}
+            {/* Price + Stock */}
             <div className="form-row">
 
               <div className="form-group">
@@ -98,6 +153,13 @@ export default function AddProduct() {
                 <input
                   type="number"
                   placeholder="4999"
+                  value={product.price}
+                  onChange={(e) =>
+                    setProduct({
+                      ...product,
+                      price: e.target.value,
+                    })
+                  }
                   required
                 />
 
@@ -112,6 +174,13 @@ export default function AddProduct() {
                 <input
                   type="number"
                   placeholder="20"
+                  value={product.stock}
+                  onChange={(e) =>
+                    setProduct({
+                      ...product,
+                      stock: e.target.value,
+                    })
+                  }
                   required
                 />
 
@@ -126,25 +195,34 @@ export default function AddProduct() {
                 Category
               </label>
 
-              <select required>
+              <select
+                value={product.category}
+                onChange={(e) =>
+                  setProduct({
+                    ...product,
+                    category: e.target.value,
+                  })
+                }
+                required
+              >
 
                 <option value="">
                   Select Category
                 </option>
 
-                <option>
+                <option value="Rings">
                   Rings
                 </option>
 
-                <option>
+                <option value="Necklaces">
                   Necklaces
                 </option>
 
-                <option>
+                <option value="Earrings">
                   Earrings
                 </option>
 
-                <option>
+                <option value="Bracelets">
                   Bracelets
                 </option>
 
@@ -152,20 +230,35 @@ export default function AddProduct() {
 
             </div>
 
-            {/* Image URL */}
-            <div className="form-group">
+           {/* Product Image Upload */}
+<div className="form-group">
 
-              <label>
-                Product Image URL
-              </label>
+  <label>
+    Upload Product Image
+  </label>
 
-              <input
-                type="text"
-                placeholder="Paste image URL"
-                required
-              />
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => {
 
-            </div>
+      const file = e.target.files[0];
+
+      if (file) {
+
+        const imageUrl =
+          URL.createObjectURL(file);
+
+        setProduct({
+          ...product,
+          image: imageUrl,
+        });
+      }
+    }}
+    required
+  />
+
+</div>
 
             {/* Description */}
             <div className="form-group">
@@ -177,12 +270,19 @@ export default function AddProduct() {
               <textarea
                 rows="5"
                 placeholder="Write luxury product description..."
+                value={product.description}
+                onChange={(e) =>
+                  setProduct({
+                    ...product,
+                    description: e.target.value,
+                  })
+                }
                 required
               />
 
             </div>
 
-            {/* Button */}
+            {/* Submit */}
             <button className="submit-btn" type="submit">
 
               <FaPlus />
@@ -200,22 +300,31 @@ export default function AddProduct() {
 
           <div className="preview-image">
 
-            <FaImage />
+            {product.image ? (
+              <img
+                src={product.image}
+                alt="preview"
+                className="preview-img"
+              />
+            ) : (
+              <FaImage />
+            )}
 
           </div>
 
           <div className="preview-content">
 
             <span className="preview-tag">
-              Luxury Collection
+              {product.category || "Luxury Collection"}
             </span>
 
             <h2>
-              Product Preview
+              {product.name || "Product Preview"}
             </h2>
 
             <p>
-              Your jewelry product preview will appear here.
+              {product.description ||
+                "Your jewelry product preview will appear here."}
             </p>
 
           </div>

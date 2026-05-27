@@ -146,6 +146,126 @@ app.post("/login", async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+app.post("/add-product", async (req, res) => {
+
+  try {
+
+    const {
+      name,
+      price,
+      stock,
+      category,
+      image,
+      description,
+    } = req.body;
+
+    const newProduct = await pool.query(
+      `INSERT INTO products
+      (name, price, stock, category, image, description)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING *`,
+      [
+        name,
+        price,
+        stock,
+        category,
+        image,
+        description,
+      ]
+    );
+
+    res.json(newProduct.rows[0]);
+
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+
+
+
+app.get("/products", async (req, res) => {
+
+  try {
+
+    const allProducts =
+      await pool.query(
+        "SELECT * FROM products ORDER BY id DESC"
+      );
+
+    res.json(allProducts.rows);
+
+  } catch (err) {
+
+    console.error(err.message);
+
+  }
+});
+
+
+
+
+
+
+
+app.delete("/products/:id", async (req, res) => {
+
+  try {
+
+    const { id } = req.params;
+
+    await pool.query(
+      "DELETE FROM products WHERE id = $1",
+      [id]
+    );
+
+    res.json("Product Deleted");
+
+  } catch (err) {
+
+    console.error(err.message);
+
+  }
+});
+
+
+
+
+
+app.get("/orders", async (req, res) => {
+
+  try {
+
+    const allOrders =
+      await pool.query(
+        "SELECT * FROM orders ORDER BY id DESC"
+      );
+
+    res.json(allOrders.rows);
+
+  } catch (err) {
+
+    console.error(err.message);
+
+  }
+});
+
+
+
+
+
 // SERVER
 app.listen(5000, () => {
   console.log("Server running on port 5000");

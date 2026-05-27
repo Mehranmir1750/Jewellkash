@@ -9,6 +9,8 @@ import Orders from "./pages/Orders"
 import Cart from "./pages/Cart"
 import AdminDashboard from "./pages/AdminDashboard"
 import AddProduct from "./pages/AddProduct"
+import AdminProducts from "./pages/AdminProducts"
+import AdminOrders from "./pages/AdminOrders"
 
 export default function App() {
   return (
@@ -28,7 +30,15 @@ export default function App() {
 <Route path="/cart" element={<Cart />} />
 <Route path="/admin-dashboard" element={<AdminDashboard />} />
 <Route path="/add-product" element={<AddProduct />} />
+<Route
+  path="/admin-products"
+  element={<AdminProducts />}
+/>
 
+<Route
+  path="/admin-orders"
+  element={<AdminOrders />}
+/>
 
       </Routes>
     </BrowserRouter>

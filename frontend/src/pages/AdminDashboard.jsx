@@ -54,20 +54,16 @@ export default function AdminDashboard() {
             Dashboard
           </a>
 
-          <a href="#">
+          <a href="/admin-products">
             Products
           </a>
 
-          <a href="#">
+          <a href="/admin-orders">
             Orders
           </a>
 
           <a href="#">
             Users
-          </a>
-
-          <a href="#">
-            Analytics
           </a>
 
         </div>

@@ -7,6 +7,11 @@ import {
 } from "react-icons/fa";
 
 export default function UserDashboard() {
+
+  useEffect(() => {
+  fetch("http://localhost:5000/products")
+}, [])
+
   const products = [
     {
       id: 1,
