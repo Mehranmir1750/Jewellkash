@@ -5,10 +5,10 @@ export default function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className="nav">
-      <div className="nav-logo">JewellKash</div>
+    <nav className="homenav">
+      <div className="homenav-logo">JewellKash</div>
 
-      <ul className="nav-links">
+      <ul className="homenav-links">
         <li>
           <Link to="/" className={location.pathname === "/" ? "active" : ""}>
             Home
@@ -16,29 +16,29 @@ export default function Navbar() {
         </li>
 
         {/* Login with dropdown */}
-        <li className="nav-dropdown-wrap">
+        <li className="homenav-dropdown-wrap">
           <span className={`nav-dropdown-trigger ${location.pathname.startsWith("/login") ? "active" : ""}`}>
             Login
-            <svg className="nav-chevron" viewBox="0 0 10 6" fill="none">
+            <svg className="homenav-chevron" viewBox="0 0 10 6" fill="none">
               <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </span>
-          <ul className="nav-dropdown">
+          <ul className="homenav-dropdown">
             <li>
-              <Link to="/login" className="nav-dropdown-item">
-                <span className="nav-dropdown-icon">◈</span>
+              <Link to="/login" className="homenav-dropdown-item">
+                <span className="homenav-dropdown-icon">◈</span>
                 <span>
-                  <span className="nav-dropdown-label">Login as User</span>
+                  <span className="homenav-dropdown-label">Login as User</span>
                   
                 </span>
               </Link>
             </li>
-            <li className="nav-dropdown-sep" />
+            <li className="homenav-dropdown-sep" />
             <li>
-              <Link to="/loginAdmin" className="nav-dropdown-item">
-                <span className="nav-dropdown-icon">◇</span>
+              <Link to="/loginAdmin" className="homenav-dropdown-item">
+                <span className="homenav-dropdown-icon">◇</span>
                 <span>
-                  <span className="nav-dropdown-label">Login as Admin</span>
+                  <span className="homenav-dropdown-label">Login as Admin</span>
                 </span>
               </Link>
             </li>

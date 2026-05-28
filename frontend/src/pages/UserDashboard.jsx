@@ -1,4 +1,5 @@
-import "../styles/UserDashboard.css";
+import { useEffect } from "react";
+import "../styles/UserDashboard.css"
 import {
   FaShoppingCart,
   FaBoxOpen,
@@ -44,12 +45,12 @@ export default function UserDashboard() {
   ];
 
   return (
-    <div className="dashboard-page">
+    <div className="userDashboard_dashboard-page">
       {/* Navbar */}
-      <nav className="dashboard-nav">
-        <div className="dashboard-logo">JEWELLKASH</div>
+      <nav className="userDashboard_dashboard-nav">
+        <div className="userDashboard_dashboard-logo">JEWELLKASH</div>
 
-        <div className="dashboard-links">
+        <div className="userDashboard_dashboard-links">
           <a href="/user-dashboard">Home</a>
          <a href="/orders">My Orders</a>
 
@@ -57,14 +58,14 @@ export default function UserDashboard() {
             <FaShoppingCart /> Cart
           </a>
 
-          <a href="/" className="logout-btn">
+          <a href="/" className="userDashboard_logout-btn">
             <FaSignOutAlt /> Logout
           </a>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="dashboard-hero">
+      <section className="userDashboard_dashboard-hero">
         <h1>Luxury Jewelry Collection ✨</h1>
         <p>
           Discover timeless elegance crafted for every occasion.
@@ -72,19 +73,19 @@ export default function UserDashboard() {
       </section>
 
       {/* Products */}
-      <div className="products-grid">
+      <div className="userDashboard_products-grid">
         {products.map((product) => (
-          <div className="product-card" key={product.id}>
+          <div className="userDashboard_product-card" key={product.id}>
             <img src={product.image} alt={product.name} />
 
-            <div className="product-info">
+            <div className="userDashboard_product-info">
               <h3>{product.name}</h3>
               <p>{product.price}</p>
 
-              <div className="product-actions">
+              <div className="userDashboard_product-actions">
                 <button>Add to Cart</button>
 
-                <FaHeart className="wishlist-icon" />
+                
               </div>
             </div>
           </div>

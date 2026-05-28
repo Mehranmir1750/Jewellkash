@@ -33,12 +33,12 @@ export default function Cart() {
   );
 
   return (
-    <div className="cart-page">
+    <div className="User_cart-page">
       {/* Navbar */}
-      <nav className="dashboard-nav">
-        <div className="dashboard-logo">JEWELLKASH</div>
+      <nav className="User_dashboard-nav">
+        <div className="User_dashboard-logo">JEWELLKASH</div>
 
-        <div className="dashboard-links">
+        <div className="User_dashboard-links">
           <a href="/user-dashboard">Home</a>
 
           <a href="/orders">My Orders</a>
@@ -47,41 +47,41 @@ export default function Cart() {
             <FaShoppingCart /> Cart
           </a>
 
-          <a href="/" className="logout-btn">
+          <a href="/" className="User_logout-btn">
             <FaSignOutAlt /> Logout
           </a>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="cart-hero">
+      <section className="User_cart-hero">
         <h1>Your Cart ✨</h1>
         <p>Review your selected luxury jewelry items.</p>
       </section>
 
       {/* Main */}
-      <div className="cart-container">
+      <div className="User_cart-container">
         {/* Left */}
-        <div className="cart-items">
+        <div className="User_cart-items">
           {cartItems.map((item) => (
-            <div className="cart-card" key={item.id}>
+            <div className="User_cart-card" key={item.id}>
               <img src={item.image} alt={item.name} />
 
-              <div className="cart-info">
+              <div className="User_cart-info">
                 <h2>{item.name}</h2>
 
-                <p className="cart-price">
+                <p className="User_cart-price">
                   ₹{item.price.toLocaleString()}
                 </p>
 
-                <div className="cart-quantity">
+                <div className="User_cart-quantity">
                   <span>Quantity:</span>
                   <button>-</button>
                   <span>{item.quantity}</span>
                   <button>+</button>
                 </div>
 
-                <button className="remove-btn">
+                <button className="User_remove-btn">
                   <FaTrash />
                   Remove
                 </button>
@@ -89,32 +89,32 @@ export default function Cart() {
             </div>
           ))}
 
-          <a href="/user-dashboard" className="continue-shopping">
+          <a href="/user-dashboard" className="User_continue-shopping">
             <FaArrowLeft />
             Continue Shopping
           </a>
         </div>
 
         {/* Right */}
-        <div className="cart-summary">
+        <div className="User_cart-summary">
           <h2>Order Summary</h2>
 
-          <div className="summary-row">
+          <div className="User_summary-row">
             <span>Subtotal</span>
             <span>₹{subtotal.toLocaleString()}</span>
           </div>
 
-          <div className="summary-row">
+          <div className="User_summary-row">
             <span>Shipping</span>
             <span>Free</span>
           </div>
 
-          <div className="summary-row total">
+          <div className="User_summary-row total">
             <span>Total</span>
             <span>₹{subtotal.toLocaleString()}</span>
           </div>
 
-          <button className="checkout-btn">
+          <button className="User_checkout-btn">
             Proceed to Checkout
           </button>
         </div>
