@@ -1,266 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Jost:wght@300;400;500&display=swap');
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-
-
-
-
-
-/* ───────── Navbar ───────── */
-
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  height: 70px;
-  padding: 0 3rem;
-
-  background: rgba(20, 12, 16, 0.92);
-
-  backdrop-filter: blur(14px);
-
-  border-bottom: 1px solid rgba(196, 104, 122, 0.15);
-
-  box-shadow:
-    0 4px 30px rgba(0, 0, 0, 0.25);
-
-  font-family: 'Jost', sans-serif;
-}
-
-/* Logo */
-
-.nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-
-  font-size: 1.8rem;
-  font-weight: 600;
-
-  letter-spacing: 0.12em;
-
-  color: #FFE7EC;
-
-  text-shadow:
-    0 0 10px rgba(196, 104, 122, 0.15);
-}
-
-/* Links */
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2.3rem;
-
-  list-style: none;
-}
-
-.nav-links a,
-.nav-dropdown-trigger {
-  position: relative;
-
-  text-decoration: none;
-
-  color: #D8A2AB;
-
-  font-size: 11px;
-  font-weight: 400;
-
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-
-  transition:
-    color 0.25s ease,
-    transform 0.2s ease;
-}
-
-/* Elegant underline hover */
-
-.nav-links a::after,
-.nav-dropdown-trigger::after {
-  content: '';
-
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-
-  width: 0%;
-  height: 1px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #C4687A,
-    transparent
-  );
-
-  transition: width 0.25s ease;
-}
-
-.nav-links a:hover::after,
-.nav-dropdown-trigger:hover::after {
-  width: 100%;
-}
-
-.nav-links a:hover,
-.nav-dropdown-trigger:hover {
-  color: #FFE7EC;
-}
-
-/* Active */
-
-.nav-links a.active,
-.nav-dropdown-trigger.active {
-  color: #FFE7EC;
-}
-
-/* Register Button */
-
-.nav-register-link {
-  padding: 9px 18px !important;
-
-  border-radius: 30px;
-
-  border: 1px solid rgba(196, 104, 122, 0.5);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(196, 104, 122, 0.15),
-      rgba(255, 231, 236, 0.03)
-    );
-
-  color: #FFDCE2 !important;
-
-  backdrop-filter: blur(10px);
-
-  transition:
-    background 0.25s ease,
-    transform 0.2s ease,
-    box-shadow 0.25s ease !important;
-}
-
-.nav-register-link:hover {
-  background:
-    linear-gradient(
-      135deg,
-      #C4687A,
-      #D98998
-    ) !important;
-
-  color: white !important;
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 8px 25px rgba(196, 104, 122, 0.25);
-}
-
-/* Dropdown */
-
-.nav-dropdown {
-  background: rgba(34, 21, 25, 0.98);
-
-  border: 1px solid rgba(196, 104, 122, 0.15);
-
-  backdrop-filter: blur(14px);
-
-  box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.35);
-
-  border-radius: 12px;
-}
-
-/* Mobile */
-
-@media (max-width: 768px) {
-  .nav {
-    padding: 0 1.2rem;
-  }
-
-  .nav-links {
-    gap: 1.1rem;
-  }
-
-  .nav-logo {
-    font-size: 1.4rem;
-  }
-
-  .nav-links a,
-  .nav-dropdown-trigger {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-.la-wrap {
-  min-height: 100vh;
-
+.adminLogin_la-wrap {
+  min-height: calc(100vh - 70px);
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 2rem 1rem;
-
   font-family: 'Jost', sans-serif;
-
   background: #140C10;
-
   background-image:
     radial-gradient(circle at top left,
-      rgba(196, 104, 122, 0.08),
+      rgba(196,104,122,.08),
       transparent 35%),
-
     radial-gradient(circle at bottom right,
-      rgba(196, 104, 122, 0.05),
+      rgba(196,104,122,.05),
       transparent 40%);
 }
 
-/* Card */
-.la-card {
+.adminLogin_la-card {
   width: 100%;
-  max-width: 410px;
+  max-width: 430px;
 
-  background: rgba(34, 21, 25, 0.96);
+  background: rgba(34,21,25,.96);
 
-  border: 1px solid rgba(196, 104, 122, 0.15);
-
+  border: 1px solid rgba(196,104,122,.15);
   border-radius: 10px;
 
   padding: 2.7rem 2.2rem;
 
   position: relative;
+  overflow: hidden;
 
   backdrop-filter: blur(10px);
 
   box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(196, 104, 122, 0.03);
-
-  overflow: hidden;
+    0 10px 40px rgba(0,0,0,.35),
+    0 0 0 1px rgba(196,104,122,.03);
 }
 
-/* Top accent */
-.la-card::before {
-  content: '';
-
+.adminLogin_la-card::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 10%;
@@ -276,38 +55,36 @@
   );
 }
 
-/* Badge */
-.la-badge {
+.adminLogin_la-badge {
   display: inline-flex;
   align-items: center;
   gap: 7px;
 
   padding: 5px 12px;
 
-  border: 1px solid rgba(196, 104, 122, 0.18);
-
   border-radius: 30px;
+
+  border: 1px solid rgba(196,104,122,.18);
+
+  background: rgba(196,104,122,.04);
+
+  color: #C4687A;
 
   font-size: 9px;
   font-weight: 500;
 
-  letter-spacing: 0.22em;
+  letter-spacing: .22em;
   text-transform: uppercase;
 
-  color: #C4687A;
-
   margin-bottom: 1.5rem;
-
-  background: rgba(196, 104, 122, 0.04);
 }
 
-.la-badge::before {
-  content: '◆';
+.adminLogin_la-badge::before {
+  content: "◆";
   font-size: 7px;
 }
 
-/* Logo */
-.la-logo {
+.adminLogin_la-logo {
   text-align: center;
 
   font-family: 'Cormorant Garamond', serif;
@@ -315,29 +92,27 @@
   font-size: 2rem;
   font-weight: 600;
 
-  letter-spacing: 0.12em;
+  letter-spacing: .12em;
 
   color: #F7E8EA;
 
   margin-bottom: 6px;
 }
 
-/* Subtitle */
-.la-sub {
+.adminLogin_la-sub {
   text-align: center;
+
+  color: #7A4F56;
 
   font-size: 11px;
 
   text-transform: uppercase;
-  letter-spacing: 0.28em;
-
-  color: #7A4F56;
+  letter-spacing: .28em;
 
   margin-bottom: 2rem;
 }
 
-/* Divider */
-.la-divider {
+.adminLogin_la-divider {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -345,16 +120,17 @@
   margin-bottom: 2rem;
 }
 
-.la-divider::before,
-.la-divider::after {
-  content: '';
+.adminLogin_la-divider::before,
+.adminLogin_la-divider::after {
+  content: "";
+
   flex: 1;
   height: 1px;
 
-  background: rgba(196, 104, 122, 0.12);
+  background: rgba(196,104,122,.12);
 }
 
-.la-gem {
+.adminLogin_la-gem {
   width: 6px;
   height: 6px;
 
@@ -363,26 +139,24 @@
   transform: rotate(45deg);
 }
 
-/* Field */
-.la-field {
+.adminLogin_la-field {
   margin-bottom: 1.2rem;
 }
 
-.la-label {
+.adminLogin_la-label {
   display: block;
 
   margin-bottom: 7px;
 
+  color: #8A5A62;
+
   font-size: 10px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
   text-transform: uppercase;
-
-  color: #8A5A62;
 }
 
-/* Input */
-.la-input {
+.adminLogin_la-input {
   width: 100%;
 
   padding: 12px 14px;
@@ -400,44 +174,41 @@
   outline: none;
 
   transition:
-    border-color 0.25s,
-    box-shadow 0.25s;
+    border-color .25s,
+    box-shadow .25s;
 }
 
-.la-input::placeholder {
+.adminLogin_la-input::placeholder {
   color: #4A2E35;
 }
 
-.la-input:focus {
+.adminLogin_la-input:focus {
   border-color: #C4687A;
 
   box-shadow:
-    0 0 0 3px rgba(196, 104, 122, 0.08);
+    0 0 0 3px rgba(196,104,122,.08);
 }
 
-/* Forgot */
-.la-forgot {
+.adminLogin_la-forgot {
   text-align: right;
-
-  margin-top: -0.2rem;
+  margin-top: -.2rem;
 }
 
-.la-forgot a {
-  font-size: 11px;
+.adminLogin_la-forgot a {
+  text-decoration: none;
 
   color: #7A4F56;
 
-  text-decoration: none;
+  font-size: 11px;
 
-  transition: color 0.2s;
+  transition: color .2s;
 }
 
-.la-forgot a:hover {
+.adminLogin_la-forgot a:hover {
   color: #C4687A;
 }
 
-/* Button */
-.la-submit {
+.adminLogin_la-submit {
   width: 100%;
 
   margin-top: 1.6rem;
@@ -452,58 +223,56 @@
 
   color: #C4687A;
 
+  cursor: pointer;
+
   font-size: 11px;
   font-weight: 500;
 
-  letter-spacing: 0.22em;
+  letter-spacing: .22em;
   text-transform: uppercase;
 
-  cursor: pointer;
-
   transition:
-    background 0.25s,
-    color 0.25s,
-    transform 0.2s;
+    background .25s,
+    color .25s,
+    transform .2s;
 }
 
-.la-submit:hover {
+.adminLogin_la-submit:hover {
   background: #C4687A;
   color: #140C10;
 
   transform: translateY(-2px);
 }
 
-/* Footer */
-.la-footer {
+.adminLogin_la-footer {
   text-align: center;
 
   margin-top: 1.6rem;
 
-  font-size: 12px;
-
   color: #7A4F56;
+
+  font-size: 12px;
 }
 
-.la-footer a {
-  color: #C4687A;
+.adminLogin_la-footer a {
   text-decoration: none;
+  color: #C4687A;
 }
 
-.la-footer a:hover {
+.adminLogin_la-footer a:hover {
   text-decoration: underline;
 }
 
-/* Responsive */
 @media (max-width: 500px) {
-  .la-card {
+  .adminLogin_la-card {
     padding: 2.2rem 1.4rem;
   }
 
-  .la-logo {
+  .adminLogin_la-logo {
     font-size: 1.7rem;
   }
 
-  .la-sub {
-    letter-spacing: 0.18em;
+  .adminLogin_la-sub {
+    letter-spacing: .18em;
   }
 }

@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap');
+
+/* =========================
+   ADMIN NAVBAR
+========================= */
+
+.Navbar_homenav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 4rem;
+
+  background: #140C10;
+
+  border-bottom: 1px solid rgba(196, 104, 122, 0.15);
+
+  backdrop-filter: blur(10px);
+
+  font-family: 'Jost', sans-serif;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.Navbar_homenav-logo {
+  font-family: 'Cormorant Garamond', serif;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  color: #FFE7EC;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.Navbar_homenav-logo:hover {
+  color: #C4687A;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.Navbar_homenav-links {
+  display: flex;
+  align-items: center;
+
+  gap: 2.2rem;
+
+  list-style: none;
+}
+
+.Navbar_homenav-links a,
+.nav-dropdown-trigger {
+  position: relative;
+
+  text-decoration: none;
+
+  color: #D8A2AB;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  transition: 0.3s ease;
+
+  cursor: pointer;
+}
+
+/* Underline */
+
+.Navbar_homenav-links a::after,
+.nav-dropdown-trigger::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+
+  width: 0%;
+  height: 1px;
+
+  background: #C4687A;
+
+  transition: 0.3s ease;
+}
+
+.Navbar_homenav-links a:hover::after,
+.nav-dropdown-trigger:hover::after,
+.Navbar_homenav-links .active::after {
+  width: 100%;
+}
+
+.Navbar_homenav-links a:hover,
+.nav-dropdown-trigger:hover,
+.Navbar_homenav-links .active {
+  color: #FFE7EC;
+}
+
+/* =========================
+   LOGOUT BUTTON
+========================= */
+
+.nav-register-link {
+  padding: 11px 22px;
+
+  border: 1px solid #C4687A;
+  border-radius: 999px;
+
+  color: #C4687A !important;
+
+  transition: 0.3s ease;
+}
+
+.nav-register-link::after {
+  display: none;
+}
+
+.nav-register-link:hover,
+.nav-register-link.active {
+  background: #C4687A;
+
+  color: #140C10 !important;
+
+  box-shadow:
+    0 10px 25px rgba(196, 104, 122, 0.25);
+}
+
+/* =========================
+   DROPDOWN
+========================= */
+
+.Navbar_homenav-dropdown-wrap {
+  position: relative;
+}
+
+.nav-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.Navbar_homenav-chevron {
+  width: 11px;
+  height: 11px;
+
+  transition: 0.3s ease;
+}
+
+.Navbar_homenav-dropdown-wrap:hover
+.Navbar_homenav-chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Box */
+
+.Navbar_homenav-dropdown {
+  position: absolute;
+
+  top: 145%;
+  right: 0;
+
+  width: 240px;
+
+  background: #1A1014;
+
+  border: 1px solid rgba(196, 104, 122, 0.15);
+
+  border-radius: 18px;
+
+  padding: 10px 0;
+
+  list-style: none;
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.4);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(-12px);
+
+  transition: 0.28s ease;
+}
+
+.Navbar_homenav-dropdown-wrap:hover
+.Navbar_homenav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* =========================
+   DROPDOWN ITEMS
+========================= */
+
+.Navbar_homenav-dropdown-item {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 14px 18px;
+
+  text-decoration: none;
+
+  transition: 0.22s ease;
+}
+
+.Navbar_homenav-dropdown-item::after {
+  display: none;
+}
+
+.Navbar_homenav-dropdown-item:hover {
+  background: rgba(196, 104, 122, 0.08);
+}
+
+.Navbar_homenav-dropdown-icon {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(196, 104, 122, 0.1);
+
+  color: #C4687A;
+
+  font-size: 13px;
+
+  flex-shrink: 0;
+}
+
+.Navbar_homenav-dropdown-label {
+  color: #FFE7EC;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  letter-spacing: 0.04em;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .Navbar_homenav {
+    padding: 0 1.5rem;
+  }
+
+  .Navbar_homenav-links {
+    gap: 1.2rem;
+  }
+
+  .Navbar_homenav-logo {
+    font-size: 1.5rem;
+  }
+
+  .Navbar_homenav-links a,
+  .nav-dropdown-trigger {
+    font-size: 10px;
+  }
+
+  .nav-register-link {
+    padding: 8px 14px;
+  }
+
+  .Navbar_homenav-dropdown {
+    width: 200px;
+  }
+}

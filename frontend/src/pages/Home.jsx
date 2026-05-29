@@ -61,25 +61,6 @@ const fetchProducts = async () => {
     });
   };
 
-  // const addToCart = (product) => {
-  //   if (product.stock === "out") return;
-  //   setCartCount((c) => c + 1);
-  //   setCartBump(true);
-  //   setTimeout(() => setCartBump(false), 400);
-
-  //   setAddedItems((prev) => new Set(prev).add(product.id));
-  //   setTimeout(() => {
-  //     setAddedItems((prev) => {
-  //       const next = new Set(prev);
-  //       next.delete(product.id);
-  //       return next;
-  //     });
-  //   }, 1800);
-
-  //   setTimeout(() => setToast({ show: false, message: "" }), 2400);
-  // };
-
-
   const addToCart = (product) => {
 
   const token =

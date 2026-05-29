@@ -18,36 +18,36 @@ export default function LoginAdmin() {
     <>
       <Navbar />
 
-      <div className="la-wrap">
+      <div className="adminLogin_la-wrap">
 
-        <div className="la-card">
+        <div className="adminLogin_la-card">
 
-          <div className="la-badge">
+          <div className="adminLogin_la-badge">
             Admin Access
           </div>
 
-          <div className="la-logo">
+          <div className="adminLogin_la-logo">
             JewellKash
           </div>
 
-          <div className="la-sub">
+          <div className="adminLogin_la-sub">
             Sign in to your admin panel
           </div>
 
-          <div className="la-divider">
-            <div className="la-gem" />
+          <div className="adminLogin_la-divider">
+            <div className="adminLogin_la-gem" />
           </div>
 
           <form onSubmit={handleSubmit}>
 
-            <div className="la-field">
+            <div className="adminLogin_la-field">
 
-              <label className="la-label">
+              <label className="adminLogin_la-label">
                 Admin ID / Email
               </label>
 
               <input
-                className="la-input"
+                className="adminLogin_la-input"
                 type="text"
                 placeholder="admin@jewellkash.com"
                 required
@@ -55,14 +55,14 @@ export default function LoginAdmin() {
 
             </div>
 
-            <div className="la-field">
+            <div className="adminLogin_la-field">
 
-              <label className="la-label">
+              <label className="adminLogin_la-label">
                 Password
               </label>
 
               <input
-                className="la-input"
+                className="adminLogin_la-input"
                 type="password"
                 placeholder="Enter your password"
                 required
@@ -70,19 +70,19 @@ export default function LoginAdmin() {
 
             </div>
 
-            <div className="la-forgot">
+            <div className="adminLogin_la-forgot">
               <a href="/forgot-password">
                 Forgot password?
               </a>
             </div>
 
-            <button className="la-submit" type="submit">
+            <button className="adminLogin_la-submit" type="submit">
               Access Admin Panel
             </button>
 
           </form>
 
-          <div className="la-footer">
+          <div className="adminLogin_la-footer">
             Not an admin?{" "}
             <a href="/login/user">
               Login as User
