@@ -82,4 +82,102 @@ router.get("/cart/:userId", async (req, res) => {
   }
 });
 
+
+
+
+
+// router.delete("/cart/:userId/:productId", async (req, res) => {
+//   try {
+//     const { userId, productId } = req.params;
+
+//     await pool.query(
+//       `
+//       DELETE FROM cart
+//       WHERE user_id = $1
+//       AND product_id = $2
+//       `,
+//       [userId, productId]
+//     );
+
+//     res.json({
+//       success: true,
+//     });
+
+//   } catch (err) {
+//     console.error(err);
+
+//     res.status(500).json({
+//       error: "Server Error",
+//     });
+//   }
+// });
+
+// // Remove Item From Cart
+// router.delete("/cart/:userId/:productId", async (req, res) => {
+//   try {
+
+//     const { userId, productId } = req.params;
+
+//     await pool.query(
+//       `
+//       DELETE FROM cart
+//       WHERE user_id = $1
+//       AND product_id = $2
+//       `,
+//       [userId, productId]
+//     );
+
+//     res.json({
+//       success: true,
+//       message: "Item removed from cart"
+//     });
+
+//   } catch (err) {
+
+//     console.error(err);
+
+//     res.status(500).json({
+//       error: "Server Error"
+//     });
+
+//   }
+// });
+
+
+
+router.delete("/cart/:userId/:productId", async (req, res) => {
+  try {
+
+    const { userId, productId } = req.params;
+
+    console.log("Deleting:", userId, productId);
+
+    const result = await pool.query(
+      `
+      DELETE FROM cart
+      WHERE user_id = $1
+      AND product_id = $2
+      RETURNING *
+      `,
+      [userId, productId]
+    );
+
+    console.log("Deleted rows:", result.rows);
+
+    res.json({
+      success: true,
+      deleted: result.rows
+    });
+
+  } catch (err) {
+
+    console.error(err);
+
+    res.status(500).json({
+      error: "Server Error"
+    });
+
+  }
+});
+
 module.exports = router;

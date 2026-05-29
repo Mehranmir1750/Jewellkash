@@ -8,7 +8,9 @@ import {
 
 export default function UserDashboard() {
 
+
   const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([]);
 
 
   useEffect(() => {
@@ -21,10 +23,18 @@ export default function UserDashboard() {
     });
 }, []);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/products")
-      .catch((err) => console.log(err));
-  }, []);
+ 
+
+useEffect(() => {
+  fetch("http://localhost:5000/products")
+    .then((res) => res.json())
+    .then((data) => {
+      setProducts(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}, []);
 
 
   const handleAddToCart = async (product) => {
@@ -60,38 +70,6 @@ export default function UserDashboard() {
     console.error(error);
   }
 };
-
-
-  const products = [
-    {
-      id: 1,
-      name: "Royal Diamond Ring",
-      price: "₹4,999",
-      image:
-        "https://images.unsplash.com/photo-1605100804763-247f67b3557e",
-    },
-    {
-      id: 2,
-      name: "Luxury Gold Necklace",
-      price: "₹7,499",
-      image:
-        "https://images.unsplash.com/photo-1617038220319-276d3cfab638",
-    },
-    {
-      id: 3,
-      name: "Elegant Earrings",
-      price: "₹2,999",
-      image:
-        "https://images.unsplash.com/photo-1588444650700-6d7f6f8b88d7",
-    },
-    {
-      id: 4,
-      name: "Pearl Bracelet",
-      price: "₹3,499",
-      image:
-        "https://images.unsplash.com/photo-1611599537845-1c7aca0091c0",
-    },
-  ];
 
   return (
     <div className="userDashboard_dashboard-page">
@@ -162,7 +140,9 @@ export default function UserDashboard() {
 
               <h3>{product.name}</h3>
 
-              <p>{product.price}</p>
+              <p>
+  ₹{Number(product.price).toLocaleString()}
+</p>
 
               <div className="userDashboard_product-actions">
 

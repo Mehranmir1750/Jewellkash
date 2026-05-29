@@ -469,6 +469,38 @@ app.get("/products/:id", async (req, res) => {
 
 
 
+app.get("/api/cart/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const result = await pool.query(
+      `
+      SELECT
+        p.id,
+        p.name,
+        p.price,
+        p.image
+      FROM cart c
+      JOIN products p
+      ON c.product_id = p.id
+      WHERE c.user_id = $1
+      `,
+      [userId]
+    );
+
+    res.json(result.rows);
+
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({
+      message: "Server Error"
+    });
+  }
+});
+
+
+
 // SERVER
 app.listen(5000, () => {
   console.log("Server running on port 5000");
