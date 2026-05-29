@@ -9,9 +9,18 @@ const pool = require("./db/db");
 const app = express();
 
 
+
+
+
+
+
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
+
+const cartRoutes = require("./routes/cart");
+
+app.use(cartRoutes);
 
 
 // HOME ROUTE
@@ -457,8 +466,6 @@ app.get("/products/:id", async (req, res) => {
 
   }
 });
-
-
 
 
 
