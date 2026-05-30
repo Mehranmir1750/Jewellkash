@@ -44,7 +44,7 @@ export default function AdminOrders() {
   try {
 
     await fetch(
-      `http://localhost:5000/orders/${orderId}`,
+      `https://jewellkash.onrender.com/orders/${orderId}`,
       {
         method: "PUT",
         headers: {

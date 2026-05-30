@@ -64,7 +64,7 @@ export default function AdminDashboard() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/admin-dashboard"
+        "https://jewellkash.onrender.com/admin-dashboard"
       );
 
       const data = await response.json();

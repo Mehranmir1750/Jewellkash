@@ -18,7 +18,7 @@ const navigate = useNavigate();
     try {
 
       const res = await axios.post(
-        "http://localhost:5000/login",
+        "https://jewellkash.onrender.com/login",
         {
           email,
           password

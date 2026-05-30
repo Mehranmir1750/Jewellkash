@@ -79,7 +79,7 @@ export default function EditProduct() {
     try {
 
       await fetch(
-        `http://localhost:5000/products/${id}`,
+        `https://jewellkash.onrender.com/products/${id}`,
         {
           method: "PUT",
 
