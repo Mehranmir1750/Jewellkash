@@ -310,3 +310,142 @@ body{
 .added-cart-btn:hover {
   background: #43A047 !important;
 }
+
+
+
+
+/* ==========================
+   TABLET
+========================== */
+@media (max-width: 900px) {
+
+  .userDashboard_dashboard-nav{
+    padding:0 20px;
+  }
+
+  .userDashboard_dashboard-links{
+    gap:14px;
+  }
+
+  .userDashboard_dashboard-hero h1{
+    font-size:3rem;
+  }
+
+  .userDashboard_products-grid{
+    grid-template-columns:
+      repeat(2,minmax(250px,1fr));
+  }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+@media (max-width: 768px) {
+
+  .userDashboard_dashboard-nav{
+    height:auto;
+    padding:16px;
+    flex-direction:column;
+    gap:15px;
+  }
+
+  .userDashboard_dashboard-logo{
+    font-size:1.8rem;
+  }
+
+  .userDashboard_dashboard-links{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+  }
+
+  .userDashboard_dashboard-links a{
+    font-size:11px;
+  }
+
+  .userDashboard_dashboard-hero{
+    padding:40px 20px;
+  }
+
+  .userDashboard_dashboard-hero h1{
+    font-size:2.4rem;
+    line-height:1.1;
+  }
+
+  .userDashboard_dashboard-hero p{
+    font-size:14px;
+  }
+
+  .userDashboard_products-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+    padding:14px;
+  }
+
+  .userDashboard_product-card{
+    border-radius:20px;
+  }
+
+  .userDashboard_product-card img{
+    height:260px;
+  }
+
+  .userDashboard_product-info{
+    padding:18px;
+  }
+
+  .userDashboard_product-info h3{
+    font-size:1.6rem;
+  }
+
+  .userDashboard_product-info p{
+    font-size:1rem;
+  }
+
+  .userDashboard_product-actions{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .userDashboard_product-actions button{
+    width:100%;
+  }
+
+}
+
+/* ==========================
+   SMALL PHONES
+========================== */
+@media (max-width: 480px) {
+
+  .userDashboard_dashboard-logo{
+    font-size:1.5rem;
+  }
+
+  .userDashboard_dashboard-hero h1{
+    font-size:2rem;
+  }
+
+  .userDashboard_dashboard-hero p{
+    font-size:13px;
+  }
+
+  .userDashboard_product-card img{
+    height:220px;
+  }
+
+  .userDashboard_product-info h3{
+    font-size:1.4rem;
+  }
+
+  .userDashboard_product-info p{
+    font-size:15px;
+  }
+
+  .userDashboard_product-actions button{
+    height:45px;
+    font-size:11px;
+  }
+
+}
