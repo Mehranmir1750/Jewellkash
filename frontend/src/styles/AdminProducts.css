@@ -458,3 +458,47 @@ body{
   }
 
 }
+
+
+@media (max-width: 768px){
+
+  .dashboard-nav{
+    height:auto;
+    padding:16px;
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .dashboard-logo{
+    font-size:1.6rem;
+    text-align:center;
+  }
+
+  .dashboard-links{
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+    gap:10px;
+  }
+
+  .dashboard-links a{
+    text-align:center;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:
+      rgba(196,104,122,0.08);
+  }
+
+  .logout-btn{
+    width:100%;
+    justify-content:center;
+  }
+
+}
