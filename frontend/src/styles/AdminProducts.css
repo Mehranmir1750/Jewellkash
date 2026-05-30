@@ -418,4 +418,13 @@ body {
   .admin-products-grid {
     padding: 0 10px 50px;
   }
+
+  .dashboard-logo {
+  font-size: 1.35rem; /* was 1.15rem */
+}
+
+.dashboard-links a {
+  font-size: 0.84rem; /* was 0.78rem */
+  padding: 8px 16px;  /* was 6px 14px */
+}
 }
