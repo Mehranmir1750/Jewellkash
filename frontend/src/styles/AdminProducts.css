@@ -400,6 +400,24 @@ body {
     padding: 10px 10px;
     font-size: 0.74rem;
   }
+
+  @media (max-width: 640px) {
+  .dashboard-nav {
+    padding: 24px 16px; /* bigger = taller navbar */
+    gap: 16px;
+  }
+
+  .dashboard-logo {
+    font-size: 1.1rem; /* slightly bigger logo on mobile */
+  }
+
+  .dashboard-links a {
+    font-size: 0.76rem;
+    padding: 7px 12px; /* bigger tap targets too */
+  }
+}
+
+
 }
 
 /* ────────────────────────────────────────
@@ -418,13 +436,5 @@ body {
   .admin-products-grid {
     padding: 0 10px 50px;
   }
-
-  .dashboard-logo {
-  font-size: 1.35rem; /* was 1.15rem */
-}
-
-.dashboard-links a {
-  font-size: 0.84rem; /* was 0.78rem */
-  padding: 8px 16px;  /* was 6px 14px */
-}
+  
 }
