@@ -24,7 +24,7 @@ export default function AdminOrders() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/orders"
+        "https://jewellkash.onrender.com/orders"
       );
 
       const data = await response.json();

@@ -27,7 +27,7 @@ const handleSubmit = async (e) => {
   try {
 
     const response = await fetch(
-      "http://localhost:5000/add-product",
+      "https://jewellkash.onrender.com/add-product",
       {
         method: "POST",
 

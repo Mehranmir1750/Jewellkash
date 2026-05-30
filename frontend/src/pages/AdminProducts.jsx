@@ -27,7 +27,7 @@ export default function AdminProducts() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/products"
+        "https://jewellkash.onrender.com/products"
       );
 
       const data = await response.json();

@@ -14,7 +14,7 @@ export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/cart/1")
+    fetch("https://jewellkash.onrender.com/api/cart/1")
       .then((res) => res.json())
       .then((data) => {
         setCartItems(
@@ -33,7 +33,7 @@ export default function Cart() {
     try {
 
       await fetch(
-        `http://localhost:5000/cart/1/${productId}`,
+        `https://jewellkash.onrender.com/cart/1/${productId}`,
         {
           method: "DELETE",
         }
@@ -63,7 +63,7 @@ export default function Cart() {
   try {
 
     const response = await fetch(
-      "http://localhost:5000/checkout/1",
+      "https://jewellkash.onrender.com/checkout/1",
       {
         method: "POST",
       }

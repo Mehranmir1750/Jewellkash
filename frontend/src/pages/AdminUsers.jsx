@@ -25,7 +25,7 @@ export default function AdminUsers() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/users"
+        "https://jewellkash.onrender.com/users"
       );
 
       const data = await response.json();
@@ -45,7 +45,7 @@ export default function AdminUsers() {
     try {
 
       await fetch(
-        `http://localhost:5000/users/${id}`,
+        `https://jewellkash.onrender.com/users/${id}`,
         {
           method: "DELETE",
         }

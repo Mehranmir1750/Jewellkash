@@ -45,7 +45,7 @@ export default function EditProduct() {
     try {
 
       const response = await fetch(
-        `http://localhost:5000/products/${id}`
+        `https://jewellkash.onrender.com/products/${id}`
       );
 
       const data = await response.json();

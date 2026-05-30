@@ -14,7 +14,7 @@ export default function UserDashboard() {
 
 
   useEffect(() => {
-  fetch("http://localhost:5000/cart/1")
+  fetch("https://jewellkash.onrender.com/cart/1")
     .then((res) => res.json())
     .then((data) => {
       setCart(
@@ -26,7 +26,7 @@ export default function UserDashboard() {
  
 
 useEffect(() => {
-  fetch("http://localhost:5000/products")
+  fetch("https://jewellkash.onrender.com/products")
     .then((res) => res.json())
     .then((data) => {
       setProducts(data);
@@ -41,7 +41,7 @@ useEffect(() => {
   try {
 
     const response = await fetch(
-      "http://localhost:5000/cart",
+      "https://jewellkash.onrender.com/cart",
       {
         method: "POST",
         headers: {
