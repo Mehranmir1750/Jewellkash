@@ -65,16 +65,16 @@ export default function AdminUsers() {
   };
 
   return (
-    <div className="admin-users-page">
+    <div className="AdminUsers_admin-users-page">
 
       {/* Navbar */}
-      <nav className="dashboard-nav">
+      <nav className="AdminUsers_dashboard-nav">
 
-        <div className="dashboard-logo">
+        <div className="AdminUsers_dashboard-logo">
           JEWELLKASH ADMIN
         </div>
 
-        <div className="dashboard-links">
+        <div className="AdminUsers_dashboard-links">
 
           <a href="/admin-dashboard">
             Dashboard
@@ -92,7 +92,7 @@ export default function AdminUsers() {
             Users
           </a>
 
-          <a href="/" className="logout-btn">
+          <a href="/" className="AdminUsers_logout-btn">
             <FaSignOutAlt />
             Logout
           </a>
@@ -102,7 +102,7 @@ export default function AdminUsers() {
       </nav>
 
       {/* Hero */}
-      <section className="admin-users-hero">
+      <section className="AdminUsers_admin-users-hero">
 
         <h1>
           Manage Users ✨
@@ -115,30 +115,30 @@ export default function AdminUsers() {
       </section>
 
       {/* Users */}
-      <div className="users-grid">
+      <div className="AdminUsers_users-grid">
 
         {users.map((user) => (
 
           <div
-            className="user-card"
+            className="AdminUsers_user-card"
             key={user.id}
           >
 
             {/* Avatar */}
-            <div className="user-avatar">
+            <div className="AdminUsers_user-avatar">
 
               <FaUser />
 
             </div>
 
             {/* Content */}
-            <div className="user-content">
+            <div className="AdminUsers_user-content">
 
               <h2>
                 {user.name}
               </h2>
 
-              <div className="user-info">
+              <div className="AdminUsers_user-info">
 
                 <p>
                   <FaEnvelope />
@@ -152,15 +152,15 @@ export default function AdminUsers() {
 
               </div>
 
-              <span className="join-date">
+              <span className="AdminUsers_join-date">
                 Joined: {user.joined_date}
               </span>
 
               {/* Actions */}
-              <div className="user-actions">
+              <div className="AdminUsers_user-actions">
 
                 <button
-                  className="delete-btn"
+                  className="AdminUsers_delete-btn"
                   onClick={() =>
                     handleDelete(user.id)
                   }

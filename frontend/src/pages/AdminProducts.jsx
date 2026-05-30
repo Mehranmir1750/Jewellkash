@@ -67,17 +67,17 @@ export default function AdminProducts() {
   };
 
   return (
-    <div className="admin-products-page">
+    <div className="AdminProducts_admin-products-page">
 
     
     {/* Navbar */}
-<nav className="dashboard-nav">
+<nav className="AdminProducts_dashboard-nav">
 
-  <div className="dashboard-logo">
+  <div className="AdminProducts_dashboard-logo">
     JEWELLKASH ADMIN
   </div>
 
-  <div className="dashboard-links">
+  <div className="AdminProducts_dashboard-links">
 
     <a href="/admin-dashboard">
       Dashboard
@@ -95,7 +95,7 @@ export default function AdminProducts() {
       Users
     </a>
 
-    <a href="/add-product" className="add-product-link">
+    <a href="/add-product" className="AdminProducts_add-product-link">
 
       <FaPlus />
 
@@ -103,7 +103,7 @@ export default function AdminProducts() {
 
     </a>
 
-    <a href="/" className="logout-btn">
+    <a href="/" className="AdminProducts_logout-btn">
 
       <FaSignOutAlt />
 
@@ -116,7 +116,7 @@ export default function AdminProducts() {
 </nav>
 
       {/* Hero */}
-      <section className="admin-products-hero">
+      <section className="AdminProducts_admin-products-hero">
 
         <h1>
           Manage Products ✨
@@ -129,12 +129,12 @@ export default function AdminProducts() {
       </section>
 
       {/* Products */}
-      <div className="admin-products-grid">
+      <div className="AdminProducts_admin-products-grid">
 
         {products.map((product) => (
 
           <div
-            className="admin-product-card"
+            className="AdminProducts_admin-product-card"
             key={product.id}
           >
 
@@ -143,9 +143,9 @@ export default function AdminProducts() {
               alt={product.name}
             />
 
-            <div className="admin-product-content">
+            <div className="AdminProducts_admin-product-content">
 
-              <span className="product-category">
+              <span className="AdminProducts_product-category">
                 {product.category}
               </span>
 
@@ -153,19 +153,19 @@ export default function AdminProducts() {
                 {product.name}
               </h2>
 
-              <p className="product-price">
+              <p className="AdminProducts_product-price">
                 ₹{product.price}
               </p>
 
-              <p className="product-stock">
+              <p className="AdminProducts_product-stock">
                 Stock: {product.stock}
               </p>
 
               {/* Actions */}
-              <div className="admin-product-actions">
+              <div className="AdminProducts_admin-product-actions">
 
                 <button
-  className="edit-btn"
+  className="AdminProducts_edit-btn"
   onClick={() =>
     navigate(`/edit-product/${product.id}`)
   }
@@ -178,7 +178,7 @@ export default function AdminProducts() {
 </button>
 
                 <button
-                  className="delete-btn"
+                  className="AdminProducts_delete-btn"
                   onClick={() =>
                     handleDelete(product.id)
                   }
