@@ -72,16 +72,16 @@ export default function AdminOrders() {
 };
 
   return (
-    <div className="admin-orders-page">
+    <div className="AdminOrders_admin-orders-page">
 
       {/* Navbar */}
-      <nav className="dashboard-nav">
+      <nav className="AdminOrders_dashboard-nav">
 
-        <div className="dashboard-logo">
+        <div className="AdminOrders_dashboard-logo">
           JEWELLKASH ADMIN
         </div>
 
-        <div className="dashboard-links">
+        <div className="AdminOrders_dashboard-links">
 
           <a href="/admin-dashboard">
             Dashboard
@@ -95,7 +95,7 @@ export default function AdminOrders() {
             Orders
           </a>
 
-          <a href="/" className="logout-btn">
+          <a href="/" className="AdminOrders_logout-btn">
             <FaSignOutAlt />
             Logout
           </a>
@@ -105,7 +105,7 @@ export default function AdminOrders() {
       </nav>
 
       {/* Hero */}
-      <section className="admin-orders-hero">
+      <section className="AdminOrders_admin-orders-hero">
 
         <h1>
           Manage Orders ✨
@@ -118,12 +118,12 @@ export default function AdminOrders() {
       </section>
 
       {/* Orders */}
-      <div className="orders-container">
+      <div className="AdminOrders_orders-container">
 
         {orders.map((order) => (
 
           <div
-            className="order-card"
+            className="AdminOrders_order-card"
             key={order.id}
           >
 
@@ -132,13 +132,13 @@ export default function AdminOrders() {
               alt={order.product_name}
             />
 
-            <div className="order-content">
+            <div className="AdminOrders_order-content">
 
-              <div className="order-top">
+              <div className="AdminOrders_order-top">
 
                 <div>
 
-                  <span className="order-id">
+                  <span className="AdminOrders_order-id">
                     Order #{order.id}
                   </span>
 
@@ -154,7 +154,7 @@ export default function AdminOrders() {
 
               </div>
 
-              <div className="order-details">
+              <div className="AdminOrders_order-details">
 
                 <p>
                   Customer:
@@ -196,11 +196,11 @@ export default function AdminOrders() {
               </div>
 
               {/* Buttons */}
-              <div className="order-actions">
+              <div className="AdminOrders_order-actions">
 
 
 <button
-  className="processing-btn"
+  className="AdminOrders_processing-btn"
   disabled={order.status === "Processing"}
   onClick={() =>
     updateStatus(order.id, "Processing")
@@ -210,7 +210,7 @@ export default function AdminOrders() {
 </button>
 
 <button
-  className="shipped-btn"
+  className="AdminOrders_shipped-btn"
   onClick={() =>
     updateStatus(order.id, "Shipped")
   }
@@ -219,7 +219,7 @@ export default function AdminOrders() {
 </button>
 
 <button
-  className="delivered-btn"
+  className="AdminOrders_delivered-btn"
   onClick={() =>
     updateStatus(order.id, "Delivered")
   }
