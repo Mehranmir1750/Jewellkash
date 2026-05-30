@@ -14,7 +14,8 @@ export default function UserDashboard() {
 
 
   useEffect(() => {
-  fetch("https://jewellkash.onrender.com/cart/1")
+  // fetch("https://jewellkash.onrender.com/cart/1")
+  fetch("https://jewellkash.onrender.com/api/cart/1")
     .then((res) => res.json())
     .then((data) => {
       setCart(
