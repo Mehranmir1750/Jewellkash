@@ -197,7 +197,7 @@ body{
 .userDashboard_product-actions button{
   flex:1;
 
-  height:48px;
+  height:60px;
 
   border:none;
 
@@ -444,7 +444,7 @@ body{
   }
 
   .userDashboard_product-actions button{
-    height:60px;
+    height:45px;
     font-size:11px;
   }
 
