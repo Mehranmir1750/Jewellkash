@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "../styles/Orders.css";
 
 import {
@@ -11,54 +12,20 @@ import {
 
 export default function Orders() {
 
-  const orders = [
+  const [orders, setOrders] = useState([]);
 
-    {
-      id: "JK1023",
+  useEffect(() => {
+    fetch("http://localhost:5000/orders/1")
+      .then((res) => res.json())
+      .then((data) => {
+        setOrders(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-      product: "Royal Diamond Ring",
-
-      price: "₹4,999",
-
-      status: "Delivered",
-
-      date: "24 May 2026",
-
-      image:
-        "https://images.unsplash.com/photo-1605100804763-247f67b3557e",
-    },
-
-    {
-      id: "JK2045",
-
-      product: "Luxury Gold Necklace",
-
-      price: "₹7,499",
-
-      status: "Shipped",
-
-      date: "20 May 2026",
-
-      image:
-        "https://images.unsplash.com/photo-1617038220319-276d3cfab638",
-    },
-
-    {
-      id: "JK3310",
-
-      product: "Elegant Earrings",
-
-      price: "₹2,999",
-
-      status: "Processing",
-
-      date: "18 May 2026",
-
-      image:
-        "https://images.unsplash.com/photo-1588444650700-6d7f6f8b88d7",
-    },
-
-  ];
+  
 
   return (
 
@@ -129,7 +96,7 @@ export default function Orders() {
 
             <img
               src={order.image}
-              alt={order.product}
+              alt={order.name}
             />
 
             <div className="user_order-content">
@@ -139,7 +106,7 @@ export default function Orders() {
                 <div>
 
                   <h2>
-                    {order.product}
+                    {order.name}
                   </h2>
 
                   <span>
@@ -149,7 +116,7 @@ export default function Orders() {
                 </div>
 
                 <h3>
-                  {order.price}
+                  ₹{Number(order.price).toLocaleString()}
                 </h3>
 
               </div>
@@ -171,7 +138,7 @@ export default function Orders() {
                   className={`status ${order.status.toLowerCase()}`}
                 >
 
-                  {/* {order.status === "Delivered" && (
+                   {order.status === "Delivered" && (
                     <FaCheckCircle />
                   )}
 
@@ -181,11 +148,11 @@ export default function Orders() {
 
                   {order.status === "Processing" && (
                     <FaClock />
-                  )} */}
+                  )} 
 
-                  {/* <span>
+                   <span>
                     {order.status}
-                  </span> */}
+                  </span> 
 
                 </div>
 

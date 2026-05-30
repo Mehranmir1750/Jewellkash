@@ -501,6 +501,162 @@ app.get("/api/cart/:userId", async (req, res) => {
 
 
 
+
+app.get("/orders/:userId", async (req, res) => {
+  try {
+
+    const { userId } = req.params;
+
+    const result = await pool.query(
+      `
+      SELECT
+        o.id,
+        o.price,
+        o.status,
+        o.date,
+        p.name,
+        p.image
+      FROM orders o
+      JOIN products p
+      ON o.product_id = p.id
+      WHERE o.user_id = $1
+      ORDER BY o.id DESC
+      `,
+      [userId]
+    );
+
+    res.json(result.rows);
+
+  } catch (err) {
+
+    console.error(err);
+
+    res.status(500).json({
+      error: "Server Error"
+    });
+
+  }
+});
+
+
+
+
+
+app.post("/checkout/:userId", async (req, res) => {
+  try {
+
+    const { userId } = req.params;
+
+    const cartItems = await pool.query(
+      `
+      SELECT
+        c.product_id,
+        p.name,
+        p.price
+      FROM cart c
+      JOIN products p
+      ON c.product_id = p.id
+      WHERE c.user_id = $1
+      `,
+      [userId]
+    );
+
+    const user = await pool.query(
+      `
+      SELECT name
+      FROM users
+      WHERE id = $1
+      `,
+      [userId]
+    );
+
+    const customerName = user.rows[0].name;
+
+    for (const item of cartItems.rows) {
+
+      await pool.query(
+        `
+        INSERT INTO orders
+        (
+          customer_name,
+          product_name,
+          price,
+          status,
+          date,
+          user_id,
+          product_id
+        )
+        VALUES
+        ($1,$2,$3,$4,NOW(),$5,$6)
+        `,
+        [
+          customerName,
+          item.name,
+          item.price,
+          "Processing",
+          userId,
+          item.product_id,
+        ]
+      );
+    }
+
+    await pool.query(
+      `
+      DELETE FROM cart
+      WHERE user_id = $1
+      `,
+      [userId]
+    );
+
+    res.json({
+      success: true,
+      message: "Order placed successfully",
+    });
+
+  } catch (err) {
+
+    console.error(err);
+
+    res.status(500).json({
+      error: "Server Error",
+    });
+
+  }
+});
+
+
+
+app.put("/orders/:id", async (req, res) => {
+  try {
+
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const updatedOrder = await pool.query(
+      `
+      UPDATE orders
+      SET status = $1
+      WHERE id = $2
+      RETURNING *
+      `,
+      [status, id]
+    );
+
+    res.json(updatedOrder.rows[0]);
+
+  } catch (err) {
+
+    console.error(err);
+
+    res.status(500).json({
+      error: "Server Error"
+    });
+
+  }
+});
+
+
+
 // SERVER
 app.listen(5000, () => {
   console.log("Server running on port 5000");

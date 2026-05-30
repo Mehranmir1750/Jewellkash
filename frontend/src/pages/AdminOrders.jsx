@@ -38,6 +38,39 @@ export default function AdminOrders() {
     }
   };
 
+
+  const updateStatus = async (orderId, status) => {
+
+  try {
+
+    await fetch(
+      `http://localhost:5000/orders/${orderId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          status,
+        }),
+      }
+    );
+
+    setOrders(
+      orders.map((order) =>
+        order.id === orderId
+          ? { ...order, status }
+          : order
+      )
+    );
+
+  } catch (err) {
+
+    console.error(err);
+
+  }
+};
+
   return (
     <div className="admin-orders-page">
 
@@ -165,17 +198,34 @@ export default function AdminOrders() {
               {/* Buttons */}
               <div className="order-actions">
 
-                <button className="processing-btn">
-                  Processing
-                </button>
 
-                <button className="shipped-btn">
-                  Shipped
-                </button>
+<button
+  className="processing-btn"
+  disabled={order.status === "Processing"}
+  onClick={() =>
+    updateStatus(order.id, "Processing")
+  }
+>
+  Processing
+</button>
 
-                <button className="delivered-btn">
-                  Delivered
-                </button>
+<button
+  className="shipped-btn"
+  onClick={() =>
+    updateStatus(order.id, "Shipped")
+  }
+>
+  Shipped
+</button>
+
+<button
+  className="delivered-btn"
+  onClick={() =>
+    updateStatus(order.id, "Delivered")
+  }
+>
+  Delivered
+</button>
 
               </div>
 

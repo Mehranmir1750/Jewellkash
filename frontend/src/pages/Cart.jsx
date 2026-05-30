@@ -1,5 +1,6 @@
 import "../styles/Cart.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   FaShoppingCart,
@@ -49,11 +50,41 @@ export default function Cart() {
     }
   };
 
+  const navigate = useNavigate();
+
   const subtotal = cartItems.reduce(
     (acc, item) =>
       acc + Number(item.price) * item.quantity,
     0
   );
+
+  const handleCheckout = async () => {
+
+  try {
+
+    const response = await fetch(
+      "http://localhost:5000/checkout/1",
+      {
+        method: "POST",
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+
+      alert("Order Placed Successfully!");
+
+      navigate("/orders");
+    }
+
+  } catch (err) {
+
+    console.log(err);
+
+  }
+};
+
 
   return (
     <div className="User_cart-page">
@@ -190,9 +221,12 @@ export default function Cart() {
             </span>
           </div>
 
-          <button className="User_checkout-btn">
-            Proceed to Checkout
-          </button>
+          <button
+  className="User_checkout-btn"
+  onClick={handleCheckout}
+>
+  Proceed to Checkout
+</button>
 
         </div>
 
