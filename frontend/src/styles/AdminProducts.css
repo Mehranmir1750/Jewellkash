@@ -38,11 +38,11 @@ body {
   height: 64px;
   display: flex;
   flex-direction: column;
-padding: 10px;
+padding-bottom: 10px;
 
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
   background: rgba(20,12,16,0.96);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(196,104,122,0.12);
