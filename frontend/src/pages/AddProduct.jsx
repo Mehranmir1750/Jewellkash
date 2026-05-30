@@ -63,15 +63,15 @@ const handleSubmit = async (e) => {
 };
 
   return (
-    <div className="add-product-page">
+    <div className="AdminAddProduct_add-product-page">
 
-      <nav className="dashboard-nav">
+      <nav className="AdminAddProduct_dashboard-nav">
 
-  <div className="dashboard-logo">
+  <div className="AdminAddProduct_dashboard-logo">
     JEWELLKASH ADMIN
   </div>
 
-  <div className="dashboard-links">
+  <div className="AdminAddProduct_dashboard-links">
 
     <a href="/admin-dashboard">
       Dashboard
@@ -89,7 +89,7 @@ const handleSubmit = async (e) => {
       Users
     </a>
 
-    <a href="/" className="logout-btn">
+    <a href="/" className="AdminAddProduct_logout-btn">
       <FaSignOutAlt />
       Logout
     </a>
@@ -99,12 +99,12 @@ const handleSubmit = async (e) => {
 </nav>
 
       {/* Main */}
-      <div className="add-product-container">
+      <div className="AdminAddProduct_add-product-container">
 
         {/* Left */}
-        <div className="add-product-left">
+        <div className="AdminAddProduct_add-product-left">
 
-          <a href="/admin-dashboard" className="back-btn">
+          <a href="/admin-dashboard" className="AdminAddProduct_back-btn">
             <FaArrowLeft />
             Back to Dashboard
           </a>
@@ -120,7 +120,7 @@ const handleSubmit = async (e) => {
           <form onSubmit={handleSubmit}>
 
             {/* Product Name */}
-            <div className="form-group">
+            <div className="AdminAddProduct_form-group">
 
               <label>
                 Product Name
@@ -142,9 +142,9 @@ const handleSubmit = async (e) => {
             </div>
 
             {/* Price + Stock */}
-            <div className="form-row">
+            <div className="AdminAddProduct_form-row">
 
-              <div className="form-group">
+              <div className="AdminAddProduct_form-group">
 
                 <label>
                   Price
@@ -165,7 +165,7 @@ const handleSubmit = async (e) => {
 
               </div>
 
-              <div className="form-group">
+              <div className="AdminAddProduct_form-group">
 
                 <label>
                   Stock
@@ -189,7 +189,7 @@ const handleSubmit = async (e) => {
             </div>
 
             {/* Category */}
-            <div className="form-group">
+            <div className="AdminAddProduct_form-group">
 
               <label>
                 Category
@@ -231,7 +231,7 @@ const handleSubmit = async (e) => {
             </div>
 
            {/* Product Image Upload */}
-<div className="form-group">
+<div className="AdminAddProduct_form-group">
 
   <label>
     Upload Product Image
@@ -261,7 +261,7 @@ const handleSubmit = async (e) => {
 </div>
 
             {/* Description */}
-            <div className="form-group">
+            <div className="AdminAddProduct_form-group">
 
               <label>
                 Description
@@ -283,7 +283,7 @@ const handleSubmit = async (e) => {
             </div>
 
             {/* Submit */}
-            <button className="submit-btn" type="submit">
+            <button className="AdminAddProduct_submit-btn" type="submit">
 
               <FaPlus />
 
@@ -296,15 +296,15 @@ const handleSubmit = async (e) => {
         </div>
 
         {/* Right Preview */}
-        <div className="preview-card">
+        <div className="AdminAddProduct_preview-card">
 
-          <div className="preview-image">
+          <div className="AdminAddProduct_preview-image">
 
             {product.image ? (
               <img
                 src={product.image}
                 alt="preview"
-                className="preview-img"
+                className="AdminAddProduct_preview-img"
               />
             ) : (
               <FaImage />
@@ -312,9 +312,9 @@ const handleSubmit = async (e) => {
 
           </div>
 
-          <div className="preview-content">
+          <div className="AdminAddProduct_preview-content">
 
-            <span className="preview-tag">
+            <span className="AdminAddProduct_preview-tag">
               {product.category || "Luxury Collection"}
             </span>
 
