@@ -22,6 +22,9 @@ export default function AddProduct() {
   });
 
 
+  const [imageFile, setImageFile] = useState(null);
+
+
 
   const handleSubmit = async (e) => {
   e.preventDefault();
