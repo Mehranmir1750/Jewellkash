@@ -429,3 +429,51 @@ body {
     height: 170px;
   }
 }
+
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+
+  .dashboard-nav {
+    height: auto;
+    padding: 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .dashboard-logo {
+    font-size: 1.8rem;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .dashboard-links {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+  }
+
+  .dashboard-links a,
+  .add-product-link,
+  .logout-btn {
+    width: 100%;
+    min-height: 44px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 11px;
+    letter-spacing: 1px;
+
+    border-radius: 12px;
+  }
+
+  .admin-products-hero {
+    padding-top: 30px;
+  }
+}
