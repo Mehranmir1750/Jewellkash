@@ -250,21 +250,32 @@ export default function EditProduct() {
           </div>
 
           {/* Image */}
-          <div className="form-group">
+         {/* Image */}
+<div className="form-group">
+  <label>Product Image</label>
 
-            <label>
-              Image URL
-            </label>
+  {product.image && (
+    <img
+      src={product.image}
+      alt="preview"
+      className="edit-image-preview"
+    />
+  )}
 
-            <input
-              type="text"
-              name="image"
-              value={product.image}
-              onChange={handleChange}
-              required
-            />
-
-          </div>
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      if (file) {
+        setProduct({
+          ...product,
+          image: URL.createObjectURL(file),
+        });
+      }
+    }}
+  />
+</div>
 
           {/* Description */}
           <div className="form-group">
