@@ -374,7 +374,7 @@ body {
 
   .dashboard-nav {
     padding: 0 0.7rem;
-    height: 50px;
+    height: 80px;
     display: flex;
     flex-direction: column;
     padding-bottom: 10px;
