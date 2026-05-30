@@ -12,11 +12,19 @@ const app = express();
 
 
 
+const multer = require("multer");
+const cloudinary = require("./cloudinary");
+
+const router = express.Router();
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
+app.use(router);
 
 const cartRoutes = require("./routes/cart");
 
@@ -654,6 +662,48 @@ app.put("/orders/:id", async (req, res) => {
 
   }
 });
+
+
+router.post(
+  "/upload",
+  upload.single("image"),
+  async (req, res) => {
+    try {
+
+      const b64 =
+        Buffer.from(req.file.buffer).toString(
+          "base64"
+        );
+
+      const dataURI =
+        "data:" +
+        req.file.mimetype +
+        ";base64," +
+        b64;
+
+      const result =
+        await cloudinary.uploader.upload(
+          dataURI,
+          {
+            folder: "jewellkash",
+          }
+        );
+
+      res.json({
+        url: result.secure_url,
+      });
+
+    } catch (error) {
+
+      console.log(error);
+
+      res.status(500).json({
+        error: "Upload failed",
+      });
+
+    }
+  }
+);
 
 
 
