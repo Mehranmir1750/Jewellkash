@@ -373,12 +373,22 @@ body {
 @media (max-width: 420px) {
 
   .dashboard-nav {
-    padding: 0 0.7rem;
-    height: 80px;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 10px;
-  }
+  padding: 0 10px;
+  height: auto;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 
   .dashboard-logo {
     font-size: 0.85rem;
