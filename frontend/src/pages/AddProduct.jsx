@@ -21,31 +21,59 @@ export default function AddProduct() {
     description: "",
   });
 
-const handleSubmit = async (e) => {
+
+
+  const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
 
+    // Upload image to Cloudinary
+    const formData = new FormData();
+
+    formData.append(
+      "image",
+      imageFile
+    );
+
+    const uploadResponse = await fetch(
+      "https://jewellkash.onrender.com/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const uploadData =
+      await uploadResponse.json();
+
+    // Save product with Cloudinary URL
     const response = await fetch(
       "https://jewellkash.onrender.com/add-product",
       {
         method: "POST",
 
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type":
+            "application/json",
         },
 
-        body: JSON.stringify(product),
+        body: JSON.stringify({
+          ...product,
+          image: uploadData.url,
+        }),
       }
     );
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
     console.log(data);
 
-    alert("Product Added Successfully ✨");
+    alert(
+      "Product Added Successfully ✨"
+    );
 
-    // Reset form
     setProduct({
       name: "",
       price: "",
@@ -55,12 +83,16 @@ const handleSubmit = async (e) => {
       description: "",
     });
 
+    setImageFile(null);
+
   } catch (err) {
 
-    console.error(err.message);
+    console.error(err);
 
   }
 };
+
+
 
   return (
     <div className="AdminAddProduct_add-product-page">
@@ -241,20 +273,18 @@ const handleSubmit = async (e) => {
     type="file"
     accept="image/*"
     onChange={(e) => {
+  const file = e.target.files[0];
 
-      const file = e.target.files[0];
+  if (file) {
 
-      if (file) {
+    setImageFile(file);
 
-        const imageUrl =
-          URL.createObjectURL(file);
-
-        setProduct({
-          ...product,
-          image: imageUrl,
-        });
-      }
-    }}
+    setProduct({
+      ...product,
+      image: URL.createObjectURL(file), // preview only
+    });
+  }
+}}
     required
   />
 
