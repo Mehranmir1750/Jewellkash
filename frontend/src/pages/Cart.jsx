@@ -13,8 +13,19 @@ export default function Cart() {
 
   const [cartItems, setCartItems] = useState([]);
 
+  const navigate = useNavigate();
+
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
   useEffect(() => {
-    fetch("https://jewellkash.onrender.com/api/cart/1")
+
+    if (!user) return;
+
+    fetch(
+      `https://jewellkash.onrender.com/api/cart/${user.id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCartItems(
@@ -27,13 +38,15 @@ export default function Cart() {
       .catch((err) => {
         console.log(err);
       });
+
   }, []);
 
   const removeItem = async (productId) => {
+
     try {
 
       await fetch(
-        `https://jewellkash.onrender.com/cart/1/${productId}`,
+        `https://jewellkash.onrender.com/cart/${user.id}/${productId}`,
         {
           method: "DELETE",
         }
@@ -46,45 +59,47 @@ export default function Cart() {
       );
 
     } catch (err) {
+
       console.log(err);
+
     }
   };
 
-  const navigate = useNavigate();
+  const handleCheckout = async () => {
+
+    try {
+
+      const response = await fetch(
+        `https://jewellkash.onrender.com/checkout/${user.id}`,
+        {
+          method: "POST",
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+
+        alert("Order Placed Successfully!");
+
+        setCartItems([]);
+
+        navigate("/orders");
+
+      }
+
+    } catch (err) {
+
+      console.log(err);
+
+    }
+  };
 
   const subtotal = cartItems.reduce(
     (acc, item) =>
       acc + Number(item.price) * item.quantity,
     0
   );
-
-  const handleCheckout = async () => {
-
-  try {
-
-    const response = await fetch(
-      "https://jewellkash.onrender.com/checkout/1",
-      {
-        method: "POST",
-      }
-    );
-
-    const data = await response.json();
-
-    if (data.success) {
-
-      alert("Order Placed Successfully!");
-
-      navigate("/orders");
-    }
-
-  } catch (err) {
-
-    console.log(err);
-
-  }
-};
-
 
   return (
     <div className="User_cart-page">
@@ -123,6 +138,7 @@ export default function Cart() {
 
       <section className="User_cart-hero">
         <h1>Your Cart ✨</h1>
+
         <p>
           Review your selected luxury jewelry items.
         </p>
@@ -133,7 +149,9 @@ export default function Cart() {
         <div className="User_cart-items">
 
           {cartItems.length === 0 ? (
+
             <h2>No items in cart</h2>
+
           ) : (
 
             cartItems.map((item) => (
@@ -157,6 +175,7 @@ export default function Cart() {
                   </p>
 
                   <div className="User_cart-quantity">
+
                     <span>Quantity:</span>
 
                     <button>-</button>
@@ -166,6 +185,7 @@ export default function Cart() {
                     </span>
 
                     <button>+</button>
+
                   </div>
 
                   <button
@@ -222,11 +242,11 @@ export default function Cart() {
           </div>
 
           <button
-  className="User_checkout-btn"
-  onClick={handleCheckout}
->
-  Proceed to Checkout
-</button>
+            className="User_checkout-btn"
+            onClick={handleCheckout}
+          >
+            Proceed to Checkout
+          </button>
 
         </div>
 

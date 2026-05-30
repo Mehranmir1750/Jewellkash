@@ -12,18 +12,28 @@ export default function UserDashboard() {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
 
+useEffect(() => {
 
-  useEffect(() => {
-  // fetch("https://jewellkash.onrender.com/cart/1")
-  fetch("https://jewellkash.onrender.com/api/cart/1")
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
+  if (!user) return;
+
+  fetch(
+    `https://jewellkash.onrender.com/cart/${user.id}`
+  )
     .then((res) => res.json())
     .then((data) => {
       setCart(
         data.map((item) => item.id)
       );
+    })
+    .catch((err) => {
+      console.log(err);
     });
-}, []);
 
+}, []);
  
 
 useEffect(() => {
@@ -38,8 +48,14 @@ useEffect(() => {
 }, []);
 
 
-  const handleAddToCart = async (product) => {
+
+
+const handleAddToCart = async (product) => {
   try {
+
+    const user = JSON.parse(
+      localStorage.getItem("user")
+    );
 
     const response = await fetch(
       "https://jewellkash.onrender.com/cart",
@@ -49,7 +65,7 @@ useEffect(() => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: 1, // logged-in user
+          userId: user.id,
           productId: product.id,
         }),
       }
@@ -71,6 +87,7 @@ useEffect(() => {
     console.error(error);
   }
 };
+
 
   return (
     <div className="userDashboard_dashboard-page">

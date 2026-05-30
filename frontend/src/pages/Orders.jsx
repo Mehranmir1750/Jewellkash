@@ -5,7 +5,6 @@ import {
   FaTruck,
   FaCheckCircle,
   FaClock,
-  FaRedoAlt,
   FaShoppingCart,
   FaSignOutAlt,
 } from "react-icons/fa";
@@ -15,7 +14,16 @@ export default function Orders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch("https://jewellkash.onrender.com/orders/1")
+
+    const user = JSON.parse(
+      localStorage.getItem("user")
+    );
+
+    if (!user) return;
+
+    fetch(
+      `https://jewellkash.onrender.com/orders/${user.id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -23,9 +31,8 @@ export default function Orders() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
 
-  
+  }, []);
 
   return (
 
@@ -49,22 +56,16 @@ export default function Orders() {
           </a>
 
           <a href="/cart">
-
             <FaShoppingCart />
-
             Cart
-
           </a>
 
           <a
             href="/"
             className="user_orders-logout-btn"
           >
-
             <FaSignOutAlt />
-
             Logout
-
           </a>
 
         </div>
@@ -87,99 +88,90 @@ export default function Orders() {
       {/* Orders */}
       <div className="user_orders-container">
 
-        {orders.map((order) => (
+        {orders.length === 0 ? (
 
-          <div
-            className="user_order-card"
-            key={order.id}
-          >
+          <h2>No Orders Found</h2>
 
-            <img
-              src={order.image}
-              alt={order.name}
-            />
+        ) : (
 
-            <div className="user_order-content">
+          orders.map((order) => (
 
-              <div className="user_order-top">
+            <div
+              className="user_order-card"
+              key={order.id}
+            >
 
-                <div>
+              <img
+                src={order.image}
+                alt={order.name}
+              />
 
-                  <h2>
-                    {order.name}
-                  </h2>
+              <div className="user_order-content">
 
-                  <span>
-                    Order ID: {order.id}
-                  </span>
+                <div className="user_order-top">
 
-                </div>
+                  <div>
 
-                <h3>
-                  ₹{Number(order.price).toLocaleString()}
-                </h3>
+                    <h2>
+                      {order.name}
+                    </h2>
 
-              </div>
+                    <span>
+                      Order ID: {order.id}
+                    </span>
 
-              <div className="user_order-details">
+                  </div>
 
-                <p>
-
-                  <strong>
-                    Placed On:
-                  </strong>
-
-                  {" "}
-                  {order.date}
-
-                </p>
-
-                <div
-                  className={`status ${order.status.toLowerCase()}`}
-                >
-
-                   {order.status === "Delivered" && (
-                    <FaCheckCircle />
-                  )}
-
-                  {order.status === "Shipped" && (
-                    <FaTruck />
-                  )}
-
-                  {order.status === "Processing" && (
-                    <FaClock />
-                  )} 
-
-                   <span>
-                    {order.status}
-                  </span> 
+                  <h3>
+                    ₹{Number(order.price).toLocaleString()}
+                  </h3>
 
                 </div>
 
-              </div>
+                <div className="user_order-details">
 
-              {/* Buttons */}
-              <div className="user_order-buttons">
+                  <p>
 
-                {/* <button>
-                  Track Order
-                </button>
+                    <strong>
+                      Placed On:
+                    </strong>
 
-                <button className="user_secondary-btn">
+                    {" "}
+                    {order.date}
 
-                  <FaRedoAlt />
+                  </p>
 
-                  Buy Again
+                  <div
+                    className={`status ${(order.status || "").toLowerCase()}`}
+                  >
 
-                </button> */}
+                    {order.status === "Delivered" && (
+                      <FaCheckCircle />
+                    )}
+
+                    {order.status === "Shipped" && (
+                      <FaTruck />
+                    )}
+
+                    {order.status === "Processing" && (
+                      <FaClock />
+                    )}
+
+                    <span>
+                      {order.status || "Processing"}
+                    </span>
+
+                  </div>
+
+                </div>
 
               </div>
 
             </div>
 
-          </div>
+          ))
 
-        ))}
+        )}
 
       </div>
 
