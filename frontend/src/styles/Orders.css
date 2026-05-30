@@ -6,6 +6,124 @@
   box-sizing:border-box;
 }
 
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .user_orders-nav {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .user_orders-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .user_orders-links a {
+    font-size: 14px;
+  }
+
+  .user_orders-hero {
+    padding: 40px 20px;
+  }
+
+  .user_orders-hero h1 {
+    font-size: 2rem;
+  }
+
+  .user_orders-hero p {
+    font-size: 14px;
+  }
+
+  .user_orders-container {
+    padding: 15px;
+  }
+
+  .user_order-card {
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .user_order-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .user_order-content {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .user_order-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .user_order-top h2 {
+    font-size: 18px;
+  }
+
+  .user_order-top h3 {
+    font-size: 18px;
+  }
+
+  .user_order-details {
+    margin-top: 10px;
+  }
+
+  .status {
+    margin-top: 10px;
+    width: fit-content;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .user_orders-logo {
+    font-size: 20px;
+  }
+
+  .user_orders-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .user_order-card img {
+    height: 180px;
+  }
+
+  .user_order-top h2 {
+    font-size: 16px;
+  }
+
+  .user_order-top h3 {
+    font-size: 16px;
+  }
+
+  .user_order-details p {
+    font-size: 14px;
+  }
+
+  .status {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+}
+
+
 body{
   background:#fff8fa;
   font-family:'Jost',sans-serif;
