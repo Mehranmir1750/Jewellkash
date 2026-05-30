@@ -346,3 +346,125 @@
     overflow-x: auto;
   }
 }
+
+/* ==========================
+   TABLET
+========================== */
+@media (max-width: 950px) {
+
+  .admin-page {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    padding: 20px;
+    border-right: none;
+    border-bottom: 1px solid rgba(196,104,122,0.12);
+  }
+
+  .admin-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .admin-menu a {
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+  }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+@media (max-width: 768px) {
+
+  .admin-main {
+    padding: 16px;
+  }
+
+  .admin-logo {
+    text-align: center;
+    font-size: 1.6rem;
+  }
+
+  .admin-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .admin-top h1 {
+    font-size: 1.8rem;
+  }
+
+  .admin-top p {
+    font-size: 14px;
+  }
+
+  .add-product-btn {
+    width: 100%;
+    justify-content: center;
+    height: 52px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .stat-card {
+    padding: 18px;
+  }
+
+  .products-section {
+    padding: 16px;
+    overflow-x: auto;
+  }
+
+  .products-table {
+    min-width: 700px;
+  }
+
+}
+
+/* ==========================
+   SMALL PHONES
+========================== */
+@media (max-width: 480px) {
+
+  .admin-sidebar {
+    padding: 15px;
+  }
+
+  .admin-logo {
+    font-size: 1.4rem;
+  }
+
+  .admin-menu {
+    gap: 8px;
+  }
+
+  .admin-menu a {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .admin-top h1 {
+    font-size: 1.5rem;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stat-icon {
+    font-size: 2rem;
+  }
+
+}
