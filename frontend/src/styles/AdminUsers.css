@@ -1,316 +1,388 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap');
+/* ─────────────────────────────────────────
+   AdminUsers.css  –  JEWELLKASH Admin
+   Aesthetic: Dark luxury editorial
+   Palette: Deep obsidian + champagne gold + warm ivory
+   ───────────────────────────────────────── */
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ── */
+:root {
+  --au-obsidian:     #0d0d0d;
+  --au-card-bg:      #1a1a1a;
+  --au-border:       rgba(212, 175, 100, 0.18);
+  --au-border-hover: rgba(212, 175, 100, 0.5);
+  --au-gold:         #d4af64;
+  --au-gold-light:   #e8cc88;
+  --au-gold-dim:     rgba(212, 175, 100, 0.12);
+  --au-ivory:        #f5f0e8;
+  --au-ivory-dim:    rgba(245, 240, 232, 0.55);
+  --au-muted:        rgba(245, 240, 232, 0.35);
+  --au-danger:       #c0392b;
+  --au-danger-dim:   rgba(192, 57, 43, 0.12);
+  --au-danger-hover: rgba(192, 57, 43, 0.25);
+  --au-font-display: 'Cormorant Garamond', serif;
+  --au-font-body:    'DM Sans', sans-serif;
+  --au-radius:       10px;
+  --au-transition:   0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body{
-  background:#140C10;
-  font-family:'Jost',sans-serif;
+/* ── Reset / Base ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* PAGE */
-
-.admin-users-page{
-  min-height:100vh;
-
-  background:
-    radial-gradient(circle at top left,
-      rgba(196,104,122,0.08),
-      transparent 30%),
-
-    radial-gradient(circle at bottom right,
-      rgba(196,104,122,0.05),
-      transparent 35%),
-
-    #140C10;
+.AdminUsers_admin-users-page {
+  background: var(--au-obsidian);
+  color: var(--au-ivory);
+  font-family: var(--au-font-body);
+  font-weight: 300;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* NAVBAR */
-
-.dashboard-nav{
-  position:sticky;
-  top:0;
-  z-index:100;
-
-  height:72px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 2.5rem;
-
-  background:rgba(20,12,16,0.94);
-
-  backdrop-filter:blur(14px);
-
-  border-bottom:
-    1px solid rgba(196,104,122,0.12);
+/* ────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+.AdminUsers_dashboard-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  background: rgba(13, 13, 13, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--au-border);
 }
 
-.dashboard-logo{
-  font-family:'Cormorant Garamond',serif;
-
-  font-size:1.8rem;
-  font-weight:700;
-
-  letter-spacing:0.14em;
-
-  color:#FFE7EC;
+.AdminUsers_dashboard-logo {
+  font-family: var(--au-font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--au-gold);
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.dashboard-links{
-  display:flex;
-  align-items:center;
-  gap:2rem;
+.AdminUsers_dashboard-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
-.dashboard-links a{
-  text-decoration:none;
-
-  color:#C89AA3;
-
-  font-size:11px;
-  font-weight:500;
-
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-
-  transition:0.25s;
+.AdminUsers_dashboard-links a {
+  font-family: var(--au-font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--au-ivory-dim);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: color var(--au-transition), background var(--au-transition);
 }
 
-.dashboard-links a:hover{
-  color:#FFE7EC;
+.AdminUsers_dashboard-links a:hover {
+  color: var(--au-ivory);
+  background: var(--au-gold-dim);
 }
 
-.logout-btn{
-  padding:10px 18px;
-
-  border-radius:30px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(196,104,122,0.14),
-      rgba(255,231,236,0.04)
-    );
-
-  border:
-    1px solid rgba(196,104,122,0.28);
-
-  color:#FFDCE2 !important;
+.AdminUsers_logout-btn {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  color: var(--au-muted) !important;
+  font-size: 0.78rem !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  transition: color var(--au-transition) !important;
 }
 
-/* HERO */
-
-.admin-users-hero{
-  text-align:center;
-
-  padding:4rem 1rem 2rem;
+.AdminUsers_logout-btn:hover {
+  color: var(--au-danger) !important;
+  background: var(--au-danger-dim) !important;
 }
 
-.admin-users-hero h1{
-  font-family:'Cormorant Garamond',serif;
-
-  font-size:3.2rem;
-
-  color:#FFE7EC;
-
-  margin-bottom:12px;
+/* ────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.AdminUsers_admin-users-hero {
+  position: relative;
+  padding: 72px 40px 56px;
+  text-align: center;
+  overflow: hidden;
 }
 
-.admin-users-hero p{
-  color:#9B6C73;
-
-  font-size:15px;
+.AdminUsers_admin-users-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% -10%, rgba(212, 175, 100, 0.1) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-/* GRID */
-
-.users-grid{
-  max-width:1350px;
-
-  margin:auto;
-
-  padding:2rem;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(auto-fill,minmax(320px,1fr));
-
-  gap:2rem;
+.AdminUsers_admin-users-hero h1 {
+  font-family: var(--au-font-display);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--au-ivory);
+  line-height: 1.15;
+  margin-bottom: 12px;
 }
 
-/* CARD */
-
-.user-card{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(34,21,25,0.98),
-      rgba(26,16,20,0.98)
-    );
-
-  border-radius:24px;
-
-  padding:2rem;
-
-  border:
-    1px solid rgba(196,104,122,0.12);
-
-  transition:0.25s;
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,0.28);
+.AdminUsers_admin-users-hero p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--au-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.user-card:hover{
-  transform:translateY(-6px);
-
-  border-color:
-    rgba(196,104,122,0.28);
+/* ────────────────────────────────────────
+   USERS GRID
+───────────────────────────────────────── */
+.AdminUsers_users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0 40px 80px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* Avatar */
-
-.user-avatar{
-  width:90px;
-  height:90px;
-
-  margin:auto;
-
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:
-    linear-gradient(
-      135deg,
-      #C4687A,
-      #D98998
-    );
-
-  color:white;
-
-  font-size:2rem;
-
-  margin-bottom:1.5rem;
+/* ── User Card ── */
+.AdminUsers_user-card {
+  background: var(--au-card-bg);
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius);
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: border-color var(--au-transition), transform var(--au-transition), box-shadow var(--au-transition);
 }
 
-/* Content */
-
-.user-content{
-  text-align:center;
+.AdminUsers_user-card:hover {
+  border-color: var(--au-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(212, 175, 100, 0.07);
 }
 
-.user-content h2{
-  color:#FFE7EC;
-
-  margin-bottom:1rem;
-
-  font-size:1.6rem;
+/* ── Avatar ── */
+.AdminUsers_user-avatar {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 50%;
+  background: var(--au-gold-dim);
+  border: 1px solid var(--au-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--au-gold);
+  font-size: 1.2rem;
 }
 
-/* Info */
-
-.user-info{
-  display:flex;
-  flex-direction:column;
-
-  gap:12px;
-
-  margin-bottom:1.5rem;
+/* ── User Content ── */
+.AdminUsers_user-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
 }
 
-.user-info p{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-
-  color:#B98A93;
-
-  font-size:14px;
+.AdminUsers_user-content h2 {
+  font-family: var(--au-font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--au-ivory);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Joined */
-
-.join-date{
-  display:block;
-
-  color:#8A5A62;
-
-  margin-bottom:2rem;
-
-  font-size:13px;
+/* ── User Info ── */
+.AdminUsers_user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-/* Actions */
-
-.user-actions{
-  display:flex;
+.AdminUsers_user-info p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--au-ivory-dim);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.delete-btn{
-  width:100%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-
-  padding:14px;
-
-  border:none;
-
-  border-radius:14px;
-
-  background:
-    rgba(255,107,129,0.12);
-
-  color:#FF7C94;
-
-  cursor:pointer;
-
-  font-size:11px;
-  font-weight:500;
-
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-
-  transition:0.25s;
+.AdminUsers_user-info p svg {
+  color: var(--au-gold);
+  font-size: 0.72rem;
+  flex-shrink: 0;
 }
 
-.delete-btn:hover{
-  background:
-    rgba(255,107,129,0.22);
-
-  transform:translateY(-2px);
+/* ── Join Date ── */
+.AdminUsers_join-date {
+  font-size: 0.7rem;
+  color: var(--au-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-/* RESPONSIVE */
+/* ── Actions ── */
+.AdminUsers_user-actions {
+  margin-top: 4px;
+}
 
-@media(max-width:700px){
+.AdminUsers_delete-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  border-radius: 7px;
+  background: var(--au-danger-dim);
+  color: #e05d50;
+  font-family: var(--au-font-body);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background var(--au-transition), border-color var(--au-transition), color var(--au-transition);
+}
 
-  .users-grid{
-    padding:1rem;
+.AdminUsers_delete-btn:hover {
+  background: var(--au-danger-hover);
+  border-color: var(--au-danger);
+  color: #ff7b6e;
+}
+
+/* ────────────────────────────────────────
+   RESPONSIVE — Tablet
+───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .AdminUsers_dashboard-nav {
+    padding: 0 20px;
   }
 
-  .dashboard-links{
-    gap:1rem;
+  .AdminUsers_admin-users-hero {
+    padding: 56px 24px 40px;
   }
 
-  .dashboard-links a{
-    font-size:10px;
+  .AdminUsers_users-grid {
+    padding: 0 20px 60px;
+    gap: 16px;
+  }
+}
+
+/* ────────────────────────────────────────
+   RESPONSIVE — Mobile
+───────────────────────────────────────── */
+@media (max-width: 640px) {
+
+  .AdminUsers_dashboard-nav {
+    flex-direction: column;
+    height: auto;
+    padding: 24px 16px;
+    gap: 16px;
+    position: relative;
   }
 
-  .admin-users-hero h1{
-    font-size:2.2rem;
+  .AdminUsers_dashboard-logo {
+    font-size: 1.1rem;
+    letter-spacing: 0.18em;
+  }
+
+  .AdminUsers_dashboard-links {
+    width: 100%;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .AdminUsers_dashboard-links a {
+    font-size: 0.76rem;
+    padding: 7px 12px;
+  }
+
+  .AdminUsers_admin-users-hero {
+    padding: 40px 16px 32px;
+  }
+
+  .AdminUsers_admin-users-hero h1 {
+    font-size: 2rem;
+  }
+
+  .AdminUsers_admin-users-hero p {
+    font-size: 0.75rem;
+  }
+
+  .AdminUsers_users-grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px 60px;
+    gap: 14px;
+  }
+
+  .AdminUsers_user-card {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .AdminUsers_user-avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    font-size: 1rem;
+  }
+
+  .AdminUsers_user-content h2 {
+    font-size: 1.05rem;
+  }
+
+  .AdminUsers_user-info p {
+    font-size: 0.74rem;
+  }
+
+  .AdminUsers_delete-btn {
+    font-size: 0.72rem;
+    padding: 8px 12px;
+  }
+}
+
+/* ────────────────────────────────────────
+   RESPONSIVE — Very small (< 380px)
+───────────────────────────────────────── */
+@media (max-width: 380px) {
+  .AdminUsers_dashboard-links {
+    gap: 2px;
+  }
+
+  .AdminUsers_dashboard-links a {
+    font-size: 0.68rem;
+    padding: 4px 7px;
+  }
+
+  .AdminUsers_users-grid {
+    padding: 0 10px 50px;
+  }
+
+  .AdminUsers_user-card {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
