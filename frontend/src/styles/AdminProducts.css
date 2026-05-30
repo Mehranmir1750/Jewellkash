@@ -432,144 +432,29 @@ body{
   }
 }
 
-
-/* ==========================
-   TABLET
-========================== */
-@media (max-width: 900px) {
-
-  .admin-products-grid{
-    grid-template-columns:
-      repeat(2,minmax(260px,1fr));
-
-    gap:1.5rem;
-  }
-
-}
-
-/* ==========================
-   MOBILE
-========================== */
-@media (max-width: 768px) {
+@media(max-width:900px){
 
   .dashboard-nav{
-    height:auto;
-    padding:16px;
-    flex-direction:column;
-    gap:15px;
-  }
-
-  .dashboard-logo{
-    font-size:1.6rem;
-    text-align:center;
+    padding:0 1rem;
   }
 
   .dashboard-links{
+    gap:1rem;
     flex-wrap:wrap;
-    justify-content:center;
-    gap:12px;
   }
 
   .dashboard-links a{
-    font-size:11px;
-  }
-
-  .logout-btn{
-    padding:8px 16px;
-  }
-
-  .admin-products-hero{
-    padding:40px 20px 20px;
+    font-size:10px;
+    letter-spacing:0.12em;
   }
 
   .admin-products-hero h1{
-    font-size:2.3rem;
-  }
-
-  .admin-products-hero p{
-    font-size:14px;
+    font-size:2.6rem;
   }
 
   .admin-products-grid{
-    grid-template-columns:1fr;
-    gap:18px;
-    padding:14px;
-  }
-
-  .admin-product-card{
-    border-radius:20px;
-  }
-
-  .admin-product-card img{
-    height:260px;
-  }
-
-  .admin-product-content{
-    padding:18px;
-  }
-
-  .admin-product-content h2{
-    font-size:1.3rem;
-  }
-
-  .product-price{
-    font-size:1.2rem;
-  }
-
-  .admin-product-actions{
-    flex-direction:column;
-    gap:10px;
-  }
-
-  .edit-btn,
-  .delete-btn{
-    width:100%;
-    height:52px;
-    font-size:12px;
-  }
-
-}
-
-/* ==========================
-   SMALL PHONES
-========================== */
-@media (max-width: 480px) {
-
-  .dashboard-logo{
-    font-size:1.4rem;
-  }
-
-  .admin-products-hero h1{
-    font-size:2rem;
-  }
-
-  .admin-products-hero p{
-    font-size:13px;
-  }
-
-  .admin-products-grid{
-    padding:12px;
-    gap:14px;
-  }
-
-  .admin-product-card img{
-    height:220px;
-  }
-
-  .admin-product-content{
-    padding:15px;
-  }
-
-  .admin-product-content h2{
-    font-size:1.15rem;
-  }
-
-  .product-price{
-    font-size:1.1rem;
-  }
-
-  .product-stock{
-    font-size:13px;
+    grid-template-columns:
+      repeat(auto-fit,minmax(280px,1fr));
   }
 
 }
