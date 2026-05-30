@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────
-   AddProduct.css  –  JEWELLKASH Admin
+   LoginAdmin.css  –  JEWELLKASH Admin
    Aesthetic: Dark luxury editorial
    Palette: Deep obsidian + champagne gold + warm ivory
    ───────────────────────────────────────── */
@@ -8,24 +8,22 @@
 
 /* ── Variables ── */
 :root {
-  --aap-obsidian:     #0d0d0d;
-  --aap-card-bg:      #1a1a1a;
-  --aap-input-bg:     #141414;
-  --aap-border:       rgba(212, 175, 100, 0.18);
-  --aap-border-hover: rgba(212, 175, 100, 0.45);
-  --aap-border-focus: rgba(212, 175, 100, 0.7);
-  --aap-gold:         #d4af64;
-  --aap-gold-light:   #e8cc88;
-  --aap-gold-dim:     rgba(212, 175, 100, 0.12);
-  --aap-ivory:        #f5f0e8;
-  --aap-ivory-dim:    rgba(245, 240, 232, 0.55);
-  --aap-muted:        rgba(245, 240, 232, 0.35);
-  --aap-danger:       #c0392b;
-  --aap-danger-dim:   rgba(192, 57, 43, 0.12);
-  --aap-font-display: 'Cormorant Garamond', serif;
-  --aap-font-body:    'DM Sans', sans-serif;
-  --aap-radius:       10px;
-  --aap-transition:   0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --la-obsidian:     #0d0d0d;
+  --la-card-bg:      #141414;
+  --la-input-bg:     #0f0f0f;
+  --la-border:       rgba(212, 175, 100, 0.18);
+  --la-border-hover: rgba(212, 175, 100, 0.45);
+  --la-border-focus: rgba(212, 175, 100, 0.7);
+  --la-gold:         #d4af64;
+  --la-gold-light:   #e8cc88;
+  --la-gold-dim:     rgba(212, 175, 100, 0.12);
+  --la-ivory:        #f5f0e8;
+  --la-ivory-dim:    rgba(245, 240, 232, 0.55);
+  --la-muted:        rgba(245, 240, 232, 0.32);
+  --la-font-display: 'Cormorant Garamond', serif;
+  --la-font-body:    'DM Sans', sans-serif;
+  --la-radius:       14px;
+  --la-transition:   0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ── Reset / Base ── */
@@ -35,450 +33,264 @@
   box-sizing: border-box;
 }
 
-.AdminAddProduct_add-product-page {
-  background: var(--aap-obsidian);
-  color: var(--aap-ivory);
-  font-family: var(--aap-font-body);
-  font-weight: 300;
+/* ────────────────────────────────────────
+   FULL PAGE WRAP
+───────────────────────────────────────── */
+.adminLogin_la-wrap {
   min-height: 100vh;
+  background: var(--la-obsidian);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  position: relative;
+  font-family: var(--la-font-body);
   -webkit-font-smoothing: antialiased;
+
+  /* Subtle radial glow behind card */
+  background-image:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(212, 175, 100, 0.06) 0%, transparent 70%);
 }
 
 /* ────────────────────────────────────────
-   NAV
+   CARD
 ───────────────────────────────────────── */
-.AdminAddProduct_dashboard-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-  height: 64px;
-  background: rgba(13, 13, 13, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--aap-border);
-}
-
-.AdminAddProduct_dashboard-logo {
-  font-family: var(--aap-font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  color: var(--aap-gold);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.AdminAddProduct_dashboard-links {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.AdminAddProduct_dashboard-links a {
-  font-family: var(--aap-font-body);
-  font-size: 0.78rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  color: var(--aap-ivory-dim);
-  text-decoration: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  transition: color var(--aap-transition), background var(--aap-transition);
-}
-
-.AdminAddProduct_dashboard-links a:hover {
-  color: var(--aap-ivory);
-  background: var(--aap-gold-dim);
-}
-
-.AdminAddProduct_logout-btn {
-  display: flex !important;
-  align-items: center;
-  gap: 6px;
-  color: var(--aap-muted) !important;
-  font-size: 0.78rem !important;
-  padding: 6px 14px !important;
-  border-radius: 6px !important;
-  transition: color var(--aap-transition) !important;
-}
-
-.AdminAddProduct_logout-btn:hover {
-  color: var(--aap-danger) !important;
-  background: var(--aap-danger-dim) !important;
-}
-
-/* ────────────────────────────────────────
-   CONTAINER — two column layout
-───────────────────────────────────────── */
-.AdminAddProduct_add-product-container {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 40px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 48px 40px 80px;
-  align-items: start;
-}
-
-/* ────────────────────────────────────────
-   LEFT — Form
-───────────────────────────────────────── */
-.AdminAddProduct_add-product-left {
+.adminLogin_la-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--la-card-bg);
+  border: 1px solid var(--la-border);
+  border-radius: var(--la-radius);
+  padding: 44px 40px 36px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0;
+
+  /* Subtle top gold line */
+  box-shadow:
+    0 0 0 1px rgba(212, 175, 100, 0.04),
+    0 32px 64px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(212, 175, 100, 0.12);
 }
 
-/* Back button */
-.AdminAddProduct_back-btn {
+/* ── Badge ── */
+.adminLogin_la-badge {
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.76rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  color: var(--aap-muted);
-  text-decoration: none;
-  margin-bottom: 10px;
-  transition: color var(--aap-transition);
   align-self: flex-start;
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--la-gold);
+  background: var(--la-gold-dim);
+  border: 1px solid var(--la-border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  margin-bottom: 20px;
 }
 
-.AdminAddProduct_back-btn:hover {
-  color: var(--aap-gold);
-}
-
-.AdminAddProduct_add-product-left h1 {
-  font-family: var(--aap-font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+/* ── Logo ── */
+.adminLogin_la-logo {
+  font-family: var(--la-font-display);
+  font-size: 2.4rem;
   font-weight: 300;
-  letter-spacing: 0.04em;
-  color: var(--aap-ivory);
-  line-height: 1.15;
-  margin-bottom: 4px;
+  letter-spacing: 0.08em;
+  color: var(--la-ivory);
+  line-height: 1;
+  margin-bottom: 8px;
 }
 
-.AdminAddProduct_add-product-left > p {
-  font-size: 0.82rem;
-  color: var(--aap-muted);
+/* ── Subtitle ── */
+.adminLogin_la-sub {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--la-muted);
   letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+
+/* ── Divider with gem ── */
+.adminLogin_la-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 28px;
 }
 
-/* ── Form ── */
+.adminLogin_la-divider::before,
+.adminLogin_la-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--la-border);
+}
+
+.adminLogin_la-gem {
+  width: 8px;
+  height: 8px;
+  background: var(--la-gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* ────────────────────────────────────────
+   FORM
+───────────────────────────────────────── */
 form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
-.AdminAddProduct_form-group {
+.adminLogin_la-field {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.AdminAddProduct_form-group label {
-  font-size: 0.72rem;
+.adminLogin_la-label {
+  font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--aap-gold);
+  color: var(--la-gold);
 }
 
-.AdminAddProduct_form-group input,
-.AdminAddProduct_form-group select,
-.AdminAddProduct_form-group textarea {
-  background: var(--aap-input-bg);
-  border: 1px solid var(--aap-border);
+.adminLogin_la-input {
+  background: var(--la-input-bg);
+  border: 1px solid var(--la-border);
   border-radius: 8px;
   padding: 12px 16px;
-  font-family: var(--aap-font-body);
+  font-family: var(--la-font-body);
   font-size: 0.84rem;
   font-weight: 300;
-  color: var(--aap-ivory);
+  color: var(--la-ivory);
   outline: none;
-  transition: border-color var(--aap-transition), box-shadow var(--aap-transition);
   width: 100%;
+  transition: border-color var(--la-transition), box-shadow var(--la-transition);
 }
 
-.AdminAddProduct_form-group input::placeholder,
-.AdminAddProduct_form-group textarea::placeholder {
-  color: var(--aap-muted);
+.adminLogin_la-input::placeholder {
+  color: var(--la-muted);
 }
 
-.AdminAddProduct_form-group input:focus,
-.AdminAddProduct_form-group select:focus,
-.AdminAddProduct_form-group textarea:focus {
-  border-color: var(--aap-border-focus);
+.adminLogin_la-input:hover {
+  border-color: var(--la-border-hover);
+}
+
+.adminLogin_la-input:focus {
+  border-color: var(--la-border-focus);
   box-shadow: 0 0 0 3px rgba(212, 175, 100, 0.08);
 }
 
-.AdminAddProduct_form-group input:hover,
-.AdminAddProduct_form-group select:hover,
-.AdminAddProduct_form-group textarea:hover {
-  border-color: var(--aap-border-hover);
-}
-
-/* Select */
-.AdminAddProduct_form-group select {
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4af64' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  padding-right: 40px;
-  cursor: pointer;
-}
-
-.AdminAddProduct_form-group select option {
-  background: #1a1a1a;
-  color: var(--aap-ivory);
-}
-
-/* Textarea */
-.AdminAddProduct_form-group textarea {
-  resize: vertical;
-  min-height: 120px;
-  line-height: 1.6;
-}
-
-/* File input */
-.AdminAddProduct_form-group input[type="file"] {
-  padding: 10px 16px;
-  cursor: pointer;
-  color: var(--aap-muted);
-}
-
-.AdminAddProduct_form-group input[type="file"]::-webkit-file-upload-button {
-  background: var(--aap-gold-dim);
-  border: 1px solid var(--aap-border);
-  border-radius: 6px;
-  color: var(--aap-gold);
-  font-family: var(--aap-font-body);
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  padding: 6px 14px;
-  cursor: pointer;
-  margin-right: 12px;
-  transition: background var(--aap-transition);
-}
-
-.AdminAddProduct_form-group input[type="file"]::-webkit-file-upload-button:hover {
-  background: rgba(212, 175, 100, 0.22);
-}
-
-/* Price + Stock row */
-.AdminAddProduct_form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-/* Number input — hide arrows */
-.AdminAddProduct_form-group input[type="number"]::-webkit-outer-spin-button,
-.AdminAddProduct_form-group input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-/* Submit button */
-.AdminAddProduct_submit-btn {
+/* ── Forgot password ── */
+.adminLogin_la-forgot {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  justify-content: flex-end;
+  margin-top: -6px;
+}
+
+.adminLogin_la-forgot a {
+  font-size: 0.72rem;
+  color: var(--la-muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color var(--la-transition);
+}
+
+.adminLogin_la-forgot a:hover {
+  color: var(--la-gold);
+}
+
+/* ── Submit button ── */
+.adminLogin_la-submit {
   width: 100%;
   padding: 14px 24px;
-  background: var(--aap-gold-dim);
-  border: 1px solid var(--aap-border);
+  margin-top: 6px;
+  background: var(--la-gold-dim);
+  border: 1px solid var(--la-border);
   border-radius: 10px;
-  color: var(--aap-gold);
-  font-family: var(--aap-font-body);
-  font-size: 0.86rem;
+  color: var(--la-gold);
+  font-family: var(--la-font-body);
+  font-size: 0.82rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  margin-top: 8px;
-  transition: background var(--aap-transition), border-color var(--aap-transition), color var(--aap-transition);
+  transition: background var(--la-transition), border-color var(--la-transition), color var(--la-transition), box-shadow var(--la-transition);
 }
 
-.AdminAddProduct_submit-btn:hover {
+.adminLogin_la-submit:hover {
   background: rgba(212, 175, 100, 0.22);
-  border-color: var(--aap-gold);
-  color: var(--aap-gold-light);
+  border-color: var(--la-gold);
+  color: var(--la-gold-light);
+  box-shadow: 0 4px 20px rgba(212, 175, 100, 0.12);
+}
+
+.adminLogin_la-submit:active {
+  transform: scale(0.99);
 }
 
 /* ────────────────────────────────────────
-   RIGHT — Preview Card
+   FOOTER
 ───────────────────────────────────────── */
-.AdminAddProduct_preview-card {
-  background: var(--aap-card-bg);
-  border: 1px solid var(--aap-border);
-  border-radius: var(--aap-radius);
-  overflow: hidden;
-  position: sticky;
-  top: 88px;
-  transition: border-color var(--aap-transition);
+.adminLogin_la-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.76rem;
+  color: var(--la-muted);
+  letter-spacing: 0.04em;
 }
 
-.AdminAddProduct_preview-card:hover {
-  border-color: var(--aap-border-hover);
+.adminLogin_la-footer a {
+  color: var(--la-gold);
+  text-decoration: none;
+  transition: color var(--la-transition);
 }
 
-/* Preview image area */
-.AdminAddProduct_preview-image {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background: #111;
-  border-bottom: 1px solid var(--aap-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--aap-muted);
-  font-size: 2.5rem;
-  overflow: hidden;
-}
-
-.AdminAddProduct_preview-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Preview content */
-.AdminAddProduct_preview-content {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.AdminAddProduct_preview-tag {
-  display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--aap-gold);
-  background: var(--aap-gold-dim);
-  border: 1px solid var(--aap-border);
-  border-radius: 20px;
-  padding: 3px 10px;
-  align-self: flex-start;
-}
-
-.AdminAddProduct_preview-content h2 {
-  font-family: var(--aap-font-display);
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: var(--aap-ivory);
-  line-height: 1.3;
-}
-
-.AdminAddProduct_preview-content p {
-  font-size: 0.8rem;
-  color: var(--aap-muted);
-  line-height: 1.7;
-}
-
-/* ────────────────────────────────────────
-   RESPONSIVE — Tablet
-───────────────────────────────────────── */
-@media (max-width: 960px) {
-  .AdminAddProduct_add-product-container {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 40px 24px 60px;
-  }
-
-  .AdminAddProduct_preview-card {
-    position: static;
-    max-width: 480px;
-  }
-
-  .AdminAddProduct_dashboard-nav {
-    padding: 0 20px;
-  }
+.adminLogin_la-footer a:hover {
+  color: var(--la-gold-light);
 }
 
 /* ────────────────────────────────────────
    RESPONSIVE — Mobile
 ───────────────────────────────────────── */
-@media (max-width: 640px) {
-
-  /* Nav */
-  .AdminAddProduct_dashboard-nav {
-    flex-direction: column;
-    height: auto;
+@media (max-width: 480px) {
+  .adminLogin_la-wrap {
     padding: 24px 16px;
-    gap: 16px;
-    position: relative;
+    align-items: flex-start;
+    padding-top: 40px;
   }
 
-  .AdminAddProduct_dashboard-logo {
-    font-size: 1.1rem;
-    letter-spacing: 0.18em;
+  .adminLogin_la-card {
+    padding: 32px 24px 28px;
   }
 
-  .AdminAddProduct_dashboard-links {
-    width: 100%;
-    justify-content: center;
-    gap: 4px;
+  .adminLogin_la-logo {
+    font-size: 2rem;
   }
 
-  .AdminAddProduct_dashboard-links a {
-    font-size: 0.76rem;
-    padding: 7px 12px;
-  }
-
-  /* Container */
-  .AdminAddProduct_add-product-container {
-    padding: 28px 16px 60px;
-    gap: 28px;
-  }
-
-  .AdminAddProduct_add-product-left h1 {
-    font-size: 1.8rem;
-  }
-
-  /* Price + stock row: stack on very small */
-  .AdminAddProduct_form-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .AdminAddProduct_preview-card {
-    max-width: 100%;
-  }
-
-  .AdminAddProduct_submit-btn {
+  .adminLogin_la-submit {
     padding: 13px 20px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
 }
 
 /* ────────────────────────────────────────
-   RESPONSIVE — Very small (< 380px)
+   RESPONSIVE — Very small (< 360px)
 ───────────────────────────────────────── */
-@media (max-width: 380px) {
-  .AdminAddProduct_dashboard-links {
-    gap: 2px;
+@media (max-width: 360px) {
+  .adminLogin_la-card {
+    padding: 28px 18px 24px;
   }
 
-  .AdminAddProduct_dashboard-links a {
-    font-size: 0.68rem;
-    padding: 4px 7px;
+  .adminLogin_la-logo {
+    font-size: 1.8rem;
   }
 
-  .AdminAddProduct_add-product-container {
-    padding: 20px 10px 50px;
+  .adminLogin_la-input {
+    padding: 11px 14px;
+    font-size: 0.8rem;
   }
 }
