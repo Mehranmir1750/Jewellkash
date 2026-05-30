@@ -394,12 +394,23 @@ body {
     font-size: 0.85rem;
   }
 
-  .dashboard-links {
+  /* .dashboard-links {
     gap: 0.3rem;
     padding-bottom: 10px;
     padding-left: 5px;
     padding-right: 5px;
-  }
+  } */
+
+  .dashboard-links {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 8px;
+}
 
   .dashboard-links a {
     padding: 7px 8px;
