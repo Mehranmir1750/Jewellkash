@@ -400,8 +400,6 @@ body {
     padding: 10px 10px;
     font-size: 0.74rem;
   }
-
-  @media (max-width: 640px) {
   .dashboard-nav {
     padding: 24px 16px; /* bigger = taller navbar */
     gap: 16px;
@@ -415,8 +413,6 @@ body {
     font-size: 0.76rem;
     padding: 7px 12px; /* bigger tap targets too */
   }
-}
-
 
 }
 
