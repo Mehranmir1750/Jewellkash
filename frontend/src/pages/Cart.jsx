@@ -67,7 +67,8 @@ export default function Cart() {
 
 
 
-  const handleCheckout = () => {
+const handleCheckout = () => {
+  localStorage.setItem("cartTotal", subtotal); // ✅ add this
   navigate("/payment");
 };
 

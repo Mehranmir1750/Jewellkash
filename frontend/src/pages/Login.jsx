@@ -60,8 +60,9 @@ const navigate = useNavigate();
 
 
 
- const handleGoogle = async () => {
+const handleGoogle = async () => {
   try {
+
     const provider =
       new GoogleAuthProvider();
 
@@ -71,21 +72,33 @@ const navigate = useNavigate();
         provider
       );
 
-    const googleUser = result.user;
+    const googleUser =
+      result.user;
+
+    const response =
+      await axios.post(
+        "https://jewellkash.onrender.com/google-login",
+        {
+          name:
+            googleUser.displayName,
+          email:
+            googleUser.email,
+        }
+      );
 
     localStorage.setItem(
       "user",
-      JSON.stringify({
-        id: googleUser.uid,
-        name: googleUser.displayName,
-        email: googleUser.email,
-      })
+      JSON.stringify(
+        response.data
+      )
     );
 
     navigate("/user-dashboard");
 
   } catch (error) {
+
     console.log(error);
+
   }
 };
 

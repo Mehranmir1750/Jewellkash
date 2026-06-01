@@ -768,6 +768,57 @@ app.get("/order-details", async (req, res) => {
 
 
 
+app.post("/google-login", async (req, res) => {
+  try {
+
+    const { name, email } = req.body;
+
+    let user = await pool.query(
+      `
+      SELECT *
+      FROM users
+      WHERE email = $1
+      `,
+      [email]
+    );
+
+    if (user.rows.length === 0) {
+
+      user = await pool.query(
+        `
+        INSERT INTO users
+        (
+          name,
+          email,
+          role,
+          joined_date
+        )
+        VALUES
+        ($1,$2,$3,$4)
+        RETURNING *
+        `,
+        [
+          name,
+          email,
+          "user",
+          new Date().toLocaleDateString(),
+        ]
+      );
+    }
+
+    res.json(user.rows[0]);
+
+  } catch (err) {
+
+    console.error(err);
+
+    res.status(500).json({
+      error: "Server Error",
+    });
+
+  }
+});
+
 
 
 // SERVER

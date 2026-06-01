@@ -20,10 +20,17 @@ export default function Payment() {
   location: "Srinagar",
 });
 
-const deliveryCharge =
-  customer.location === "Srinagar"
-    ? 140
-    : 220;
+
+let deliveryCharge = 70;
+
+if (customer.location === "Outside Srinagar") {
+  deliveryCharge = 130;
+}
+
+if (customer.location === "Outside Kashmir") {
+  deliveryCharge = 150;
+}
+
 
 const grandTotal =
   Number(total) + deliveryCharge;
@@ -105,10 +112,46 @@ Contact: 7006877819`
           <p>Scan & pay to confirm your order</p>
         </div>
 
-        <div className="payment-total">
+
+        <div className="payment-summary">
+
+  <h3>Order Summary</h3>
+
+  <div className="summary-row">
+    <span>Products Total</span>
+    <strong>
+      ₹{Number(total).toLocaleString()}
+    </strong>
+  </div>
+
+  <div className="summary-row">
+    <span>
+      Delivery ({customer.location})
+    </span>
+
+    <strong>
+      ₹{deliveryCharge}
+    </strong>
+  </div>
+
+  <div className="summary-row grand">
+    <span>Total Payable</span>
+
+    <strong>
+      ₹{grandTotal.toLocaleString()}
+    </strong>
+  </div>
+
+</div>
+
+
+
+
+
+        {/* <div className="payment-total">
           <span>Amount Due</span>
           <h2>₹{grandTotal}</h2>
-        </div>
+        </div> */}
 
         <div className="payment-form">
 
@@ -147,31 +190,51 @@ Contact: 7006877819`
     }
   />
 
-  <select
-    value={customer.location}
-    onChange={(e) =>
-      setCustomer({
-        ...customer,
-        location: e.target.value,
-      })
-    }
-  >
-    <option value="Srinagar">
-      Srinagar
-    </option>
+ 
 
-    <option value="Outside Srinagar">
-      Outside Srinagar
-    </option>
-  </select>
+
+
+
+<select
+  value={customer.location}
+  onChange={(e) =>
+    setCustomer({
+      ...customer,
+      location: e.target.value,
+    })
+  }
+>
+
+  <option value="Srinagar">
+    Srinagar (₹70)
+  </option>
+
+  <option value="Outside Srinagar">
+    Outside Srinagar (₹130)
+  </option>
+
+  <option value="Outside Kashmir">
+    Outside Kashmir (₹150)
+  </option>
+
+</select>
+
+
+
+
 
 </div>
 
 <div className="delivery-box">
-  <span>Delivery Charges</span>
+
+  <span>
+    Selected Delivery Area
+  </span>
+
   <strong>
-    ₹{deliveryCharge}
+    {customer.location}
   </strong>
+
 </div>
 
         <div className="payment-divider" />
