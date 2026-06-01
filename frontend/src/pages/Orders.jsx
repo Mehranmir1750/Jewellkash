@@ -26,8 +26,12 @@ export default function Orders() {
     )
       .then((res) => res.json())
       .then((data) => {
-        setOrders(data);
-      })
+  setOrders(
+    Array.isArray(data)
+      ? data
+      : []
+  );
+})
       .catch((err) => {
         console.log(err);
       });
