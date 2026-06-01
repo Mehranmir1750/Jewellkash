@@ -555,6 +555,15 @@ app.post("/checkout/:userId", async (req, res) => {
 
     const { userId } = req.params;
 
+    const {
+      name,
+      phone,
+      address,
+      location,
+      deliveryCharge,
+      total,
+    } = req.body;
+
     const cartItems = await pool.query(
       `
       SELECT
@@ -569,20 +578,11 @@ app.post("/checkout/:userId", async (req, res) => {
       [userId]
     );
 
-    const user = await pool.query(
-      `
-      SELECT name
-      FROM users
-      WHERE id = $1
-      `,
-      [userId]
-    );
-
-    const customerName = user.rows[0].name;
+    let firstOrderId = null;
 
     for (const item of cartItems.rows) {
 
-      await pool.query(
+      const order = await pool.query(
         `
         INSERT INTO orders
         (
@@ -596,9 +596,10 @@ app.post("/checkout/:userId", async (req, res) => {
         )
         VALUES
         ($1,$2,$3,$4,NOW(),$5,$6)
+        RETURNING id
         `,
         [
-          customerName,
+          name,
           item.name,
           item.price,
           "Processing",
@@ -606,7 +607,41 @@ app.post("/checkout/:userId", async (req, res) => {
           item.product_id,
         ]
       );
+
+      if (!firstOrderId) {
+        firstOrderId = order.rows[0].id;
+      }
     }
+
+    await pool.query(
+      `
+      INSERT INTO order_details
+      (
+        order_id,
+        user_id,
+        customer_name,
+        phone,
+        address,
+        location,
+        delivery_charge,
+        total_amount,
+        payment_status
+      )
+      VALUES
+      ($1,$2,$3,$4,$5,$6,$7,$8,$9)
+      `,
+      [
+        firstOrderId,
+        userId,
+        name,
+        phone,
+        address,
+        location,
+        deliveryCharge,
+        total,
+        "Pending",
+      ]
+    );
 
     await pool.query(
       `

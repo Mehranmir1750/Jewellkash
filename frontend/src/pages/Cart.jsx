@@ -65,40 +65,11 @@ export default function Cart() {
     }
   };
 
-  // const handleCheckout = async () => {
-
-  //   try {
-
-  //     const response = await fetch(
-  //       `https://jewellkash.onrender.com/checkout/${user.id}`,
-  //       {
-  //         method: "POST",
-  //       }
-  //     );
 
 
   const handleCheckout = () => {
   navigate("/payment");
 };
-
-  //     const data = await response.json();
-
-  //     if (data.success) {
-
-  //       alert("Order Placed Successfully!");
-
-  //       setCartItems([]);
-
-  //       navigate("/orders");
-
-  //     }
-
-  //   } catch (err) {
-
-  //     console.log(err);
-
-  //   }
-  // };
 
   const subtotal = cartItems.reduce(
     (acc, item) =>
@@ -233,10 +204,14 @@ export default function Cart() {
             </span>
           </div>
 
-          <div className="User_summary-row">
+          {/* <div className="User_summary-row">
             <span>Shipping</span>
             <span>Free</span>
-          </div>
+          </div> */}
+
+          <div className="User_shipping-note">
+  Delivery charges will be calculated based on your delivery location.
+</div>
 
           <div className="User_summary-row total">
             <span>Total</span>

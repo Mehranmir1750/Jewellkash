@@ -12,41 +12,90 @@ export default function Payment() {
     if (cartTotal) setTotal(cartTotal);
   }, []);
 
+
+  const [customer, setCustomer] = useState({
+  name: "",
+  phone: "",
+  address: "",
+  location: "Srinagar",
+});
+
+const deliveryCharge =
+  customer.location === "Srinagar"
+    ? 140
+    : 220;
+
+const grandTotal =
+  Number(total) + deliveryCharge;
+
   const handleCopy = () => {
     navigator.clipboard.writeText("mehran@upi");
     alert("UPI ID copied!");
   };
 
-  const handlePaid = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
+ const handlePaid = async () => {
 
-    try {
-      const response = await fetch(
-        `https://jewellkash.onrender.com/checkout/${user.id}`,
-        { method: "POST" }
-      );
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
 
-      const data = await response.json();
+  if (
+    !customer.name ||
+    !customer.phone ||
+    !customer.address
+  ) {
+    alert(
+      "Please fill all delivery details"
+    );
+    return;
+  }
 
-      if (data.success) {
-        alert(
+  try {
+
+    const response = await fetch(
+      `https://jewellkash.onrender.com/checkout/${user.id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body: JSON.stringify({
+          name: customer.name,
+          phone: customer.phone,
+          address: customer.address,
+          location: customer.location,
+          deliveryCharge,
+          total: grandTotal,
+        }),
+      }
+    );
+
+    const data =
+      await response.json();
+
+    if (data.success) {
+
+      alert(
 `Order Placed Successfully!
 
-Please send payment screenshot to:
+Send payment screenshot to:
 
 Instagram: @jewellkash
 
 Contact: 7006877819`
-        );
+      );
 
-        navigate("/orders");
-      }
+      navigate("/orders");
 
-    } catch (err) {
-      console.log(err);
     }
-  };
 
+  } catch (err) {
+
+    console.log(err);
+
+  }
+};
   return (
     <div className="payment-page">
       <div className="payment-card">
@@ -58,8 +107,72 @@ Contact: 7006877819`
 
         <div className="payment-total">
           <span>Amount Due</span>
-          <h2>₹{total}</h2>
+          <h2>₹{grandTotal}</h2>
         </div>
+
+        <div className="payment-form">
+
+  <input
+    type="text"
+    placeholder="Full Name"
+    value={customer.name}
+    onChange={(e) =>
+      setCustomer({
+        ...customer,
+        name: e.target.value,
+      })
+    }
+  />
+
+  <input
+    type="tel"
+    placeholder="Phone Number"
+    value={customer.phone}
+    onChange={(e) =>
+      setCustomer({
+        ...customer,
+        phone: e.target.value,
+      })
+    }
+  />
+
+  <textarea
+    placeholder="Delivery Address"
+    value={customer.address}
+    onChange={(e) =>
+      setCustomer({
+        ...customer,
+        address: e.target.value,
+      })
+    }
+  />
+
+  <select
+    value={customer.location}
+    onChange={(e) =>
+      setCustomer({
+        ...customer,
+        location: e.target.value,
+      })
+    }
+  >
+    <option value="Srinagar">
+      Srinagar
+    </option>
+
+    <option value="Outside Srinagar">
+      Outside Srinagar
+    </option>
+  </select>
+
+</div>
+
+<div className="delivery-box">
+  <span>Delivery Charges</span>
+  <strong>
+    ₹{deliveryCharge}
+  </strong>
+</div>
 
         <div className="payment-divider" />
 
@@ -105,3 +218,4 @@ Contact: 7006877819`
     </div>
   );
 }
+

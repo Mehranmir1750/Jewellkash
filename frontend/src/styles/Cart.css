@@ -593,3 +593,10 @@ body{
   }
 
 }
+
+.User_shipping-note{
+  margin: 12px 0;
+  font-size: 13px;
+  color: #8A5A62;
+  line-height: 1.5;
+}
