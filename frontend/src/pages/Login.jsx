@@ -3,6 +3,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import "../styles/Login.css";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+
+import { auth } from "../firebase";
+
 
 export default function Login() {
 
@@ -53,9 +60,34 @@ const navigate = useNavigate();
 
 
 
-  const handleGoogle = () => {
-    console.log("Google OAuth");
-  };
+ const handleGoogle = async () => {
+  try {
+    const provider =
+      new GoogleAuthProvider();
+
+    const result =
+      await signInWithPopup(
+        auth,
+        provider
+      );
+
+    const googleUser = result.user;
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        id: googleUser.uid,
+        name: googleUser.displayName,
+        email: googleUser.email,
+      })
+    );
+
+    navigate("/user-dashboard");
+
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
 

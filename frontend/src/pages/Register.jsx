@@ -52,9 +52,34 @@ export default function Register() {
 
 
 
-  const handleGoogle = () => {
-    console.log("Google OAuth");
-  };
+  const handleGoogle = async () => {
+  try {
+    const provider =
+      new GoogleAuthProvider();
+
+    const result =
+      await signInWithPopup(
+        auth,
+        provider
+      );
+
+    const googleUser = result.user;
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        id: googleUser.uid,
+        name: googleUser.displayName,
+        email: googleUser.email,
+      })
+    );
+
+    navigate("/user-dashboard");
+
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
 
