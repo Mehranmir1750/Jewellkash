@@ -12,12 +12,24 @@ import {
 export default function AdminOrders() {
 
   const [orders, setOrders] = useState([]);
+  const [openOrder, setOpenOrder] =
+  useState(null);
 
   useEffect(() => {
 
     fetchOrders();
+    fetch(
+  "https://jewellkash.onrender.com/order-details"
+)
+  .then((res) => res.json())
+  .then((data) => {
+    setOrderDetails(data);
+  });
 
   }, []);
+
+  const [orderDetails, setOrderDetails] =
+  useState([]);
 
   const fetchOrders = async () => {
 
@@ -170,12 +182,14 @@ export default function AdminOrders() {
                   </span>
                 </p>
 
+
+
               </div>
 
               {/* Status */}
-              <div
-                className={`order-status ${order.status.toLowerCase()}`}
-              >
+             <div
+  className={`order-status ${(order.status || "").toLowerCase()}`}
+>
 
                 {order.status === "Delivered" && (
                   <FaCheckCircle />
@@ -196,38 +210,130 @@ export default function AdminOrders() {
               </div>
 
               {/* Buttons */}
-              <div className="AdminOrders_order-actions">
 
+            
+             {/* Buttons */}
+<div className="AdminOrders_order-actions">
 
-<button
-  className="AdminOrders_processing-btn"
-  disabled={order.status === "Processing"}
-  onClick={() =>
-    updateStatus(order.id, "Processing")
-  }
->
-  Processing
-</button>
+  <button
+    className="view-details-btn"
+    onClick={() =>
+      setOpenOrder(
+        openOrder === order.id
+          ? null
+          : order.id
+      )
+    }
+  >
+    {openOrder === order.id
+      ? "Hide Details"
+      : "View Details"}
+  </button>
 
-<button
-  className="AdminOrders_shipped-btn"
-  onClick={() =>
-    updateStatus(order.id, "Shipped")
-  }
->
-  Shipped
-</button>
+  <button
+    className="AdminOrders_processing-btn"
+    disabled={order.status === "Processing"}
+    onClick={() =>
+      updateStatus(
+        order.id,
+        "Processing"
+      )
+    }
+  >
+    Processing
+  </button>
 
-<button
-  className="AdminOrders_delivered-btn"
-  onClick={() =>
-    updateStatus(order.id, "Delivered")
-  }
->
-  Delivered
-</button>
+  <button
+    className="AdminOrders_shipped-btn"
+    onClick={() =>
+      updateStatus(
+        order.id,
+        "Shipped"
+      )
+    }
+  >
+    Shipped
+  </button>
 
-              </div>
+  <button
+    className="AdminOrders_delivered-btn"
+    onClick={() =>
+      updateStatus(
+        order.id,
+        "Delivered"
+      )
+    }
+  >
+    Delivered
+  </button>
+
+</div>
+
+{/* Delivery Details */}
+
+{openOrder === order.id &&
+  orderDetails
+    .filter(
+      (detail) =>
+        detail.order_id === order.id
+    )
+    .slice(0, 1)
+    .map((detail) => (
+
+      <div
+        key={detail.id}
+        className="AdminOrders_delivery-details"
+      >
+
+        <h3>
+          Customer Details
+        </h3>
+
+        <p>
+          <strong>Name:</strong>{" "}
+          {detail.customer_name}
+        </p>
+
+        <p>
+          <strong>Phone:</strong>{" "}
+          {detail.phone}
+        </p>
+
+        <p>
+          <strong>Location:</strong>{" "}
+          {detail.location}
+        </p>
+
+        <p>
+          <strong>Address:</strong>{" "}
+          {detail.address}
+        </p>
+
+        <p>
+          <strong>Delivery Charge:</strong>{" "}
+          ₹{detail.delivery_charge}
+        </p>
+
+        <p>
+          <strong>Total Amount:</strong>{" "}
+          ₹{detail.total_amount}
+        </p>
+
+        <p>
+          <strong>Payment Status:</strong>{" "}
+          {detail.payment_status}
+        </p>
+
+        <p>
+          <strong>Order Date:</strong>{" "}
+          {new Date(
+            detail.order_date
+          ).toLocaleString()}
+        </p>
+
+      </div>
+
+))}
 
             </div>
 

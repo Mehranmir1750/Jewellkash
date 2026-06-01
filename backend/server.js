@@ -741,6 +741,34 @@ router.post(
 );
 
 
+app.get("/order-details", async (req, res) => {
+  try {
+
+    const result = await pool.query(
+      `
+      SELECT *
+      FROM order_details
+      ORDER BY id DESC
+      `
+    );
+
+    res.json(result.rows);
+
+  } catch (err) {
+
+    console.error(err);
+
+    res.status(500).json({
+      error: "Server Error",
+    });
+
+  }
+});
+
+
+
+
+
 
 // SERVER
 app.listen(5000, () => {
