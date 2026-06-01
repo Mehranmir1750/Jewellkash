@@ -65,35 +65,40 @@ export default function Cart() {
     }
   };
 
-  const handleCheckout = async () => {
+  // const handleCheckout = async () => {
 
-    try {
+  //   try {
 
-      const response = await fetch(
-        `https://jewellkash.onrender.com/checkout/${user.id}`,
-        {
-          method: "POST",
-        }
-      );
+  //     const response = await fetch(
+  //       `https://jewellkash.onrender.com/checkout/${user.id}`,
+  //       {
+  //         method: "POST",
+  //       }
+  //     );
 
-      const data = await response.json();
 
-      if (data.success) {
+  const handleCheckout = () => {
+  navigate("/payment");
+};
 
-        alert("Order Placed Successfully!");
+  //     const data = await response.json();
 
-        setCartItems([]);
+  //     if (data.success) {
 
-        navigate("/orders");
+  //       alert("Order Placed Successfully!");
 
-      }
+  //       setCartItems([]);
 
-    } catch (err) {
+  //       navigate("/orders");
 
-      console.log(err);
+  //     }
 
-    }
-  };
+  //   } catch (err) {
+
+  //     console.log(err);
+
+  //   }
+  // };
 
   const subtotal = cartItems.reduce(
     (acc, item) =>

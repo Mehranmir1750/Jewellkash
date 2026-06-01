@@ -13,6 +13,9 @@ import AdminProducts from "./pages/AdminProducts"
 import AdminOrders from "./pages/AdminOrders"
 import AdminUsers from "./pages/AdminUsers"
 import EditProduct from "./pages/EditProduct"
+import Payment from "./pages/Payment"
+
+
 
 export default function App() {
   return (
@@ -52,7 +55,16 @@ export default function App() {
   element={<EditProduct />}
 />
 
+<Route
+  path="/payment"
+  element={<Payment />}
+/>
+
       </Routes>
+
+
+      
+
     </BrowserRouter>
   )
 }
