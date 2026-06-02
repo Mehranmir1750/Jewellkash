@@ -135,6 +135,9 @@ const fetchProducts = async () => {
                     <span className="jk-price-old">{product.oldPrice}</span>
                   )}
                 </div>
+                <p className="Home_product-size">
+                Size: {product.size}
+              </p>
 
                 <div className="jk-stock">
                   {product.stock === "out" && (

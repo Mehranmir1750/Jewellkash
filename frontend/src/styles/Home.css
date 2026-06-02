@@ -220,3 +220,25 @@ body { background: #FDF6F0; font-family: 'Jost', sans-serif; }
   }
 
 }
+
+
+.Home_product-size {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 4px 10px;
+  margin-bottom: 10px;
+
+  background: rgba(196, 104, 122, 0.08);
+
+  border: 1px solid rgba(196, 104, 122, 0.2);
+
+  border-radius: 50px;
+
+  color: #B5737A;
+
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

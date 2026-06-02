@@ -161,6 +161,10 @@ export default function AdminProducts() {
                 Stock: {product.stock}
               </p>
 
+               <p className="AdminProducts_product-size">
+                Size: {product.size}
+              </p>
+
               {/* Actions */}
               <div className="AdminProducts_admin-product-actions">
 
