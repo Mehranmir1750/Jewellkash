@@ -11,6 +11,7 @@ export default function UserDashboard() {
 
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
+  const [size, setSize] = useState("");
 
 useEffect(() => {
 
@@ -130,7 +131,7 @@ const handleAddToCart = async (product) => {
       <section className="userDashboard_dashboard-hero">
 
         <h1>
-          Luxury Jewelry Collection ✨
+          Luxury Jewellery Collection ✨
         </h1>
 
         <p>
@@ -161,6 +162,12 @@ const handleAddToCart = async (product) => {
               <p>
   ₹{Number(product.price).toLocaleString()}
 </p>
+
+{product.size && (
+  <div className="product-size">
+    Size: {product.size}
+  </div>
+)}
 
               <div className="userDashboard_product-actions">
 

@@ -200,27 +200,28 @@ app.post("/add-product", async (req, res) => {
   try {
 
     const {
-      name,
-      price,
-      stock,
-      category,
-      image,
-      description,
-    } = req.body;
+  name,
+  price,
+  stock,
+  category,
+  size,
+  image,
+  description,
+} = req.body;
 
     const newProduct = await pool.query(
       `INSERT INTO products
-      (name, price, stock, category, image, description)
-      VALUES ($1, $2, $3, $4, $5, $6)
-      RETURNING *`,
-      [
-        name,
-        price,
-        stock,
-        category,
-        image,
-        description,
-      ]
+(name, price, stock, category, size, image, description)
+VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+     [
+  name,
+  price,
+  stock,
+  category,
+  size,
+  image,
+  description,
+]
     );
 
     res.json(newProduct.rows[0]);
@@ -408,40 +409,43 @@ app.put("/products/:id", async (req, res) => {
     const { id } = req.params;
 
     const {
-      name,
-      price,
-      stock,
-      category,
-      image,
-      description,
-    } = req.body;
+  name,
+  price,
+  stock,
+  category,
+  size,
+  image,
+  description,
+} = req.body;
 
     const updatedProduct =
       await pool.query(
 
         `UPDATE products
 
-        SET
-        name = $1,
-        price = $2,
-        stock = $3,
-        category = $4,
-        image = $5,
-        description = $6
+SET
+name = $1,
+price = $2,
+stock = $3,
+category = $4,
+size = $5,
+image = $6,
+description = $7
 
-        WHERE id = $7
+WHERE id = $8
 
-        RETURNING *`,
+RETURNING *;`,
 
         [
-          name,
-          price,
-          stock,
-          category,
-          image,
-          description,
-          id,
-        ]
+  name,
+  price,
+  stock,
+  category,
+  size,
+  image,
+  description,
+  id,
+]
       );
 
     res.json(updatedProduct.rows[0]);

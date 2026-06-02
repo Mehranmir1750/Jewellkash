@@ -13,13 +13,14 @@ import {
 export default function AddProduct() {
 
   const [product, setProduct] = useState({
-    name: "",
-    price: "",
-    stock: "",
-    category: "",
-    image: "",
-    description: "",
-  });
+  name: "",
+  price: "",
+  stock: "",
+  category: "",
+  size: "",
+  image: "",
+  description: "",
+});
 
 
   const [imageFile, setImageFile] = useState(null);
@@ -77,14 +78,16 @@ export default function AddProduct() {
       "Product Added Successfully ✨"
     );
 
+    
     setProduct({
-      name: "",
-      price: "",
-      stock: "",
-      category: "",
-      image: "",
-      description: "",
-    });
+  name: "",
+  price: "",
+  stock: "",
+  category: "",
+  size: "",
+  image: "",
+  description: "",
+});
 
     setImageFile(null);
 
@@ -222,6 +225,32 @@ export default function AddProduct() {
               </div>
 
             </div>
+
+
+
+            {/* Size */}
+<div className="AdminAddProduct_form-group">
+
+  <label>
+    Size
+  </label>
+
+  <input
+    type="text"
+    placeholder="e.g. 6,7,8,9,10"
+    value={product.size}
+    onChange={(e) =>
+      setProduct({
+        ...product,
+        size: e.target.value,
+      })
+    }
+  />
+
+</div>
+
+
+
 
             {/* Category */}
             <div className="AdminAddProduct_form-group">

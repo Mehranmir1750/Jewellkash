@@ -18,20 +18,14 @@ export default function EditProduct() {
   const navigate = useNavigate();
 
   const [product, setProduct] = useState({
-
-    name: "",
-
-    price: "",
-
-    stock: "",
-
-    category: "",
-
-    image: "",
-
-    description: "",
-
-  });
+  name: "",
+  price: "",
+  stock: "",
+  category: "",
+  size: "",
+  image: "",
+  description: "",
+});
 
   // Fetch Product
   useEffect(() => {
@@ -249,7 +243,24 @@ export default function EditProduct() {
 
           </div>
 
-          {/* Image */}
+          {/* Size */}
+<div className="form-group">
+
+  <label>
+    Size
+  </label>
+
+  <input
+    type="text"
+    name="size"
+    placeholder="6,7,8,9,10"
+    value={product.size || ""}
+    onChange={handleChange}
+  />
+
+</div>
+
+
          {/* Image */}
 <div className="form-group">
   <label>Product Image</label>

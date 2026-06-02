@@ -132,6 +132,11 @@ body{
 
 /* Card */
 .userDashboard_product-card{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  justify-self: center;
+  flex-wrap: wrap;
   background:white;
 
   border-radius:22px;
@@ -144,6 +149,7 @@ body{
     0 10px 25px rgba(0,0,0,0.05);
 
   transition:0.3s;
+  
 }
 
 .userDashboard_product-card:hover{
@@ -381,6 +387,7 @@ body{
     grid-template-columns:1fr;
     gap:18px;
     padding:14px;
+    grid-area: 2 / 1 / span 2 / span 3;
   }
 
   .userDashboard_product-card{
@@ -449,3 +456,24 @@ body{
   }
 
 }
+
+
+.product-size{
+  margin-bottom:15px;
+
+  color:#8A5A62;
+
+  font-size:14px;
+
+  font-weight:500;
+
+  background:#fff1f3;
+
+  display:inline-block;
+
+  padding:6px 12px;
+
+  border-radius:20px;
+}
+
+
