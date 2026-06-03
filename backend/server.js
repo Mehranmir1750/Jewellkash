@@ -823,6 +823,27 @@ app.post("/google-login", async (req, res) => {
   }
 });
 
+app.get("/products/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const product = await pool.query(
+      "SELECT * FROM products WHERE id = $1",
+      [id]
+    );
+
+    if (product.rows.length === 0) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.json(product.rows[0]);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 
 
 // SERVER

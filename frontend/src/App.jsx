@@ -14,7 +14,7 @@ import AdminOrders from "./pages/AdminOrders"
 import AdminUsers from "./pages/AdminUsers"
 import EditProduct from "./pages/EditProduct"
 import Payment from "./pages/Payment"
-
+import ProductDetail from "./pages/ProductDetails"
 
 
 export default function App() {
@@ -59,6 +59,8 @@ export default function App() {
   path="/payment"
   element={<Payment />}
 />
+
+<Route path="/product/:id" element={<ProductDetail />} />
 
       </Routes>
 

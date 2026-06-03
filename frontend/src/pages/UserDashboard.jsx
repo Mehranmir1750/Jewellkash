@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import "../styles/UserDashboard.css";
+import { useNavigate } from "react-router-dom";
 import {
   FaShoppingCart,
   FaSignOutAlt,
@@ -8,10 +9,13 @@ import {
 
 export default function UserDashboard() {
 
+  const navigate = useNavigate();
+
 
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [size, setSize] = useState("");
+  
 
 useEffect(() => {
 
@@ -146,9 +150,11 @@ const handleAddToCart = async (product) => {
         {products.map((product) => (
 
           <div
-            className="userDashboard_product-card"
-            key={product.id}
-          >
+  className="userDashboard_product-card"
+  key={product.id}
+  onClick={() => navigate(`/product/${product.id}`)}
+  style={{ cursor: "pointer" }}
+>
 
             <img
               src={product.image}
