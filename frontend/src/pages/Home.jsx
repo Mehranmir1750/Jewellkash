@@ -81,19 +81,19 @@ const fetchProducts = async () => {
     <>
 
     <Navbar />
-      <div className="jk-page">
+      <div className="home_jk-page">
 
         {/* Brand Header */}
-        <div className="jk-brand">
-          <div className="jk-brand-name">JewellKash</div>
-          <div className="jk-brand-sub">Kashmir Fine Jewellery</div>
-          <div className="jk-divider">
-            <div className="jk-gem" />
+        <div className="home_jk-brand">
+          <div className="home_jk-brand-name">JewellKash</div>
+          <div className="home_jk-brand-sub">Kashmir Fine Jewellery</div>
+          <div className="home_jk-divider">
+            <div className="home_jk-gem" />
           </div>
         </div>
 
         {/* Filters */}
-        <div className="jk-filters">
+        <div className="home_jk-filters">
           {filters.map((f) => (
             <button
               key={f}
@@ -106,56 +106,56 @@ const fetchProducts = async () => {
         </div>
 
         {/* Product Grid */}
-        <div className="jk-grid">
+        <div className="home_jk-grid">
           {filtered.map((product) => (
-            <div key={product.id} className="jk-card">
-              <div className="jk-img-wrap">
+            <div key={product.id} className="home_jk-card">
+              <div className="home_jk-img-wrap">
                 <img
   src={product.image}
   alt={product.name}
-  className="jk-product-image"
+  className="home_jk-product-image"
 />
 
                 {product.badge === "new" && (
-                  <span className="jk-badge jk-badge-new">New</span>
+                  <span className="home_jk-badge jk-badge-new">New</span>
                 )}
                 {product.badge === "low" && (
-                  <span className="jk-badge jk-badge-low">Low Stock</span>
+                  <span className="home_jk-badge jk-badge-low">Low Stock</span>
                 )}
 
               </div>
 
-              <div className="jk-card-body">
-                <div className="jk-prod-type">{product.category}</div>
-                <div className="jk-prod-name">{product.name}</div>
+              <div className="home_jk-card-body">
+                <div className="home_jk-prod-type">{product.category}</div>
+                <div className="home_jk-prod-name">{product.name}</div>
 
-                <div className="jk-price-row">
-                  <span className="jk-price">₹{product.price}</span>
+                <div className="home_jk-price-row">
+                  <span className="home_jk-price">₹{product.price}</span>
                   {product.oldPrice && (
-                    <span className="jk-price-old">{product.oldPrice}</span>
+                    <span className="home_jk-price-old">{product.oldPrice}</span>
                   )}
                 </div>
-                <p className="Home_product-size">
+                <p className="home_Home_product-size">
                 Size: {product.size}
               </p>
 
-                <div className="jk-stock">
+                <div className="home_jk-stock">
                   {product.stock === "out" && (
                     <>
-                      <span className="jk-dot jk-dot-out" />
-                      <span className="jk-stock-out">Out of stock</span>
+                      <span className="home_jk-dot jk-dot-out" />
+                      <span className="home_jk-stock-out">Out of stock</span>
                     </>
                   )}
                   {product.stock === "low" && (
                     <>
-                      <span className="jk-dot jk-dot-low" />
-                      <span className="jk-stock-low">Only {product.stockQty} left</span>
+                      <span className="home_jk-dot jk-dot-low" />
+                      <span className="home_jk-stock-low">Only {product.stockQty} left</span>
                     </>
                   )}
                   {product.stock === "ok" && (
                     <>
-                      <span className="jk-dot jk-dot-ok" />
-                      <span className="jk-stock-ok">In stock</span>
+                      <span className="home_jk-dot jk-dot-ok" />
+                      <span className="home_jk-stock-ok">In stock</span>
                     </>
                   )}
                 </div>
