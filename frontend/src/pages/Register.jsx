@@ -4,7 +4,13 @@ import axios from "axios";
 import Navbar from "./Navbar";
 import "../styles/Register.css";
 
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../firebase"; // adjust path if needed
+import { useNavigate } from "react-router-dom";
+
 export default function Register() {
+
+   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
