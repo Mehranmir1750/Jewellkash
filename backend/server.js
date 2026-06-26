@@ -241,7 +241,7 @@ app.get("/products", async (req, res) => {
 
     const allProducts =
       await pool.query(
-        "SELECT * FROM products ORDER BY id DESC"
+        "SELECT * FROM products ORDER BY sort_order ASC"
       );
 
     res.json(allProducts.rows);
@@ -250,6 +250,27 @@ app.get("/products", async (req, res) => {
 
     console.error(err.message);
 
+  }
+});
+
+
+
+app.patch("/products/reorder", async (req, res) => {
+  try {
+    const { order } = req.body;
+    // order = [{ id: 3, sort_order: 1 }, { id: 7, sort_order: 2 }, ...]
+
+    for (const item of order) {
+      await pool.query(
+        "UPDATE products SET sort_order = $1 WHERE id = $2",
+        [item.sort_order, item.id]
+      );
+    }
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server Error" });
   }
 });
 
@@ -459,26 +480,26 @@ RETURNING *;`,
 });
 
 
-app.get("/products/:id", async (req, res) => {
+// app.get("/products/:id", async (req, res) => {
 
-  try {
+//   try {
 
-    const { id } = req.params;
+//     const { id } = req.params;
 
-    const product =
-      await pool.query(
-        "SELECT * FROM products WHERE id = $1",
-        [id]
-      );
+//     const product =
+//       await pool.query(
+//         "SELECT * FROM products WHERE id = $1",
+//         [id]
+//       );
 
-    res.json(product.rows[0]);
+//     res.json(product.rows[0]);
 
-  } catch (err) {
+//   } catch (err) {
 
-    console.error(err.message);
+//     console.error(err.message);
 
-  }
-});
+//   }
+// });
 
 
 
