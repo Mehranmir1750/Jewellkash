@@ -119,7 +119,7 @@ const fetchProducts = async () => {
 
           {loading ? (
   <div className="jk-skeleton-grid">
-    {Array.from({ length: 6 }).map((_, i) => (
+    {Array.from({ length: 8 }).map((_, i) => (
       <div key={i} className="jk-skeleton-card">
         <div className="jk-skeleton-img" />
         <div className="jk-skeleton-body">
