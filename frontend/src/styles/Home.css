@@ -489,3 +489,64 @@ body {
     letter-spacing: 0.08em;
   }
 }
+
+/* ── Skeleton ── */
+.jk-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  padding: 0 24px 48px;
+}
+
+.jk-skeleton-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #ece7df;
+}
+
+.jk-skeleton-img {
+  width: 100%;
+  height: 220px;
+  background: #f0e8dc;
+}
+
+.jk-skeleton-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jk-skeleton-line {
+  height: 10px;
+  border-radius: 6px;
+  background: #f0e8dc;
+}
+
+.jk-skeleton-line.short { width: 40%; }
+.jk-skeleton-line.medium { width: 65%; }
+.jk-skeleton-line.long { width: 90%; }
+.jk-skeleton-line.btn {
+  height: 38px;
+  border-radius: 8px;
+  margin-top: 6px;
+}
+
+/* shimmer animation */
+.jk-skeleton-img,
+.jk-skeleton-line {
+  background: linear-gradient(
+    90deg,
+    #f0e8dc 25%,
+    #faf4ed 50%,
+    #f0e8dc 75%
+  );
+  background-size: 200% 100%;
+  animation: jk-shimmer 1.4s infinite;
+}
+
+@keyframes jk-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

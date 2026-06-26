@@ -13,6 +13,7 @@ export default function Home() {
   const [toast, setToast] = useState({ show: false, message: "" });
 
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
 
 
@@ -23,6 +24,8 @@ export default function Home() {
 }, []);
 
 const fetchProducts = async () => {
+
+  setLoading(true);
 
   try {
 
@@ -38,6 +41,8 @@ const fetchProducts = async () => {
 
     console.error(err.message);
 
+  }finally{
+    setLoading(false);
   }
 };
 
@@ -106,7 +111,30 @@ const fetchProducts = async () => {
         </div>
 
         {/* Product Grid */}
-        <div className="home_jk-grid">
+
+
+
+
+
+
+          {loading ? (
+  <div className="jk-skeleton-grid">
+    {Array.from({ length: 6 }).map((_, i) => (
+      <div key={i} className="jk-skeleton-card">
+        <div className="jk-skeleton-img" />
+        <div className="jk-skeleton-body">
+          <div className="jk-skeleton-line short" />
+          <div className="jk-skeleton-line medium" />
+          <div className="jk-skeleton-line long" />
+          <div className="jk-skeleton-line short" />
+          <div className="jk-skeleton-line btn" />
+        </div>
+      </div>
+    ))}
+  </div>
+) 
+
+        :(<div className="home_jk-grid">
           {filtered.map((product) => (
             <div key={product.id} className="home_jk-card">
               <div className="home_jk-img-wrap">
@@ -175,6 +203,7 @@ const fetchProducts = async () => {
             </div>
           ))}
         </div>
+        )}
 
         {/* Toast */}
         <div className={`jk-toast${toast.show ? " show" : ""}`}>
