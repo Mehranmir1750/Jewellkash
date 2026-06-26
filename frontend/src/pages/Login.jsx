@@ -78,47 +78,73 @@ if (res.data.user.role === "admin") {
 
 
 
+// const handleGoogle = async () => {
+//   try {
+
+//     const provider =
+//       new GoogleAuthProvider();
+
+//     const result =
+//       await signInWithPopup(
+//         auth,
+//         provider
+//       );
+
+
 const handleGoogle = async () => {
   try {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    const googleUser = result.user;
 
-    const provider =
-      new GoogleAuthProvider();
-
-    const result =
-      await signInWithPopup(
-        auth,
-        provider
-      );
-
-    const googleUser =
-      result.user;
-
-    const response =
-      await axios.post(
-        "https://jewellkash.onrender.com/google-login",
-        {
-          name:
-            googleUser.displayName,
-          email:
-            googleUser.email,
-        }
-      );
-
-    localStorage.setItem(
-      "user",
-      JSON.stringify(
-        response.data
-      )
+    const response = await axios.post(
+      "https://jewellkash.onrender.com/google-login",
+      {
+        name: googleUser.displayName,
+        email: googleUser.email,
+      }
     );
+    console.log("Google login response:", response.data);
+
+    localStorage.setItem("token", response.data.token);           // ✅ save token
+    localStorage.setItem("user", JSON.stringify(response.data.user)); // ✅ save user only
 
     navigate("/user-dashboard");
 
   } catch (error) {
-
     console.log(error);
-
   }
 };
+
+//     const googleUser =
+//       result.user;
+
+//     const response =
+//       await axios.post(
+//         "https://jewellkash.onrender.com/google-login",
+//         {
+//           name:
+//             googleUser.displayName,
+//           email:
+//             googleUser.email,
+//         }
+//       );
+
+//     localStorage.setItem(
+//       "user",
+//       JSON.stringify(
+//         response.data
+//       )
+//     );
+
+//     navigate("/user-dashboard");
+
+//   } catch (error) {
+
+//     console.log(error);
+
+//   }
+// };
 
 
 

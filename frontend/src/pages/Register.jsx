@@ -58,32 +58,59 @@ export default function Register() {
 
 
 
-  const handleGoogle = async () => {
+//   const handleGoogle = async () => {
+//   try {
+//     const provider =
+//       new GoogleAuthProvider();
+
+//     const result =
+//       await signInWithPopup(
+//         auth,
+//         provider
+//       );
+
+//     const googleUser = result.user;
+
+//     localStorage.setItem(
+//       "user",
+//       JSON.stringify({
+//         id: googleUser.uid,
+//         name: googleUser.displayName,
+//         email: googleUser.email,
+//       })
+//     );
+
+//     navigate("/user-dashboard");
+
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+
+const handleGoogle = async () => {
   try {
-    const provider =
-      new GoogleAuthProvider();
-
-    const result =
-      await signInWithPopup(
-        auth,
-        provider
-      );
-
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
     const googleUser = result.user;
 
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        id: googleUser.uid,
+    // ✅ Hit the backend — inserts user if new, returns token + user
+    const response = await axios.post(
+      "https://jewellkash.onrender.com/google-login",
+      {
         name: googleUser.displayName,
         email: googleUser.email,
-      })
+      }
     );
+
+    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("user", JSON.stringify(response.data.user));
 
     navigate("/user-dashboard");
 
   } catch (error) {
     console.log(error);
+    alert("Google sign-up failed");
   }
 };
 

@@ -773,54 +773,106 @@ app.get("/order-details", async (req, res) => {
 
 
 
+// app.post("/google-login", async (req, res) => {
+//   try {
+
+//     const { name, email } = req.body;
+
+//     console.log("Google request:", req.body);
+
+//     let user = await pool.query(
+//       `
+//       SELECT *
+//       FROM users
+//       WHERE email = $1
+//       `,
+//       [email]
+//     );
+
+//     console.log("User exists:", user.rows.length);
+
+//     if (user.rows.length === 0) {
+
+//       user = await pool.query(
+//         `
+//         INSERT INTO users
+//         (
+//           name,
+//           email,
+//           role,
+//           joined_date
+//         )
+//         VALUES
+//         ($1,$2,$3,$4)
+//         RETURNING *
+//         `,
+//         [
+//           name,
+//           email,
+//           "user",
+//           new Date().toLocaleDateString(),
+//         ]
+//       );
+//       console.log("Inserting new Google user...");
+//     }
+
+//     res.json(user.rows[0]);
+
+//   } catch (err) {
+
+//     console.error(err);
+
+//     res.status(500).json({
+//       error: "Server Error",
+//     });
+
+//   }
+// });
+
 app.post("/google-login", async (req, res) => {
   try {
-
     const { name, email } = req.body;
 
-    let user = await pool.query(
-      `
-      SELECT *
-      FROM users
-      WHERE email = $1
-      `,
+    let result = await pool.query(
+      `SELECT * FROM users WHERE email = $1`,
       [email]
     );
 
-    if (user.rows.length === 0) {
+    let user;
 
-      user = await pool.query(
-        `
-        INSERT INTO users
-        (
-          name,
-          email,
-          role,
-          joined_date
-        )
-        VALUES
-        ($1,$2,$3,$4)
-        RETURNING *
-        `,
-        [
-          name,
-          email,
-          "user",
-          new Date().toLocaleDateString(),
-        ]
+    if (result.rows.length === 0) {
+      // New user — insert them
+      const inserted = await pool.query(
+        `INSERT INTO users (name, email, role, joined_date)
+         VALUES ($1, $2, $3, $4) RETURNING *`,
+        [name, email, "user", new Date().toLocaleDateString()]
       );
+      user = inserted.rows[0];
+    } else {
+      user = result.rows[0];
     }
 
-    res.json(user.rows[0]);
+    // Generate token — same as regular login
+    const token = jwt.sign(
+      { id: user.id, email: user.email, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
 
-  } catch (err) {
-
-    console.error(err);
-
-    res.status(500).json({
-      error: "Server Error",
+    res.json({
+      message: "Login Successful",
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      }
     });
 
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server Error" });
   }
 });
 

@@ -19,9 +19,13 @@ export default function UserDashboard() {
 
 useEffect(() => {
 
-  const user = JSON.parse(
-    localStorage.getItem("user")
-  );
+  // const user = JSON.parse(
+  //   localStorage.getItem("user")
+  // );
+
+
+  const raw = localStorage.getItem('user');
+const user = raw && raw !== 'undefined' ? JSON.parse(raw) : null;
 
   if (!user) return;
 
