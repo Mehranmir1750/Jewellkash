@@ -4,7 +4,7 @@ import "../styles/Home.css"
 
 
 
-const filters = ["all", "ring", "necklace", "earring", "bracelet", "set"];
+// const filters = ["all", "ring", "necklace", "earring", "bracelet", "set"];
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -98,7 +98,7 @@ const fetchProducts = async () => {
         </div>
 
         {/* Filters */}
-        <div className="home_jk-filters">
+        {/* <div className="home_jk-filters">
           {filters.map((f) => (
             <button
               key={f}
@@ -108,7 +108,7 @@ const fetchProducts = async () => {
               {f === "all" ? "All" : f.charAt(0).toUpperCase() + f.slice(1) + "s"}
             </button>
           ))}
-        </div>
+        </div> */}
 
         {/* Product Grid */}
 
