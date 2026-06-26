@@ -288,7 +288,7 @@ export default function Navbar() {
         </li>
 
         {/* Login dropdown */}
-        <li className="Navbar_homenav-dropdown-wrap">
+        {/* <li className="Navbar_homenav-dropdown-wrap">
           <span
             className={`nav-dropdown-trigger ${
               location.pathname.startsWith("/login") ? "active" : ""
@@ -310,10 +310,10 @@ export default function Navbar() {
             </svg>
           </span>
 
-          <ul className="Navbar_homenav-dropdown">
+          <ul className="Navbar_homenav-dropdown"> */}
 
             {/* User Login */}
-            <li>
+            {/* <li>
               <Link to="/login" className="Navbar_homenav-dropdown-item">
                 <span className="Navbar_homenav-dropdown-icon">◈</span>
                 <span className="Navbar_homenav-dropdown-label">
@@ -322,10 +322,10 @@ export default function Navbar() {
               </Link>
             </li>
 
-            <li className="Navbar_homenav-dropdown-sep" />
+            <li className="Navbar_homenav-dropdown-sep" /> */}
 
             {/* Admin Login */}
-            <li>
+            {/* <li>
               <Link to="/loginAdmin" className="Navbar_homenav-dropdown-item">
                 <span className="Navbar_homenav-dropdown-icon">◇</span>
                 <span className="Navbar_homenav-dropdown-label">
@@ -335,7 +335,16 @@ export default function Navbar() {
             </li>
 
           </ul>
-        </li>
+        </li> */}
+
+        <li>
+  <Link
+    to="/login"
+    className={location.pathname === "/login" ? "active" : ""}
+  >
+    Login
+  </Link>
+</li>
 
         {/* Register */}
         <li>

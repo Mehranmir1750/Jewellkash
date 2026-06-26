@@ -34,19 +34,37 @@ const navigate = useNavigate();
 
       console.log(res.data);
 
+      // // SAVE TOKEN
+      // localStorage.setItem(
+      //   "token",
+      //   res.data.token
+      // );
+
+      // // SAVE USER
+      // localStorage.setItem(
+      //   "user",
+      //   JSON.stringify(res.data.user)
+      // );
+
+      // navigate("/user-dashboard");
+
       // SAVE TOKEN
-      localStorage.setItem(
-        "token",
-        res.data.token
-      );
+localStorage.setItem(
+  "token",
+  res.data.token
+);
 
-      // SAVE USER
-      localStorage.setItem(
-        "user",
-        JSON.stringify(res.data.user)
-      );
+// SAVE USER
+localStorage.setItem(
+  "user",
+  JSON.stringify(res.data.user)
+);
 
-      navigate("/user-dashboard");
+if (res.data.user.role === "admin") {
+  navigate("/admin-dashboard");
+} else {
+  navigate("/user-dashboard");
+}
 
     } catch (error) {
 
