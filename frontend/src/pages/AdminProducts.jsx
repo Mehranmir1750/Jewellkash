@@ -215,10 +215,6 @@ export default function AdminProducts() {
                   onClick={() => handleDelete(product.id)}
                 >
                   <FaTrash /> Delete
-
-
-
-                  
                 </button>
               </div>
 
