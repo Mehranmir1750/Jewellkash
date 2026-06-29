@@ -22,7 +22,13 @@ export default function Orders() {
     if (!user) return;
 
     fetch(
-      `https://jewellkash.onrender.com/orders/${user.id}`
+      `https://jewellkash.onrender.com/orders/${user.id}`,{
+        headers: {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+},
+      }
+      
     )
       .then((res) => res.json())
       .then((data) => {

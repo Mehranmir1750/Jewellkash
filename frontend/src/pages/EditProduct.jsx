@@ -39,7 +39,12 @@ export default function EditProduct() {
     try {
 
       const response = await fetch(
-        `https://jewellkash.onrender.com/products/${id}`
+        `https://jewellkash.onrender.com/products/${id}`,
+         {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
+  }
       );
 
       const data = await response.json();

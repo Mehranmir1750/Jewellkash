@@ -29,7 +29,8 @@ const navigate = useNavigate();
         {
           email,
           password
-        }
+        },
+       
       );
 
       console.log(res.data);

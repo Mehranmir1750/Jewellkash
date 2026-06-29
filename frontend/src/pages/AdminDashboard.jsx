@@ -43,9 +43,14 @@ export default function AdminDashboard() {
 
     try {
 
-      const response = await fetch(
-        "https://jewellkash.onrender.com/orders"
-      );
+    const response = await fetch(
+  "https://jewellkash.onrender.com/admin-dashboard",
+  {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }
+);
 
       const data = await response.json();
 

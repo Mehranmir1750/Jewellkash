@@ -63,10 +63,14 @@ const grandTotal =
       `https://jewellkash.onrender.com/checkout/${user.id}`,
       {
         method: "POST",
-        headers: {
-          "Content-Type":
-            "application/json",
-        },
+        // headers: {
+        //   "Content-Type":
+        //     "application/json",
+        // },
+         headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
         body: JSON.stringify({
           name: customer.name,
           phone: customer.phone,
@@ -75,7 +79,12 @@ const grandTotal =
           deliveryCharge,
           total: grandTotal,
         }),
-      }
+      },
+  //      {
+  //   headers: {
+  //     Authorization: `Bearer ${localStorage.getItem("token")}`
+  //   }
+  // }
     );
 
     const data =

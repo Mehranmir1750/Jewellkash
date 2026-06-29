@@ -30,7 +30,12 @@ const user = raw && raw !== 'undefined' ? JSON.parse(raw) : null;
   if (!user) return;
 
   fetch(
-    `https://jewellkash.onrender.com/cart/${user.id}`
+    `https://jewellkash.onrender.com/cart/${user.id}`,
+     {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
+  }
   )
     .then((res) => res.json())
     .then((data) => {
@@ -70,9 +75,10 @@ const handleAddToCart = async (product) => {
       "https://jewellkash.onrender.com/cart",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+       headers: {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+},
         body: JSON.stringify({
           userId: user.id,
           productId: product.id,

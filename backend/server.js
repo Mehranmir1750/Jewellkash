@@ -7,6 +7,8 @@ const bcrypt = require("bcryptjs");
 const pool = require("./db/db");
 
 const app = express();
+const auth = require("./middleware/auth")
+const admin = require("./middleware/admin");
 
 
 
@@ -196,7 +198,7 @@ app.post("/login", async (req, res) => {
 
 
 
-app.post("/add-product", async (req, res) => {
+app.post("/add-product",auth, admin, async (req, res) => {
 
   try {
 
@@ -255,7 +257,7 @@ app.get("/products", async (req, res) => {
 
 
 
-app.patch("/products/reorder", async (req, res) => {
+app.patch("/products/reorder",auth,admin, async (req, res) => {
   try {
     const { order } = req.body;
     // order = [{ id: 3, sort_order: 1 }, { id: 7, sort_order: 2 }, ...]
@@ -280,7 +282,7 @@ app.patch("/products/reorder", async (req, res) => {
 
 
 
-app.delete("/products/:id", async (req, res) => {
+app.delete("/products/:id",auth,admin, async (req, res) => {
 
   try {
 
@@ -304,7 +306,7 @@ app.delete("/products/:id", async (req, res) => {
 
 
 
-app.get("/orders", async (req, res) => {
+app.get("/orders",auth,admin, async (req, res) => {
 
   try {
 
@@ -322,7 +324,7 @@ app.get("/orders", async (req, res) => {
   }
 });
 
-app.get("/users", async (req, res) => {
+app.get("/users",auth,admin, async (req, res) => {
 
   try {
 
@@ -344,7 +346,7 @@ ORDER BY id DESC;`
 
 
 
-app.delete("/users/:id", async (req, res) => {
+app.delete("/users/:id",auth,admin, async (req, res) => {
 
   try {
 
@@ -366,7 +368,7 @@ app.delete("/users/:id", async (req, res) => {
 
 
 
-app.get("/admin-dashboard", async (req, res) => {
+app.get("/admin-dashboard",auth,admin, async (req, res) => {
 
   try {
 
@@ -424,7 +426,7 @@ app.get("/admin-dashboard", async (req, res) => {
 });
 
 
-app.put("/products/:id", async (req, res) => {
+app.put("/products/:id",auth,admin, async (req, res) => {
 
   try {
 
@@ -503,7 +505,7 @@ RETURNING *;`,
 
 
 
-app.get("/api/cart/:userId", async (req, res) => {
+app.get("/api/cart/:userId",auth, async (req, res) => {
   try {
     const { userId } = req.params;
 
@@ -536,7 +538,7 @@ app.get("/api/cart/:userId", async (req, res) => {
 
 
 
-app.get("/orders/:userId", async (req, res) => {
+app.get("/orders/:userId",auth, async (req, res) => {
   try {
 
     const { userId } = req.params;
@@ -576,7 +578,7 @@ app.get("/orders/:userId", async (req, res) => {
 
 
 
-app.post("/checkout/:userId", async (req, res) => {
+app.post("/checkout/:userId",auth, async (req, res) => {
   try {
 
     const { userId } = req.params;
@@ -695,7 +697,7 @@ app.post("/checkout/:userId", async (req, res) => {
 
 
 
-app.put("/orders/:id", async (req, res) => {
+app.put("/orders/:id",auth,admin, async (req, res) => {
   try {
 
     const { id } = req.params;
@@ -727,6 +729,8 @@ app.put("/orders/:id", async (req, res) => {
 
 router.post(
   "/upload",
+  auth,
+  admin,
   upload.single("image"),
   async (req, res) => {
     try {
@@ -767,7 +771,7 @@ router.post(
 );
 
 
-app.get("/order-details", async (req, res) => {
+app.get("/order-details",auth,admin, async (req, res) => {
   try {
 
     const result = await pool.query(

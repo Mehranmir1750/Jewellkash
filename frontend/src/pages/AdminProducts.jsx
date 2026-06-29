@@ -53,14 +53,17 @@ export default function AdminProducts() {
         sort_order: i + 1,
       }));
 
-      await fetch(
-        "https://jewellkash.onrender.com/products/reorder",
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ order }),
-        }
-      );
+     await fetch(
+  "https://jewellkash.onrender.com/products/reorder",
+  {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ order }),
+  }
+);
 
       setOrderChanged(false);
       alert("Order saved!");
@@ -74,9 +77,14 @@ export default function AdminProducts() {
   const handleDelete = async (id) => {
     try {
       await fetch(
-        `https://jewellkash.onrender.com/products/${id}`,
-        { method: "DELETE" }
-      );
+  `https://jewellkash.onrender.com/products/${id}`,
+  {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }
+);
       setProducts(products.filter((p) => p.id !== id));
     } catch (err) {
       console.error(err.message);

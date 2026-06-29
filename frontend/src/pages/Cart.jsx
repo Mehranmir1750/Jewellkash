@@ -24,7 +24,12 @@ export default function Cart() {
     if (!user) return;
 
     fetch(
-      `https://jewellkash.onrender.com/api/cart/${user.id}`
+      `https://jewellkash.onrender.com/api/cart/${user.id}`,{
+        headers: {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+},
+      }
     )
       .then((res) => res.json())
       .then((data) => {
@@ -39,7 +44,8 @@ export default function Cart() {
         console.log(err);
       });
 
-  }, []);
+  }, [],
+);
 
   const removeItem = async (productId) => {
 

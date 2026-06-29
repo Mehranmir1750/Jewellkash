@@ -25,7 +25,12 @@ export default function AdminUsers() {
     try {
 
       const response = await fetch(
-        "https://jewellkash.onrender.com/users"
+        "https://jewellkash.onrender.com/users",
+         {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
+  }
       );
 
       const data = await response.json();
@@ -44,13 +49,15 @@ export default function AdminUsers() {
 
     try {
 
-      await fetch(
-        `https://jewellkash.onrender.com/users/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-
+     await fetch(
+  `https://jewellkash.onrender.com/users/${id}`,
+  {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }
+);
       setUsers(
         users.filter(
           (user) => user.id !== id

@@ -17,7 +17,12 @@ export default function ProductDetail() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
 
-    fetch(`https://jewellkash.onrender.com/cart/${user.id}`)
+    // fetch(`https://jewellkash.onrender.com/cart/${user.id}`)
+    fetch(`https://jewellkash.onrender.com/cart/${user.id}`, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+})
       .then((res) => res.json())
       .then((data) => setCart(data.map((item) => item.id)))
       .catch(console.error);
@@ -40,7 +45,11 @@ export default function ProductDetail() {
       const user = JSON.parse(localStorage.getItem("user"));
       const response = await fetch("https://jewellkash.onrender.com/cart", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        // headers: { "Content-Type": "application/json" },
+         headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
         body: JSON.stringify({ userId: user.id, productId: product.id }),
       });
       const data = await response.json();

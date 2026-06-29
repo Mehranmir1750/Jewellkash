@@ -19,12 +19,18 @@ export default function AdminOrders() {
 
     fetchOrders();
     fetch(
-  "https://jewellkash.onrender.com/order-details"
+  "https://jewellkash.onrender.com/order-details",{
+    headers: {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+},
+  }
 )
   .then((res) => res.json())
   .then((data) => {
     setOrderDetails(data);
-  });
+  },
+);
 
   }, []);
 
@@ -36,9 +42,13 @@ export default function AdminOrders() {
     try {
 
       const response = await fetch(
-        "https://jewellkash.onrender.com/orders"
-      );
-
+  "https://jewellkash.onrender.com/orders",
+  {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }
+);
       const data = await response.json();
 
       setOrders(data);
@@ -59,9 +69,10 @@ export default function AdminOrders() {
       `https://jewellkash.onrender.com/orders/${orderId}`,
       {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
+       headers: {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+},
         body: JSON.stringify({
           status,
         }),

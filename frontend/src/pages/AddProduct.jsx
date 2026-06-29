@@ -40,34 +40,64 @@ export default function AddProduct() {
       imageFile
     );
 
+    // const uploadResponse = await fetch(
+    //   "https://jewellkash.onrender.com/upload",
+    //   {
+    //     method: "POST",
+    //     body: formData,
+    //   }
+    // );
+
+
     const uploadResponse = await fetch(
-      "https://jewellkash.onrender.com/upload",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+  "https://jewellkash.onrender.com/upload",
+  {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: formData,
+  }
+);
 
     const uploadData =
       await uploadResponse.json();
 
     // Save product with Cloudinary URL
+    // const response = await fetch(
+    //   "https://jewellkash.onrender.com/add-product",
+    //   {
+    //     method: "POST",
+
+    //     // headers: {
+    //     //   "Content-Type":
+    //     //     "application/json",
+    //     // },
+        
+
+    //     body: JSON.stringify({
+    //       ...product,
+    //       image: uploadData.url,
+    //     }),
+        
+    //   }
+    // );
+
+
     const response = await fetch(
-      "https://jewellkash.onrender.com/add-product",
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type":
-            "application/json",
-        },
-
-        body: JSON.stringify({
-          ...product,
-          image: uploadData.url,
-        }),
-      }
-    );
+  "https://jewellkash.onrender.com/add-product",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({
+      ...product,
+      image: uploadData.url,
+    }),
+  }
+);
 
     const data =
       await response.json();
