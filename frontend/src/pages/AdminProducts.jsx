@@ -46,7 +46,6 @@ export default function AdminProducts() {
     setOrderChanged(true);
   };
 
-  // Save new order to backend
   const saveOrder = async () => {
     try {
       const order = products.map((p, i) => ({
